@@ -4,6 +4,7 @@ import { Search, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { SponsorCard } from "@/components/SponsorCard";
 
 interface Prompt {
   id: string;
@@ -19,7 +20,7 @@ interface Prompt {
 
 const Index = () => {
   const [featuredPrompts, setFeaturedPrompts] = useState<Prompt[]>([]);
-  const [memberCount, setMemberCount] = useState(0);
+  const [memberCount, setMemberCount] = useState(250);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
@@ -47,12 +48,68 @@ const Index = () => {
     window.location.href = `/browse?search=${encodeURIComponent(searchQuery)}`;
   };
 
+  const leftSponsors = [
+    [
+      { name: "Supabase", description: "Build in a weekend, scale to millions", icon: "⚡", url: "https://supabase.com", bgColor: "hsl(var(--card))" },
+      { name: "Vercel", description: "Deploy with zero configuration", icon: "▲", url: "https://vercel.com", bgColor: "hsl(var(--card))" }
+    ],
+    [
+      { name: "TailwindCSS", description: "Rapidly build modern websites", icon: "🎨", url: "https://tailwindcss.com", bgColor: "hsl(var(--card))" },
+      { name: "Framer Motion", description: "Production-ready animations", icon: "🎬", url: "https://framer.com/motion", bgColor: "hsl(var(--card))" }
+    ],
+    [
+      { name: "React Query", description: "Powerful data synchronization", icon: "🔄", url: "https://tanstack.com/query", bgColor: "hsl(var(--card))" },
+      { name: "Stripe", description: "Payment infrastructure", icon: "💳", url: "https://stripe.com", bgColor: "hsl(var(--card))" }
+    ],
+    [
+      { name: "n8n", description: "Workflow automation tool", icon: "🔗", url: "https://n8n.io", bgColor: "hsl(var(--card))" },
+      { name: "Resend", description: "Email for developers", icon: "📧", url: "https://resend.com", bgColor: "hsl(var(--card))" }
+    ],
+    [
+      { name: "Clerk", description: "Complete user management", icon: "🔐", url: "https://clerk.com", bgColor: "hsl(var(--card))" },
+      { name: "Prisma", description: "Next-generation ORM", icon: "🗄️", url: "https://prisma.io", bgColor: "hsl(var(--card))" }
+    ]
+  ];
+
+  const rightSponsors = [
+    [
+      { name: "TypeScript", description: "JavaScript with syntax for types", icon: "📘", url: "https://typescriptlang.org", bgColor: "hsl(var(--card))" },
+      { name: "Vite", description: "Next generation frontend tooling", icon: "⚡", url: "https://vitejs.dev", bgColor: "hsl(var(--card))" }
+    ],
+    [
+      { name: "Shadcn/ui", description: "Beautifully designed components", icon: "🎯", url: "https://ui.shadcn.com", bgColor: "hsl(var(--card))" },
+      { name: "Lucide", description: "Beautiful & consistent icons", icon: "🎨", url: "https://lucide.dev", bgColor: "hsl(var(--card))" }
+    ],
+    [
+      { name: "Zod", description: "TypeScript-first schema validation", icon: "✅", url: "https://zod.dev", bgColor: "hsl(var(--card))" },
+      { name: "React Router", description: "Declarative routing for React", icon: "🧭", url: "https://reactrouter.com", bgColor: "hsl(var(--card))" }
+    ],
+    [
+      { name: "Recharts", description: "Composable charting library", icon: "📊", url: "https://recharts.org", bgColor: "hsl(var(--card))" },
+      { name: "Date-fns", description: "Modern JavaScript date utility", icon: "📅", url: "https://date-fns.org", bgColor: "hsl(var(--card))" }
+    ],
+    [
+      { name: "React Hook Form", description: "Performant, flexible forms", icon: "📝", url: "https://react-hook-form.com", bgColor: "hsl(var(--card))" },
+      { name: "Embla Carousel", description: "Lightweight carousel library", icon: "🎠", url: "https://embla-carousel.com", bgColor: "hsl(var(--card))" }
+    ]
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="relative pt-20 pb-16 px-4">
+      <div className="flex gap-6 max-w-[1600px] mx-auto">
+        {/* Left Sidebar - Sponsors */}
+        <aside className="hidden xl:block w-60 flex-shrink-0 pt-20 px-4 space-y-3 sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
+          {leftSponsors.map((sponsors, idx) => (
+            <SponsorCard key={`left-${idx}`} sponsors={sponsors} />
+          ))}
+        </aside>
+
+        {/* Main Content */}
+        <div className="flex-1 min-w-0">
+          {/* Hero Section */}
+          <section className="relative pt-20 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="flex justify-center">
             <Heart className="h-20 w-20 text-primary fill-primary opacity-20" />
@@ -139,6 +196,15 @@ const Index = () => {
           </div>
         </div>
       </section>
+        </div>
+
+        {/* Right Sidebar - Sponsors */}
+        <aside className="hidden xl:block w-60 flex-shrink-0 pt-20 px-4 space-y-3 sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
+          {rightSponsors.map((sponsors, idx) => (
+            <SponsorCard key={`right-${idx}`} sponsors={sponsors} />
+          ))}
+        </aside>
+      </div>
     </div>
   );
 };
