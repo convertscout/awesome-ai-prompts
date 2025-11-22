@@ -76,13 +76,19 @@ export type Database = {
       prompts: {
         Row: {
           author_id: string | null
-          category: Database["public"]["Enums"]["prompt_category"]
+          category: Database["public"]["Enums"]["prompt_category"] | null
           content: string
+          content_type: string | null
           created_at: string | null
           description: string
+          difficulty_level: string | null
           favorites_count: number | null
+          framework: string | null
           id: string
           is_featured: boolean | null
+          is_trending: boolean | null
+          language: string | null
+          primary_tag: string | null
           tags: string[] | null
           title: string
           updated_at: string | null
@@ -90,13 +96,19 @@ export type Database = {
         }
         Insert: {
           author_id?: string | null
-          category: Database["public"]["Enums"]["prompt_category"]
+          category?: Database["public"]["Enums"]["prompt_category"] | null
           content: string
+          content_type?: string | null
           created_at?: string | null
           description: string
+          difficulty_level?: string | null
           favorites_count?: number | null
+          framework?: string | null
           id?: string
           is_featured?: boolean | null
+          is_trending?: boolean | null
+          language?: string | null
+          primary_tag?: string | null
           tags?: string[] | null
           title: string
           updated_at?: string | null
@@ -104,13 +116,19 @@ export type Database = {
         }
         Update: {
           author_id?: string | null
-          category?: Database["public"]["Enums"]["prompt_category"]
+          category?: Database["public"]["Enums"]["prompt_category"] | null
           content?: string
+          content_type?: string | null
           created_at?: string | null
           description?: string
+          difficulty_level?: string | null
           favorites_count?: number | null
+          framework?: string | null
           id?: string
           is_featured?: boolean | null
+          is_trending?: boolean | null
+          language?: string | null
+          primary_tag?: string | null
           tags?: string[] | null
           title?: string
           updated_at?: string | null
@@ -118,11 +136,44 @@ export type Database = {
         }
         Relationships: []
       }
+      trending_items: {
+        Row: {
+          created_at: string | null
+          id: string
+          prompt_id: string | null
+          trending_score: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          prompt_id?: string | null
+          trending_score?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          prompt_id?: string | null
+          trending_score?: number | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trending_items_prompt_id_fkey"
+            columns: ["prompt_id"]
+            isOneToOne: false
+            referencedRelation: "prompts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      calculate_trending_score: { Args: never; Returns: undefined }
       increment_prompt_views: {
         Args: { prompt_id: string }
         Returns: undefined
