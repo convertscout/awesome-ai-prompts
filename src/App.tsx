@@ -10,6 +10,8 @@ import Auth from "./pages/Auth";
 import Favorites from "./pages/Favorites";
 import Profile from "./pages/Profile";
 import Categories from "./pages/Categories";
+import Trending from "./pages/Trending";
+import Submit from "./pages/Submit";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +26,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/trending" element={<Trending />} />
+          <Route path="/submit" element={<Submit />} />
           <Route path="/prompt/:id" element={<PromptDetail />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/favorites" element={<Favorites />} />

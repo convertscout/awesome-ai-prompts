@@ -1,19 +1,28 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Search, BookMarked, User, LogOut } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "./ui/button";
 import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
-import type { User as SupabaseUser } from "@supabase/supabase-js";
+import { User } from "@supabase/supabase-js";
+import { Heart, ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 export const Navigation = () => {
-  const [user, setUser] = useState<SupabaseUser | null>(null);
+  const navigate = useNavigate();
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      setUser(user);
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
 
@@ -22,55 +31,62 @@ export const Navigation = () => {
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
+    navigate("/");
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center justify-between">
+    <nav className="border-b border-border/50 bg-background sticky top-0 z-50">
+      <div className="container flex h-14 items-center justify-between px-4">
         <div className="flex items-center gap-8">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-gradient-primary" />
-            <span className="font-bold text-xl bg-gradient-primary bg-clip-text text-transparent">
-              lovable.directory
-            </span>
+          <Link to="/" className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors">
+            <Heart className="h-5 w-5 text-primary fill-primary" />
+            <span className="hidden sm:inline">lovable.directory</span>
           </Link>
           
-          <div className="hidden md:flex items-center gap-6">
-            <Link to="/browse" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Browse
+          <div className="hidden md:flex items-center gap-6 text-sm">
+            <Link to="/browse" className="text-muted-foreground hover:text-foreground transition-colors">
+              Rules
             </Link>
-            <Link to="/categories" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-              Categories
+            <Link to="/trending" className="text-muted-foreground hover:text-foreground transition-colors">
+              Trending
             </Link>
+            <Link to="/categories" className="text-muted-foreground hover:text-foreground transition-colors">
+              Languages
+            </Link>
+            <Link to="/submit" className="text-muted-foreground hover:text-foreground transition-colors">
+              Submit
+            </Link>
+            {user && (
+              <Link to="/favorites" className="text-muted-foreground hover:text-foreground transition-colors">
+                Favorites
+              </Link>
+            )}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors">
+                More <ChevronDown className="h-3 w-3" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="bg-card border-border">
+                <DropdownMenuItem asChild>
+                  <Link to="/browse" className="cursor-pointer">Browse All</Link>
+                </DropdownMenuItem>
+                {user && (
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile" className="cursor-pointer">Profile</Link>
+                  </DropdownMenuItem>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="ghost" size="icon" asChild>
-            <Link to="/browse">
-              <Search className="h-4 w-4" />
-            </Link>
-          </Button>
-          
           {user ? (
-            <>
-              <Button variant="ghost" size="icon" asChild>
-                <Link to="/favorites">
-                  <BookMarked className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button variant="ghost" size="icon" asChild>
-                <Link to="/profile">
-                  <User className="h-4 w-4" />
-                </Link>
-              </Button>
-              <Button variant="ghost" size="icon" onClick={handleSignOut}>
-                <LogOut className="h-4 w-4" />
-              </Button>
-            </>
+            <Button variant="outline" size="sm" onClick={handleSignOut} className="text-xs">
+              Sign Out
+            </Button>
           ) : (
-            <Button asChild className="bg-gradient-primary hover:opacity-90 transition-opacity">
-              <Link to="/auth">Join Community</Link>
+            <Button size="sm" asChild className="text-xs bg-white text-black hover:bg-white/90">
+              <Link to="/auth">Sign In</Link>
             </Button>
           )}
         </div>
