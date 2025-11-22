@@ -150,12 +150,12 @@ const Index = () => {
               </Link>
             </div>
 
-            <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {featuredPrompts.map((prompt) => (
                 <Link
                   key={prompt.id}
                   to={`/prompt/${prompt.id}`}
-                  className="flex-shrink-0 w-48 p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors"
+                  className="p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors"
                 >
                   <div className="flex items-start gap-2 mb-2">
                     <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center flex-shrink-0">
