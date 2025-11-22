@@ -1,0 +1,214 @@
+import { Navigation } from "@/components/Navigation";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import { Heart, Eye, Copy, Check, ArrowLeft } from "lucide-react";
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
+import { useToast } from "@/hooks/use-toast";
+
+interface Prompt {
+  id: string;
+  title: string;
+  description: string;
+  content: string;
+  category: string;
+  tags: string[];
+  views_count: number;
+  favorites_count: number;
+  created_at: string;
+}
+
+const PromptDetail = () => {
+  const { id } = useParams();
+  const [prompt, setPrompt] = useState<Prompt | null>(null);
+  const [copied, setCopied] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(false);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (id) {
+      fetchPrompt();
+      incrementViews();
+      checkFavorite();
+    }
+  }, [id]);
+
+  const fetchPrompt = async () => {
+    const { data } = await supabase
+      .from("prompts")
+      .select("*")
+      .eq("id", id)
+      .single();
+
+    if (data) {
+      setPrompt(data);
+    }
+  };
+
+  const incrementViews = async () => {
+    await supabase.rpc("increment_prompt_views", { prompt_id: id });
+  };
+
+  const checkFavorite = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const { data } = await supabase
+        .from("favorites")
+        .select("id")
+        .eq("user_id", user.id)
+        .eq("prompt_id", id)
+        .maybeSingle();
+
+      setIsFavorited(!!data);
+    }
+  };
+
+  const handleCopy = () => {
+    if (prompt) {
+      navigator.clipboard.writeText(prompt.content);
+      setCopied(true);
+      toast({
+        title: "Copied to clipboard",
+        description: "Prompt content copied successfully",
+      });
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
+
+  const handleFavorite = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    
+    if (!user) {
+      toast({
+        title: "Authentication required",
+        description: "Please sign in to favorite prompts",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (isFavorited) {
+      await supabase
+        .from("favorites")
+        .delete()
+        .eq("user_id", user.id)
+        .eq("prompt_id", id);
+      setIsFavorited(false);
+    } else {
+      await supabase
+        .from("favorites")
+        .insert({ user_id: user.id, prompt_id: id });
+      setIsFavorited(true);
+    }
+
+    fetchPrompt();
+  };
+
+  const formatCategory = (cat: string) => {
+    return cat
+      .split("_")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
+  if (!prompt) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <div className="container py-12 text-center">
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Navigation />
+
+      <div className="container py-8 max-w-4xl">
+        <Button variant="ghost" asChild className="mb-6">
+          <Link to="/browse">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Browse
+          </Link>
+        </Button>
+
+        <div className="space-y-6">
+          {/* Header */}
+          <div className="space-y-4">
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-2 flex-1">
+                <h1 className="text-3xl font-bold">{prompt.title}</h1>
+                <p className="text-lg text-muted-foreground">{prompt.description}</p>
+              </div>
+
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={handleFavorite}
+                >
+                  <Heart
+                    className={`h-4 w-4 ${
+                      isFavorited ? "fill-primary text-primary" : ""
+                    }`}
+                  />
+                </Button>
+                <Button onClick={handleCopy} className="bg-gradient-primary hover:opacity-90">
+                  {copied ? (
+                    <>
+                      <Check className="mr-2 h-4 w-4" />
+                      Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="mr-2 h-4 w-4" />
+                      Copy Prompt
+                    </>
+                  )}
+                </Button>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <Badge className="bg-primary/10 text-primary">
+                {formatCategory(prompt.category)}
+              </Badge>
+              
+              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                <span className="flex items-center gap-1">
+                  <Eye className="h-4 w-4" />
+                  {prompt.views_count} views
+                </span>
+                <span className="flex items-center gap-1">
+                  <Heart className="h-4 w-4" />
+                  {prompt.favorites_count} favorites
+                </span>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {prompt.tags.map((tag) => (
+                <Badge key={tag} variant="outline">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </div>
+
+          {/* Content */}
+          <Card className="p-6">
+            <pre className="whitespace-pre-wrap font-mono text-sm leading-relaxed">
+              {prompt.content}
+            </pre>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PromptDetail;
