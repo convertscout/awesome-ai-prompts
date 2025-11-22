@@ -2,87 +2,75 @@ import { Navigation } from "@/components/Navigation";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
 import {
-  Palette,
-  Boxes,
+  Code2,
+  Box,
   Plug,
-  Target,
-  Sparkles,
-  FileText,
-  Layout,
-  BarChart3,
+  Palette,
+  Blocks,
+  FileCode,
+  Database,
   Lock,
-  Zap,
 } from "lucide-react";
 
-const categories = [
+const languages = [
   {
-    name: "UI/UX",
-    key: "ui_ux",
+    name: "TypeScript",
+    icon: FileCode,
+    description: "Typed JavaScript for safer code",
+    count: 0,
+  },
+  {
+    name: "React",
+    icon: Box,
+    description: "Build interactive user interfaces",
+    count: 0,
+  },
+  {
+    name: "Next.js",
+    icon: Blocks,
+    description: "React framework for production",
+    count: 0,
+  },
+  {
+    name: "Python",
+    icon: Code2,
+    description: "Versatile programming language",
+    count: 0,
+  },
+  {
+    name: "TailwindCSS",
     icon: Palette,
-    description: "Beautiful user interfaces and user experiences",
+    description: "Utility-first CSS framework",
     count: 0,
   },
   {
-    name: "Components",
-    key: "components",
-    icon: Boxes,
-    description: "Reusable UI components and patterns",
+    name: "Supabase",
+    icon: Database,
+    description: "Open source Firebase alternative",
     count: 0,
   },
   {
-    name: "Integrations",
-    key: "integrations",
-    icon: Plug,
-    description: "Connect with external services and APIs",
-    count: 0,
-  },
-  {
-    name: "Best Practices",
-    key: "best_practices",
-    icon: Target,
-    description: "Proven patterns and coding standards",
-    count: 0,
-  },
-  {
-    name: "Animations",
-    key: "animations",
-    icon: Sparkles,
-    description: "Motion design and micro-interactions",
-    count: 0,
-  },
-  {
-    name: "Forms",
-    key: "forms",
-    icon: FileText,
-    description: "Form validation and data collection",
-    count: 0,
-  },
-  {
-    name: "Layouts",
-    key: "layouts",
-    icon: Layout,
-    description: "Page structures and responsive designs",
-    count: 0,
-  },
-  {
-    name: "Data Visualization",
-    key: "data_visualization",
-    icon: BarChart3,
-    description: "Charts, graphs, and data presentation",
+    name: "React Native",
+    icon: Box,
+    description: "Build native mobile apps with React",
     count: 0,
   },
   {
     name: "Authentication",
-    key: "authentication",
     icon: Lock,
-    description: "User login, signup, and security",
+    description: "User authentication & security",
     count: 0,
   },
   {
-    name: "Performance",
-    key: "performance",
-    icon: Zap,
-    description: "Speed optimization and best practices",
+    name: "Expo",
+    icon: Plug,
+    description: "Platform for React Native apps",
+    count: 0,
+  },
+  {
+    name: "JavaScript",
+    icon: FileCode,
+    description: "The language of the web",
     count: 0,
   },
 ];
@@ -92,44 +80,39 @@ const Categories = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      <div className="container py-8">
-        <div className="space-y-6">
-          <div className="text-center max-w-2xl mx-auto">
-            <h1 className="text-4xl font-bold mb-4">
-              Browse by{" "}
-              <span className="bg-gradient-primary bg-clip-text text-transparent">
-                Category
-              </span>
+      <div className="container py-12 px-4">
+        <div className="max-w-6xl mx-auto space-y-8">
+          <div>
+            <h1 className="text-3xl font-medium mb-2">
+              Languages & Frameworks
             </h1>
-            <p className="text-lg text-muted-foreground">
-              Explore prompts organized by topic to find exactly what you need
+            <p className="text-muted-foreground">
+              Browse prompts and resources by technology stack
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category) => {
-              const Icon = category.icon;
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            {languages.map((lang) => {
+              const Icon = lang.icon;
               return (
                 <Link
-                  key={category.key}
-                  to={`/browse?search=${encodeURIComponent(category.name.toLowerCase())}`}
+                  key={lang.name}
+                  to={`/browse?search=${encodeURIComponent(lang.name.toLowerCase())}`}
                 >
-                  <Card className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-glow transition-all duration-300 cursor-pointer h-full">
-                    <div className="absolute inset-0 bg-gradient-card opacity-0 group-hover:opacity-100 transition-opacity" />
-                    
-                    <div className="relative p-6 space-y-4">
-                      <div className="flex items-start justify-between">
-                        <div className="rounded-lg bg-primary/10 p-3 group-hover:bg-primary/20 transition-colors">
-                          <Icon className="h-6 w-6 text-primary" />
+                  <Card className="group p-4 border-border bg-card hover:border-primary/50 hover:bg-card/80 transition-all cursor-pointer h-full">
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="rounded-lg bg-primary/10 p-2 group-hover:bg-primary/20 transition-colors">
+                          <Icon className="h-4 w-4 text-primary" />
                         </div>
                       </div>
 
-                      <div className="space-y-2">
-                        <h3 className="font-semibold text-xl group-hover:text-primary transition-colors">
-                          {category.name}
+                      <div>
+                        <h3 className="font-medium text-sm group-hover:text-primary transition-colors mb-1">
+                          {lang.name}
                         </h3>
-                        <p className="text-sm text-muted-foreground">
-                          {category.description}
+                        <p className="text-xs text-muted-foreground line-clamp-2">
+                          {lang.description}
                         </p>
                       </div>
                     </div>
