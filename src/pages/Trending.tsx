@@ -19,6 +19,7 @@ interface TrendingPrompt {
 const Trending = () => {
   const [trendingPrompts, setTrendingPrompts] = useState<TrendingPrompt[]>([]);
   const [loading, setLoading] = useState(true);
+  const [favoriteIds, setFavoriteIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const fetchTrending = async () => {
@@ -45,8 +46,37 @@ const Trending = () => {
       setLoading(false);
     };
 
+    const fetchFavorites = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { data } = await supabase
+          .from("favorites")
+          .select("prompt_id")
+          .eq("user_id", user.id);
+
+        if (data) {
+          setFavoriteIds(new Set(data.map((f) => f.prompt_id)));
+        }
+      }
+    };
+
     fetchTrending();
+    fetchFavorites();
   }, []);
+
+  const handleFavoriteToggle = async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const { data } = await supabase
+        .from("favorites")
+        .select("prompt_id")
+        .eq("user_id", user.id);
+
+      if (data) {
+        setFavoriteIds(new Set(data.map((f) => f.prompt_id)));
+      }
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -80,6 +110,8 @@ const Trending = () => {
                   tags={prompt.tags}
                   viewsCount={prompt.views_count}
                   favoritesCount={prompt.favorites_count}
+                  isFavorited={favoriteIds.has(prompt.id)}
+                  onFavoriteToggle={handleFavoriteToggle}
                 />
               ))}
             </div>
