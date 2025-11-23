@@ -20,23 +20,31 @@ interface Prompt {
 
 const Index = () => {
   const [featuredPrompts, setFeaturedPrompts] = useState<Prompt[]>([]);
-  const [memberCount, setMemberCount] = useState(250);
+  const [memberCount, setMemberCount] = useState(1500);
+  const [allPrompts, setAllPrompts] = useState<Prompt[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data: prompts } = await supabase
+      const { data: featured } = await supabase
         .from("prompts")
         .select("*")
         .eq("is_featured", true)
         .order("created_at", { ascending: false })
         .limit(6);
 
+      const { data: all } = await supabase
+        .from("prompts")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(30);
+
       const { count } = await supabase
         .from("profiles")
         .select("*", { count: "exact", head: true });
 
-      if (prompts) setFeaturedPrompts(prompts);
+      if (featured) setFeaturedPrompts(featured);
+      if (all) setAllPrompts(all);
       if (count) setMemberCount(count);
     };
 
@@ -116,13 +124,12 @@ const Index = () => {
           </div>
           
           <h1 className="text-3xl md:text-4xl font-medium">
-            Join the Lovable community with{" "}
-            <span className="text-primary">{memberCount}+</span> members
+            Join the vibecoding community with{" "}
+            <span className="text-accent font-semibold">{memberCount}+</span> members
           </h1>
           
           <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            The home for Lovable enthusiasts where you can explore and share prompts, browse templates,
-            connect with builders, and discover resources all in one place.
+            Your hub for AI-powered development. Explore prompts and templates for Lovable, Cursor, GitHub Copilot, Base44, Emergent, and more. Share resources, connect with builders, and discover everything you need to build faster with AI coding tools.
           </p>
 
           <form onSubmit={handleSearch} className="max-w-2xl mx-auto">
@@ -152,6 +159,40 @@ const Index = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {featuredPrompts.map((prompt) => (
+                <Link
+                  key={prompt.id}
+                  to={`/prompt/${prompt.id}`}
+                  className="p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors"
+                >
+                  <div className="flex items-start gap-2 mb-2">
+                    <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <Heart className="h-4 w-4 text-primary" />
+                    </div>
+                    <h3 className="text-sm font-medium line-clamp-2">{prompt.title}</h3>
+                  </div>
+                  <p className="text-xs text-muted-foreground line-clamp-2">
+                    {prompt.description}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* All Prompts Section */}
+      {allPrompts.length > 0 && (
+        <section className="py-12 px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-medium">Latest Resources</h2>
+              <Link to="/browse" className="text-sm text-muted-foreground hover:text-foreground">
+                View all →
+              </Link>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {allPrompts.map((prompt) => (
                 <Link
                   key={prompt.id}
                   to={`/prompt/${prompt.id}`}

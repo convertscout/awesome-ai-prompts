@@ -98,7 +98,7 @@ const Auth = () => {
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold mb-2">Join the Community</h1>
             <p className="text-muted-foreground">
-              Sign up to save favorites and contribute prompts
+              Sign up to save favorites and share AI coding resources
             </p>
           </div>
 

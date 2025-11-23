@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -19,6 +19,8 @@ import { Plus } from "lucide-react";
 const Submit = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -29,6 +31,29 @@ const Submit = () => {
     framework: "",
     contentType: "prompt",
   });
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        toast.error("Please sign in to submit resources");
+        navigate("/auth");
+      } else {
+        setIsAuthenticated(true);
+      }
+      setCheckingAuth(false);
+    };
+
+    checkAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (!session) {
+        navigate("/auth");
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,6 +84,21 @@ const Submit = () => {
       setLoading(false);
     }
   };
+
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <div className="container py-12 px-4 text-center">
+          <p className="text-muted-foreground">Checking authentication...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -126,6 +166,9 @@ const Submit = () => {
                     <SelectItem value="component">Component</SelectItem>
                     <SelectItem value="guide">Guide</SelectItem>
                     <SelectItem value="resource">Resource</SelectItem>
+                    <SelectItem value="news">News</SelectItem>
+                    <SelectItem value="tool">Tool</SelectItem>
+                    <SelectItem value="tutorial">Tutorial</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
