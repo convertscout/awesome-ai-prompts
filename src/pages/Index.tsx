@@ -33,15 +33,8 @@ const Index = () => {
       } = await supabase.from("prompts").select("*").order("created_at", {
         ascending: false
       }).limit(30);
-      const {
-        count
-      } = await supabase.from("profiles").select("*", {
-        count: "exact",
-        head: true
-      });
       if (featured) setFeaturedPrompts(featured);
       if (all) setAllPrompts(all);
-      if (count) setMemberCount(count);
     };
     fetchData();
   }, []);
