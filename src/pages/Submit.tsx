@@ -169,6 +169,7 @@ const Submit = () => {
                     <SelectItem value="news">News</SelectItem>
                     <SelectItem value="tool">Tool</SelectItem>
                     <SelectItem value="tutorial">Tutorial</SelectItem>
+                    <SelectItem value="mcp">MCP</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
