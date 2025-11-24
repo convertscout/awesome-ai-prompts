@@ -1,7 +1,7 @@
-# lovable.directory
+# Lovable Directory
 
 ## About
-lovable.directory is a comprehensive directory for AI-powered development tools and resources. We provide prompts, templates, guides, and resources for Lovable, Cursor, GitHub Copilot, Base44, Emergent, and other AI coding tools.
+Lovable Directory is a comprehensive directory for AI-powered development tools and resources. We provide prompts, templates, guides, and resources for Lovable, Cursor, GitHub Copilot, Base44, Emergent, and other AI coding tools.
 
 ## Main Sections
 - Browse: Explore all prompts, templates, and resources
@@ -33,4 +33,4 @@ Developers, designers, and builders using AI-powered coding tools like Lovable, 
 Join 1500+ developers sharing and discovering AI coding resources. Sign up to save favorites and contribute your own prompts.
 
 ## Contact
-Visit https://lovable.directory for more information.
+Visit https://lovabledirectory.site for more information.

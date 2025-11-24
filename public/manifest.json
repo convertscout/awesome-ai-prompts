@@ -1,0 +1,42 @@
+{
+  "name": "Lovable Directory - AI Coding Resources Hub",
+  "short_name": "Lovable Directory",
+  "description": "Your hub for AI-powered development. Explore prompts and templates for Lovable, Cursor, GitHub Copilot, Base44, Emergent, and more.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#7c3aed",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "developer tools", "education"],
+  "shortcuts": [
+    {
+      "name": "Browse Prompts",
+      "url": "/browse",
+      "description": "Browse all AI coding prompts"
+    },
+    {
+      "name": "Submit Resource",
+      "url": "/submit",
+      "description": "Share your AI coding resource"
+    }
+  ]
+}
