@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { SponsorCard } from "@/components/SponsorCard";
+import { SponsorStrip } from "@/components/SponsorStrip";
 interface Prompt {
   id: string;
   title: string;
@@ -164,9 +165,16 @@ const Index = () => {
     url: "https://embla-carousel.com",
     bgColor: "hsl(var(--card))"
   }]];
+  const allSponsors = [...leftSponsors.flat(), ...rightSponsors.flat()];
+
   return <div className="min-h-screen bg-background text-foreground">
       <Navigation />
       
+      {/* Mobile Sponsor Strip - Top */}
+      <div className="xl:hidden">
+        <SponsorStrip sponsors={allSponsors} />
+      </div>
+
       <div className="flex gap-6 max-w-[1600px] mx-auto">
         {/* Left Sidebar - Sponsors */}
         <aside className="hidden xl:block w-60 flex-shrink-0 pt-20 px-4 space-y-3 sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
@@ -211,14 +219,14 @@ const Index = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {featuredPrompts.map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.id}`} className="p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors">
-                  <div className="flex items-start gap-2 mb-2">
-                    <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Heart className="h-4 w-4 text-primary" />
+              {featuredPrompts.map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.id}`} className="group p-5 rounded-lg border border-border bg-gradient-to-br from-card/80 to-card/40 hover:border-primary/50 hover:shadow-glow transition-all duration-300">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
+                      <Heart className="h-5 w-5 text-primary" />
                     </div>
-                    <h3 className="text-sm font-medium line-clamp-2">{prompt.title}</h3>
+                    <h3 className="text-base font-semibold line-clamp-2 text-foreground group-hover:text-primary-glow transition-colors">{prompt.title}</h3>
                   </div>
-                  <p className="text-xs text-muted-foreground line-clamp-2">
+                  <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
                     {prompt.description}
                   </p>
                 </Link>)}
@@ -237,14 +245,14 @@ const Index = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {allPrompts.map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.id}`} className="p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors">
-                  <div className="flex items-start gap-2 mb-2">
-                    <div className="w-8 h-8 rounded bg-primary/10 flex items-center justify-center flex-shrink-0">
-                      <Heart className="h-4 w-4 text-primary" />
+              {allPrompts.map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.id}`} className="group p-5 rounded-lg border border-border bg-gradient-to-br from-card/80 to-card/40 hover:border-primary/50 hover:shadow-glow transition-all duration-300">
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
+                      <Heart className="h-5 w-5 text-primary" />
                     </div>
-                    <h3 className="text-sm font-medium line-clamp-2">{prompt.title}</h3>
+                    <h3 className="text-base font-semibold line-clamp-2 text-foreground group-hover:text-primary-glow transition-colors">{prompt.title}</h3>
                   </div>
-                  <p className="text-xs text-muted-foreground line-clamp-2">
+                  <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
                     {prompt.description}
                   </p>
                 </Link>)}
@@ -275,6 +283,11 @@ const Index = () => {
         <aside className="hidden xl:block w-60 flex-shrink-0 pt-20 px-4 space-y-3 sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
           {rightSponsors.map((sponsors, idx) => <SponsorCard key={`right-${idx}`} sponsors={sponsors} />)}
         </aside>
+      </div>
+
+      {/* Mobile Sponsor Strip - Bottom */}
+      <div className="xl:hidden">
+        <SponsorStrip sponsors={allSponsors} />
       </div>
     </div>;
 };
