@@ -170,6 +170,7 @@ const Submit = () => {
                     <SelectItem value="tool">Tool</SelectItem>
                     <SelectItem value="tutorial">Tutorial</SelectItem>
                     <SelectItem value="mcp">MCP</SelectItem>
+                    <SelectItem value="code">Code</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -188,7 +189,9 @@ const Submit = () => {
                     <SelectItem value="animations">Animations</SelectItem>
                     <SelectItem value="forms">Forms</SelectItem>
                     <SelectItem value="layouts">Layouts</SelectItem>
+                    <SelectItem value="data_visualization">Data Visualization</SelectItem>
                     <SelectItem value="authentication">Authentication</SelectItem>
+                    <SelectItem value="performance">Performance</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
