@@ -14,6 +14,7 @@ interface Prompt {
   tags: string[];
   views_count: number;
   favorites_count: number;
+  content?: string;
   language?: string;
   framework?: string;
 }
@@ -26,12 +27,12 @@ const Index = () => {
     const fetchData = async () => {
       const {
         data: featured
-      } = await supabase.from("prompts").select("*").eq("is_featured", true).order("created_at", {
+      } = await supabase.from("prompts").select("id, title, description, category, tags, views_count, favorites_count, content, language, framework").eq("is_featured", true).order("created_at", {
         ascending: false
       }).limit(6);
       const {
         data: all
-      } = await supabase.from("prompts").select("*").order("created_at", {
+      } = await supabase.from("prompts").select("id, title, description, category, tags, views_count, favorites_count, content, language, framework").order("created_at", {
         ascending: false
       }).limit(30);
       if (featured) setFeaturedPrompts(featured);
@@ -220,13 +221,18 @@ const Index = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {featuredPrompts.map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.id}`} className="group p-5 rounded-lg border border-border bg-gradient-to-br from-card/80 to-card/40 hover:border-primary/50 hover:shadow-glow transition-all duration-300">
+                  {prompt.content && <div className="mb-3 bg-muted/30 rounded-md p-3">
+                      <p className="text-xs font-mono text-muted-foreground line-clamp-3">
+                        {prompt.content}
+                      </p>
+                    </div>}
                   <div className="flex items-start gap-3 mb-3">
                     <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
                       <Heart className="h-5 w-5 text-primary" />
                     </div>
                     <h3 className="text-base font-semibold line-clamp-2 text-foreground group-hover:text-primary-glow transition-colors">{prompt.title}</h3>
                   </div>
-                  <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
+                  <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
                     {prompt.description}
                   </p>
                 </Link>)}
@@ -246,13 +252,18 @@ const Index = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {allPrompts.map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.id}`} className="group p-5 rounded-lg border border-border bg-gradient-to-br from-card/80 to-card/40 hover:border-primary/50 hover:shadow-glow transition-all duration-300">
+                  {prompt.content && <div className="mb-3 bg-muted/30 rounded-md p-3">
+                      <p className="text-xs font-mono text-muted-foreground line-clamp-3">
+                        {prompt.content}
+                      </p>
+                    </div>}
                   <div className="flex items-start gap-3 mb-3">
                     <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
                       <Heart className="h-5 w-5 text-primary" />
                     </div>
                     <h3 className="text-base font-semibold line-clamp-2 text-foreground group-hover:text-primary-glow transition-colors">{prompt.title}</h3>
                   </div>
-                  <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
+                  <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
                     {prompt.description}
                   </p>
                 </Link>)}

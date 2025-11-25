@@ -15,6 +15,7 @@ interface PromptCardProps {
   tags: string[];
   viewsCount: number;
   favoritesCount: number;
+  content?: string;
   isFavorited?: boolean;
   onFavoriteToggle?: () => void;
 }
@@ -27,6 +28,7 @@ export const PromptCard = ({
   tags,
   viewsCount,
   favoritesCount,
+  content,
   isFavorited = false,
   onFavoriteToggle,
 }: PromptCardProps) => {
@@ -109,6 +111,14 @@ export const PromptCard = ({
         <div className="absolute inset-0 bg-gradient-card opacity-0 group-hover:opacity-100 transition-opacity" />
         
         <div className="relative p-6 space-y-4">
+          {content && (
+            <div className="bg-muted/30 rounded-md p-3 mb-3">
+              <p className="text-xs font-mono text-muted-foreground line-clamp-3">
+                {content}
+              </p>
+            </div>
+          )}
+          
           <div className="flex items-start justify-between gap-4">
             <div className="space-y-2 flex-1">
               <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
