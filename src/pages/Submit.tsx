@@ -171,6 +171,7 @@ const Submit = () => {
                     <SelectItem value="tutorial">Tutorial</SelectItem>
                     <SelectItem value="mcp">MCP</SelectItem>
                     <SelectItem value="code">Code</SelectItem>
+                    <SelectItem value="job">Job</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 interface Prompt {
   id: string;
+  slug: string;
   title: string;
   description: string;
   category: string;
@@ -43,6 +44,7 @@ const Favorites = () => {
         prompt_id,
         prompts (
           id,
+          slug,
           title,
           description,
           category,
@@ -86,6 +88,7 @@ const Favorites = () => {
                 <PromptCard
                   key={prompt.id}
                   id={prompt.id}
+                  slug={prompt.slug}
                   title={prompt.title}
                   description={prompt.description}
                   category={prompt.category}

@@ -10,6 +10,7 @@ import { useSearchParams } from "react-router-dom";
 
 interface Prompt {
   id: string;
+  slug: string;
   title: string;
   description: string;
   category: string;
@@ -152,6 +153,7 @@ const Browse = () => {
                 <PromptCard
                   key={prompt.id}
                   id={prompt.id}
+                  slug={prompt.slug}
                   title={prompt.title}
                   description={prompt.description}
                   category={prompt.category}
