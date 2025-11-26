@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 
 interface Prompt {
   id: string;
+  slug: string;
   title: string;
   description: string;
   content: string;
@@ -21,44 +22,44 @@ interface Prompt {
 }
 
 const PromptDetail = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [prompt, setPrompt] = useState<Prompt | null>(null);
   const [copied, setCopied] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
-    if (id) {
+    if (slug) {
       fetchPrompt();
-      incrementViews();
-      checkFavorite();
     }
-  }, [id]);
+  }, [slug]);
 
   const fetchPrompt = async () => {
     const { data } = await supabase
       .from("prompts")
       .select("*")
-      .eq("id", id)
+      .eq("slug", slug)
       .single();
 
     if (data) {
       setPrompt(data);
+      incrementViews(data.id);
+      checkFavorite(data.id);
     }
   };
 
-  const incrementViews = async () => {
-    await supabase.rpc("increment_prompt_views", { prompt_id: id });
+  const incrementViews = async (promptId: string) => {
+    await supabase.rpc("increment_prompt_views", { prompt_id: promptId });
   };
 
-  const checkFavorite = async () => {
+  const checkFavorite = async (promptId: string) => {
     const { data: { user } } = await supabase.auth.getUser();
     if (user) {
       const { data } = await supabase
         .from("favorites")
         .select("id")
         .eq("user_id", user.id)
-        .eq("prompt_id", id)
+        .eq("prompt_id", promptId)
         .maybeSingle();
 
       setIsFavorited(!!data);
@@ -89,17 +90,19 @@ const PromptDetail = () => {
       return;
     }
 
+    if (!prompt) return;
+
     if (isFavorited) {
       await supabase
         .from("favorites")
         .delete()
         .eq("user_id", user.id)
-        .eq("prompt_id", id);
+        .eq("prompt_id", prompt.id);
       setIsFavorited(false);
     } else {
       await supabase
         .from("favorites")
-        .insert({ user_id: user.id, prompt_id: id });
+        .insert({ user_id: user.id, prompt_id: prompt.id });
       setIsFavorited(true);
     }
 

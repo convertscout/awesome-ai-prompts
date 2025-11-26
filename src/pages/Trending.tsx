@@ -6,6 +6,7 @@ import { Flame } from "lucide-react";
 
 interface TrendingPrompt {
   id: string;
+  slug: string;
   title: string;
   description: string;
   category: string;
@@ -104,6 +105,7 @@ const Trending = () => {
                 <PromptCard
                   key={prompt.id}
                   id={prompt.id}
+                  slug={prompt.slug}
                   title={prompt.title}
                   description={prompt.description}
                   category={prompt.category}

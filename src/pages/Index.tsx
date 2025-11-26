@@ -8,6 +8,7 @@ import { SponsorCard } from "@/components/SponsorCard";
 import { SponsorStrip } from "@/components/SponsorStrip";
 interface Prompt {
   id: string;
+  slug: string;
   title: string;
   description: string;
   category: string;
@@ -17,26 +18,41 @@ interface Prompt {
   content?: string;
   language?: string;
   framework?: string;
+  content_type?: string;
 }
 const Index = () => {
   const [featuredPrompts, setFeaturedPrompts] = useState<Prompt[]>([]);
   const [memberCount, setMemberCount] = useState(1500);
   const [allPrompts, setAllPrompts] = useState<Prompt[]>([]);
+  const [mcpItems, setMcpItems] = useState<Prompt[]>([]);
+  const [newsItems, setNewsItems] = useState<Prompt[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       const {
         data: featured
-      } = await supabase.from("prompts").select("id, title, description, category, tags, views_count, favorites_count, content, language, framework").eq("is_featured", true).order("created_at", {
+      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content, language, framework, content_type").eq("is_featured", true).order("created_at", {
         ascending: false
       }).limit(6);
       const {
         data: all
-      } = await supabase.from("prompts").select("id, title, description, category, tags, views_count, favorites_count, content, language, framework").order("created_at", {
+      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content, language, framework, content_type").order("created_at", {
         ascending: false
       }).limit(30);
+      const {
+        data: mcp
+      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content_type").eq("content_type", "mcp").order("created_at", {
+        ascending: false
+      }).limit(12);
+      const {
+        data: news
+      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count").eq("content_type", "news").order("created_at", {
+        ascending: false
+      }).limit(5);
       if (featured) setFeaturedPrompts(featured);
       if (all) setAllPrompts(all);
+      if (mcp) setMcpItems(mcp);
+      if (news) setNewsItems(news);
     };
     fetchData();
   }, []);
@@ -220,7 +236,7 @@ const Index = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {featuredPrompts.map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.id}`} className="group p-5 rounded-lg border border-border bg-gradient-to-br from-card/80 to-card/40 hover:border-primary/50 hover:shadow-glow transition-all duration-300">
+              {featuredPrompts.map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.slug}`} className="group p-5 rounded-lg border border-border bg-gradient-to-br from-card/80 to-card/40 hover:border-primary/50 hover:shadow-glow transition-all duration-300">
                   {prompt.content && <div className="mb-3 bg-muted/30 rounded-md p-3">
                       <p className="text-xs font-mono text-muted-foreground line-clamp-3">
                         {prompt.content}
@@ -240,6 +256,69 @@ const Index = () => {
           </div>
         </section>}
 
+      {/* MCP Section */}
+      {mcpItems.length > 0 && <section className="py-12 px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-medium">Featured MCPs</h2>
+              <Link to="/browse?search=mcp" className="text-sm text-muted-foreground hover:text-foreground">
+                View all →
+              </Link>
+            </div>
+
+            <div className="relative">
+              <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
+                {mcpItems.map(mcp => <Link key={mcp.id} to={`/prompt/${mcp.slug}`} className="group flex-shrink-0 w-[200px] p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-all duration-300 snap-start">
+                    <div className="flex flex-col items-center text-center gap-3">
+                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-2xl">
+                        {mcp.title.charAt(0)}
+                      </div>
+                      <h3 className="font-medium text-sm line-clamp-2 group-hover:text-primary transition-colors">
+                        {mcp.title}
+                      </h3>
+                    </div>
+                  </Link>)}
+              </div>
+            </div>
+          </div>
+        </section>}
+
+      {/* News Section */}
+      {newsItems.length > 0 && <section className="py-12 px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-medium">Trending in Cursor</h2>
+              <Link to="/browse?search=news" className="text-sm text-muted-foreground hover:text-foreground">
+                View all →
+              </Link>
+            </div>
+
+            <div className="space-y-4">
+              {newsItems.map(news => <Link key={news.id} to={`/prompt/${news.slug}`} className="group block p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all duration-300">
+                  <div className="flex items-start gap-4">
+                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 text-xs font-semibold">
+                      {news.title.substring(0, 2).toUpperCase()}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-base mb-1 group-hover:text-primary transition-colors line-clamp-1">
+                        {news.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2 mb-2">
+                        {news.description}
+                      </p>
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <span className="flex items-center gap-1">
+                          <Heart className="h-3 w-3" />
+                          {news.views_count}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>)}
+            </div>
+          </div>
+        </section>}
+
       {/* All Prompts Section */}
       {allPrompts.length > 0 && <section className="py-12 px-4">
           <div className="max-w-6xl mx-auto">
@@ -251,7 +330,7 @@ const Index = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {allPrompts.map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.id}`} className="group p-5 rounded-lg border border-border bg-gradient-to-br from-card/80 to-card/40 hover:border-primary/50 hover:shadow-glow transition-all duration-300">
+              {allPrompts.map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.slug}`} className="group p-5 rounded-lg border border-border bg-gradient-to-br from-card/80 to-card/40 hover:border-primary/50 hover:shadow-glow transition-all duration-300">
                   {prompt.content && <div className="mb-3 bg-muted/30 rounded-md p-3">
                       <p className="text-xs font-mono text-muted-foreground line-clamp-3">
                         {prompt.content}

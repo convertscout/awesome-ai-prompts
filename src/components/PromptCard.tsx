@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 
 interface PromptCardProps {
   id: string;
+  slug: string;
   title: string;
   description: string;
   category: string;
@@ -22,6 +23,7 @@ interface PromptCardProps {
 
 export const PromptCard = ({
   id,
+  slug,
   title,
   description,
   category,
@@ -106,7 +108,7 @@ export const PromptCard = ({
   };
 
   return (
-    <Link to={`/prompt/${id}`}>
+    <Link to={`/prompt/${slug}`}>
       <Card className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm hover:border-primary/50 hover:shadow-glow transition-all duration-300 cursor-pointer">
         <div className="absolute inset-0 bg-gradient-card opacity-0 group-hover:opacity-100 transition-opacity" />
         

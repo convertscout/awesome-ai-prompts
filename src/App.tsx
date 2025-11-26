@@ -28,7 +28,7 @@ const App = () => (
           <Route path="/categories" element={<Categories />} />
           <Route path="/trending" element={<Trending />} />
           <Route path="/submit" element={<Submit />} />
-          <Route path="/prompt/:id" element={<PromptDetail />} />
+          <Route path="/prompt/:slug" element={<PromptDetail />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/profile" element={<Profile />} />

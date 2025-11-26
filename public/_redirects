@@ -1,0 +1,7 @@
+# Redirect static file requests to dynamic edge functions
+/sitemap.xml /api/sitemap 200
+/robots.txt /api/robots 200
+/llm.txt /api/llm-txt 200
+
+# Fallback to index.html for client-side routing
+/* /index.html 200
