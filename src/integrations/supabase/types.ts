@@ -89,6 +89,7 @@ export type Database = {
           is_trending: boolean | null
           language: string | null
           primary_tag: string | null
+          slug: string | null
           tags: string[] | null
           title: string
           updated_at: string | null
@@ -109,6 +110,7 @@ export type Database = {
           is_trending?: boolean | null
           language?: string | null
           primary_tag?: string | null
+          slug?: string | null
           tags?: string[] | null
           title: string
           updated_at?: string | null
@@ -129,6 +131,7 @@ export type Database = {
           is_trending?: boolean | null
           language?: string | null
           primary_tag?: string | null
+          slug?: string | null
           tags?: string[] | null
           title?: string
           updated_at?: string | null
@@ -174,6 +177,7 @@ export type Database = {
     }
     Functions: {
       calculate_trending_score: { Args: never; Returns: undefined }
+      generate_slug: { Args: { input_title: string }; Returns: string }
       increment_prompt_views: {
         Args: { prompt_id: string }
         Returns: undefined
