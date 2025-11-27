@@ -22,6 +22,7 @@ interface Prompt {
   language?: string;
   framework?: string;
   content_type?: string;
+  logo_url?: string;
 }
 const Index = () => {
   const [featuredPrompts, setFeaturedPrompts] = useState<Prompt[]>([]);
@@ -45,17 +46,17 @@ const Index = () => {
       }).limit(30);
       const {
         data: mcp
-      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content_type").eq("content_type", "mcp").order("created_at", {
+      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content_type, logo_url").eq("content_type", "mcp").order("created_at", {
         ascending: false
       }).limit(12);
       const {
         data: news
-      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count").eq("content_type", "news").order("created_at", {
+      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, logo_url").eq("content_type", "news").order("created_at", {
         ascending: false
       }).limit(5);
       const {
         data: jobs
-      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count").eq("content_type", "job").order("created_at", {
+      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, logo_url").eq("content_type", "job").order("created_at", {
         ascending: false
       }).limit(5);
       if (featured) setFeaturedPrompts(featured);
@@ -277,7 +278,7 @@ const Index = () => {
             </div>
 
             <div className="flex flex-wrap gap-3">
-              {mcpItems.map(mcp => <MCPCard key={mcp.id} id={mcp.id} slug={mcp.slug} title={mcp.title} />)}
+              {mcpItems.map(mcp => <MCPCard key={mcp.id} id={mcp.id} slug={mcp.slug} title={mcp.title} logoUrl={mcp.logo_url} />)}
             </div>
           </div>
         </section>}
@@ -309,7 +310,7 @@ const Index = () => {
             </div>
 
             <div className="border border-border rounded-lg divide-y divide-border/50 p-4">
-              {jobItems.map(job => <JobCard key={job.id} id={job.id} slug={job.slug} title={job.title} description={job.description} tags={job.tags} />)}
+              {jobItems.map(job => <JobCard key={job.id} id={job.id} slug={job.slug} title={job.title} description={job.description} tags={job.tags} logoUrl={job.logo_url} />)}
             </div>
           </div>
         </section>}

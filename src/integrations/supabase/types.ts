@@ -88,11 +88,13 @@ export type Database = {
           is_featured: boolean | null
           is_trending: boolean | null
           language: string | null
+          logo_url: string | null
           primary_tag: string | null
           slug: string | null
           tags: string[] | null
           title: string
           updated_at: string | null
+          url: string | null
           views_count: number | null
         }
         Insert: {
@@ -109,11 +111,13 @@ export type Database = {
           is_featured?: boolean | null
           is_trending?: boolean | null
           language?: string | null
+          logo_url?: string | null
           primary_tag?: string | null
           slug?: string | null
           tags?: string[] | null
           title: string
           updated_at?: string | null
+          url?: string | null
           views_count?: number | null
         }
         Update: {
@@ -130,11 +134,13 @@ export type Database = {
           is_featured?: boolean | null
           is_trending?: boolean | null
           language?: string | null
+          logo_url?: string | null
           primary_tag?: string | null
           slug?: string | null
           tags?: string[] | null
           title?: string
           updated_at?: string | null
+          url?: string | null
           views_count?: number | null
         }
         Relationships: []
