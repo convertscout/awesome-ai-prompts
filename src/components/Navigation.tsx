@@ -47,14 +47,14 @@ export const Navigation = () => {
             <Link to="/browse" className="text-muted-foreground hover:text-foreground transition-colors">
               Rules
             </Link>
-            <Link to="/trending" className="text-muted-foreground hover:text-foreground transition-colors">
-              Trending
-            </Link>
-            <Link to="/categories" className="text-muted-foreground hover:text-foreground transition-colors">
-              Languages
-            </Link>
             <Link to="/submit" className="text-muted-foreground hover:text-foreground transition-colors">
               Submit
+            </Link>
+            <Link to="/browse?type=job" className="text-muted-foreground hover:text-foreground transition-colors">
+              Job
+            </Link>
+            <Link to="/browse?type=code" className="text-muted-foreground hover:text-foreground transition-colors">
+              Codes
             </Link>
             {user && (
               <Link to="/favorites" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -68,6 +68,12 @@ export const Navigation = () => {
               <DropdownMenuContent align="end" className="bg-card border-border">
                 <DropdownMenuItem asChild>
                   <Link to="/browse" className="cursor-pointer">Browse All</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/trending" className="cursor-pointer">Trending</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/categories" className="cursor-pointer">Languages</Link>
                 </DropdownMenuItem>
                 {user && (
                   <DropdownMenuItem asChild>

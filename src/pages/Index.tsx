@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { SponsorCard } from "@/components/SponsorCard";
 import { SponsorStrip } from "@/components/SponsorStrip";
+import { MCPCard } from "@/components/MCPCard";
+import { JobCard } from "@/components/JobCard";
+import { NewsCard } from "@/components/NewsCard";
 interface Prompt {
   id: string;
   slug: string;
@@ -26,6 +29,7 @@ const Index = () => {
   const [allPrompts, setAllPrompts] = useState<Prompt[]>([]);
   const [mcpItems, setMcpItems] = useState<Prompt[]>([]);
   const [newsItems, setNewsItems] = useState<Prompt[]>([]);
+  const [jobItems, setJobItems] = useState<Prompt[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     const fetchData = async () => {
@@ -49,10 +53,16 @@ const Index = () => {
       } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count").eq("content_type", "news").order("created_at", {
         ascending: false
       }).limit(5);
+      const {
+        data: jobs
+      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count").eq("content_type", "job").order("created_at", {
+        ascending: false
+      }).limit(5);
       if (featured) setFeaturedPrompts(featured);
       if (all) setAllPrompts(all);
       if (mcp) setMcpItems(mcp);
       if (news) setNewsItems(news);
+      if (jobs) setJobItems(jobs);
     };
     fetchData();
   }, []);
@@ -261,24 +271,13 @@ const Index = () => {
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-lg font-medium">Featured MCPs</h2>
-              <Link to="/browse?search=mcp" className="text-sm text-muted-foreground hover:text-foreground">
+              <Link to="/browse?type=mcp" className="text-sm text-muted-foreground hover:text-foreground">
                 View all →
               </Link>
             </div>
 
-            <div className="relative">
-              <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
-                {mcpItems.map(mcp => <Link key={mcp.id} to={`/prompt/${mcp.slug}`} className="group flex-shrink-0 w-[200px] p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-all duration-300 snap-start">
-                    <div className="flex flex-col items-center text-center gap-3">
-                      <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-2xl">
-                        {mcp.title.charAt(0)}
-                      </div>
-                      <h3 className="font-medium text-sm line-clamp-2 group-hover:text-primary transition-colors">
-                        {mcp.title}
-                      </h3>
-                    </div>
-                  </Link>)}
-              </div>
+            <div className="flex flex-wrap gap-3">
+              {mcpItems.map(mcp => <MCPCard key={mcp.id} id={mcp.id} slug={mcp.slug} title={mcp.title} />)}
             </div>
           </div>
         </section>}
@@ -287,34 +286,30 @@ const Index = () => {
       {newsItems.length > 0 && <section className="py-12 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-medium">Trending in Cursor</h2>
-              <Link to="/browse?search=news" className="text-sm text-muted-foreground hover:text-foreground">
+              <h2 className="text-lg font-medium">Trending in Cursor (News)</h2>
+              <Link to="/browse?type=news" className="text-sm text-muted-foreground hover:text-foreground">
                 View all →
               </Link>
             </div>
 
-            <div className="space-y-4">
-              {newsItems.map(news => <Link key={news.id} to={`/prompt/${news.slug}`} className="group block p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all duration-300">
-                  <div className="flex items-start gap-4">
-                    <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 text-xs font-semibold">
-                      {news.title.substring(0, 2).toUpperCase()}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-base mb-1 group-hover:text-primary transition-colors line-clamp-1">
-                        {news.title}
-                      </h3>
-                      <p className="text-sm text-muted-foreground line-clamp-2 mb-2">
-                        {news.description}
-                      </p>
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <span className="flex items-center gap-1">
-                          <Heart className="h-3 w-3" />
-                          {news.views_count}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>)}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {newsItems.map(news => <NewsCard key={news.id} id={news.id} slug={news.slug} title={news.title} description={news.description} />)}
+            </div>
+          </div>
+        </section>}
+
+      {/* Jobs Section */}
+      {jobItems.length > 0 && <section className="py-12 px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-medium">Featured Jobs</h2>
+              <Link to="/browse?type=job" className="text-sm text-muted-foreground hover:text-foreground">
+                View all →
+              </Link>
+            </div>
+
+            <div className="border border-border rounded-lg divide-y divide-border/50 p-4">
+              {jobItems.map(job => <JobCard key={job.id} id={job.id} slug={job.slug} title={job.title} description={job.description} tags={job.tags} />)}
             </div>
           </div>
         </section>}
