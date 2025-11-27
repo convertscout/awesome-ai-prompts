@@ -50,6 +50,9 @@ export const Navigation = () => {
             <Link to="/submit" className="text-muted-foreground hover:text-foreground transition-colors">
               Submit
             </Link>
+            <Link to="/browse?type=mcp" className="text-muted-foreground hover:text-foreground transition-colors">
+              MCP
+            </Link>
             <Link to="/browse?type=job" className="text-muted-foreground hover:text-foreground transition-colors">
               Job
             </Link>

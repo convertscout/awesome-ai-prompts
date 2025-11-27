@@ -14,7 +14,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { Plus } from "lucide-react";
+import { Plus, Upload } from "lucide-react";
 
 const Submit = () => {
   const navigate = useNavigate();
@@ -26,11 +26,16 @@ const Submit = () => {
     description: "",
     content: "",
     category: "ui_ux",
+    customCategory: "",
     tags: "",
     language: "",
     framework: "",
     contentType: "prompt",
+    customContentType: "",
+    url: "",
   });
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [logoPreview, setLogoPreview] = useState<string>("");
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -55,22 +60,65 @@ const Submit = () => {
     return () => subscription.unsubscribe();
   }, [navigate]);
 
+  const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        toast.error("Logo must be less than 2MB");
+        return;
+      }
+      setLogoFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setLogoPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
       const { data: { user } } = await supabase.auth.getUser();
+      
+      let logoUrl = null;
+
+      // Upload logo if provided
+      if (logoFile) {
+        const fileExt = logoFile.name.split('.').pop();
+        const fileName = `${Math.random().toString(36).substring(2)}.${fileExt}`;
+        const filePath = `${user?.id}/${fileName}`;
+
+        const { error: uploadError } = await supabase.storage
+          .from('logos')
+          .upload(filePath, logoFile);
+
+        if (uploadError) throw uploadError;
+
+        const { data: { publicUrl } } = supabase.storage
+          .from('logos')
+          .getPublicUrl(filePath);
+
+        logoUrl = publicUrl;
+      }
+
+      // Use custom values if provided, otherwise use selected values
+      const finalContentType = formData.customContentType || formData.contentType;
+      const finalCategory = formData.customCategory || formData.category;
 
       const { error } = await supabase.from("prompts").insert([{
         title: formData.title,
         description: formData.description,
         content: formData.content,
-        category: formData.category as any,
+        category: finalCategory as any,
         tags: formData.tags.split(",").map((tag) => tag.trim()).filter(Boolean),
         language: formData.language || null,
         framework: formData.framework || null,
-        content_type: formData.contentType,
+        content_type: finalContentType,
+        url: formData.url || null,
+        logo_url: logoUrl,
         author_id: user?.id || null,
       }]);
 
@@ -142,6 +190,40 @@ const Submit = () => {
             </div>
 
             <div className="space-y-2">
+              <Label htmlFor="url">URL</Label>
+              <Input
+                id="url"
+                type="url"
+                value={formData.url}
+                onChange={(e) => setFormData({ ...formData, url: e.target.value })}
+                placeholder="https://example.com (optional)"
+                className="bg-background"
+              />
+              <p className="text-xs text-muted-foreground">
+                Add a link to the resource, company website, or documentation
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="logo">Logo (for MCP/Job)</Label>
+              <div className="flex items-center gap-4">
+                <Input
+                  id="logo"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleLogoUpload}
+                  className="bg-background"
+                />
+                {logoPreview && (
+                  <img src={logoPreview} alt="Logo preview" className="w-12 h-12 rounded object-cover" />
+                )}
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Upload a small logo (max 2MB) for MCPs or Job company branding
+              </p>
+            </div>
+
+            <div className="space-y-2">
               <Label htmlFor="content">Content*</Label>
               <Textarea
                 id="content"
@@ -156,7 +238,7 @@ const Submit = () => {
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="contentType">Type*</Label>
-                <Select value={formData.contentType} onValueChange={(value) => setFormData({ ...formData, contentType: value })}>
+                <Select value={formData.contentType} onValueChange={(value) => setFormData({ ...formData, contentType: value, customContentType: "" })}>
                   <SelectTrigger className="bg-background">
                     <SelectValue />
                   </SelectTrigger>
@@ -172,13 +254,23 @@ const Submit = () => {
                     <SelectItem value="mcp">MCP</SelectItem>
                     <SelectItem value="code">Code</SelectItem>
                     <SelectItem value="job">Job</SelectItem>
+                    <SelectItem value="custom">Custom (type below)</SelectItem>
                   </SelectContent>
                 </Select>
+                {formData.contentType === "custom" && (
+                  <Input
+                    value={formData.customContentType}
+                    onChange={(e) => setFormData({ ...formData, customContentType: e.target.value })}
+                    placeholder="Enter custom type"
+                    required
+                    className="bg-background mt-2"
+                  />
+                )}
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="category">Category*</Label>
-                <Select value={formData.category} onValueChange={(value) => setFormData({ ...formData, category: value })}>
+                <Select value={formData.category} onValueChange={(value) => setFormData({ ...formData, category: value, customCategory: "" })}>
                   <SelectTrigger className="bg-background">
                     <SelectValue />
                   </SelectTrigger>
@@ -193,8 +285,18 @@ const Submit = () => {
                     <SelectItem value="data_visualization">Data Visualization</SelectItem>
                     <SelectItem value="authentication">Authentication</SelectItem>
                     <SelectItem value="performance">Performance</SelectItem>
+                    <SelectItem value="custom">Custom (type below)</SelectItem>
                   </SelectContent>
                 </Select>
+                {formData.category === "custom" && (
+                  <Input
+                    value={formData.customCategory}
+                    onChange={(e) => setFormData({ ...formData, customCategory: e.target.value })}
+                    placeholder="Enter custom category"
+                    required
+                    className="bg-background mt-2"
+                  />
+                )}
               </div>
             </div>
 

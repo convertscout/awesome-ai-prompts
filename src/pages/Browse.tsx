@@ -39,6 +39,7 @@ const Browse = () => {
   const [filteredPrompts, setFilteredPrompts] = useState<Prompt[]>([]);
   const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [contentType, setContentType] = useState(searchParams.get("type") || "");
   const [favoriteIds, setFavoriteIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
@@ -48,7 +49,7 @@ const Browse = () => {
 
   useEffect(() => {
     filterPrompts();
-  }, [prompts, searchQuery, selectedCategory]);
+  }, [prompts, searchQuery, selectedCategory, contentType]);
 
   const fetchPrompts = async () => {
     const { data } = await supabase
@@ -77,6 +78,11 @@ const Browse = () => {
 
   const filterPrompts = () => {
     let filtered = prompts;
+
+    // Filter by content type if specified in URL
+    if (contentType) {
+      filtered = filtered.filter((prompt: any) => prompt.content_type === contentType);
+    }
 
     if (searchQuery) {
       filtered = filtered.filter(
