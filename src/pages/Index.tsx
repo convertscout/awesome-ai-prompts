@@ -194,7 +194,6 @@ const Index = () => {
     bgColor: "hsl(var(--card))"
   }]];
   const allSponsors = [...leftSponsors.flat(), ...rightSponsors.flat()];
-
   return <div className="min-h-screen bg-background text-foreground">
       <Navigation />
       
@@ -220,7 +219,7 @@ const Index = () => {
           
           <h1 className="text-3xl md:text-4xl font-medium">
             Join the vibecoding community with{" "}
-            <span className="font-semibold text-red-500">{memberCount}+</span> members
+            <span className="font-semibold text-purple-400">{memberCount}+</span> members
           </h1>
           
           <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
