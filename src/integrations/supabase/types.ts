@@ -76,6 +76,7 @@ export type Database = {
       prompts: {
         Row: {
           author_id: string | null
+          button_text: string | null
           category: string | null
           content: string
           content_type: string | null
@@ -99,6 +100,7 @@ export type Database = {
         }
         Insert: {
           author_id?: string | null
+          button_text?: string | null
           category?: string | null
           content: string
           content_type?: string | null
@@ -122,6 +124,7 @@ export type Database = {
         }
         Update: {
           author_id?: string | null
+          button_text?: string | null
           category?: string | null
           content?: string
           content_type?: string | null

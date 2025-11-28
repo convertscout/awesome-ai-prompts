@@ -33,6 +33,7 @@ const Submit = () => {
     contentType: "prompt",
     customContentType: "",
     url: "",
+    buttonText: "",
   });
   const [logoFile, setLogoFile] = useState<File | null>(null);
   const [logoPreview, setLogoPreview] = useState<string>("");
@@ -119,6 +120,7 @@ const Submit = () => {
         content_type: finalContentType,
         url: formData.url || null,
         logo_url: logoUrl,
+        button_text: formData.buttonText || null,
         author_id: user?.id || null,
       }]);
 
@@ -333,6 +335,20 @@ const Submit = () => {
                 placeholder="e.g., authentication, forms, api (comma-separated)"
                 className="bg-background"
               />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="buttonText">Button Text (Optional)</Label>
+              <Input
+                id="buttonText"
+                value={formData.buttonText}
+                onChange={(e) => setFormData({ ...formData, buttonText: e.target.value })}
+                placeholder="Leave blank for default (Copy Prompt or Apply Now)"
+                className="bg-background"
+              />
+              <p className="text-xs text-muted-foreground">
+                Custom label for the action button. Jobs/Freelance default to "Apply Now", others to "Copy Prompt"
+              </p>
             </div>
 
             <Button type="submit" disabled={loading} className="w-full">

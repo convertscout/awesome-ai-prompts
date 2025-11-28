@@ -19,6 +19,9 @@ interface Prompt {
   views_count: number;
   favorites_count: number;
   created_at: string;
+  url: string | null;
+  content_type: string | null;
+  button_text: string | null;
 }
 
 const PromptDetail = () => {
@@ -76,6 +79,24 @@ const PromptDetail = () => {
       });
       setTimeout(() => setCopied(false), 2000);
     }
+  };
+
+  const handleAction = () => {
+    const contentType = prompt?.content_type?.toLowerCase();
+    if ((contentType === 'job' || contentType === 'freelance') && prompt?.url) {
+      window.open(prompt.url, '_blank', 'noopener,noreferrer');
+    } else {
+      handleCopy();
+    }
+  };
+
+  const getButtonText = () => {
+    if (prompt?.button_text) return prompt.button_text;
+    const contentType = prompt?.content_type?.toLowerCase();
+    if ((contentType === 'job' || contentType === 'freelance') && prompt?.url) {
+      return 'Apply Now';
+    }
+    return 'Copy Prompt';
   };
 
   const handleFavorite = async () => {
@@ -160,7 +181,7 @@ const PromptDetail = () => {
                     }`}
                   />
                 </Button>
-                <Button onClick={handleCopy} className="bg-gradient-primary hover:opacity-90">
+                <Button onClick={handleAction} className="bg-gradient-primary hover:opacity-90">
                   {copied ? (
                     <>
                       <Check className="mr-2 h-4 w-4" />
@@ -169,7 +190,7 @@ const PromptDetail = () => {
                   ) : (
                     <>
                       <Copy className="mr-2 h-4 w-4" />
-                      Copy Prompt
+                      {getButtonText()}
                     </>
                   )}
                 </Button>
