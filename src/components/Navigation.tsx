@@ -3,43 +3,37 @@ import { Button } from "./ui/button";
 import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
-import { Heart, ChevronDown } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-
+import { ChevronDown, Hash } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 export const Navigation = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
-
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({
+      data: {
+        session
+      }
+    }) => {
       setUser(session?.user ?? null);
     });
-
     const {
-      data: { subscription },
+      data: {
+        subscription
+      }
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
-
     return () => subscription.unsubscribe();
   }, []);
-
   const handleSignOut = async () => {
     await supabase.auth.signOut();
     navigate("/");
   };
-
-  return (
-    <nav className="border-b border-border/50 bg-background sticky top-0 z-50">
+  return <nav className="border-b border-border/50 bg-background sticky top-0 z-50">
       <div className="container flex h-14 items-center justify-between px-4">
         <div className="flex items-center gap-8">
           <Link to="/" className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors">
-            <Heart className="h-5 w-5 text-primary fill-primary" />
+            <Hash className="h-5 w-5 text-primary fill-primary" />
             <span className="hidden sm:inline">lovable.directory</span>
           </Link>
           
@@ -59,11 +53,9 @@ export const Navigation = () => {
             <Link to="/browse?type=code" className="text-muted-foreground hover:text-foreground transition-colors">
               Codes
             </Link>
-            {user && (
-              <Link to="/favorites" className="text-muted-foreground hover:text-foreground transition-colors">
+            {user && <Link to="/favorites" className="text-muted-foreground hover:text-foreground transition-colors">
                 Favorites
-              </Link>
-            )}
+              </Link>}
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1 text-muted-foreground hover:text-foreground transition-colors">
                 More <ChevronDown className="h-3 w-3" />
@@ -78,28 +70,21 @@ export const Navigation = () => {
                 <DropdownMenuItem asChild>
                   <Link to="/categories" className="cursor-pointer">Languages</Link>
                 </DropdownMenuItem>
-                {user && (
-                  <DropdownMenuItem asChild>
+                {user && <DropdownMenuItem asChild>
                     <Link to="/profile" className="cursor-pointer">Profile</Link>
-                  </DropdownMenuItem>
-                )}
+                  </DropdownMenuItem>}
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
-          {user ? (
-            <Button variant="outline" size="sm" onClick={handleSignOut} className="text-xs">
+          {user ? <Button variant="outline" size="sm" onClick={handleSignOut} className="text-xs">
               Sign Out
-            </Button>
-          ) : (
-            <Button size="sm" asChild className="text-xs bg-white text-black hover:bg-white/90">
+            </Button> : <Button size="sm" asChild className="text-xs bg-white text-black hover:bg-white/90">
               <Link to="/auth">Sign In</Link>
-            </Button>
-          )}
+            </Button>}
         </div>
       </div>
-    </nav>
-  );
+    </nav>;
 };
