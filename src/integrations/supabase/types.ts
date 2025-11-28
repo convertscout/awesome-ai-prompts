@@ -76,7 +76,7 @@ export type Database = {
       prompts: {
         Row: {
           author_id: string | null
-          category: Database["public"]["Enums"]["prompt_category"] | null
+          category: string | null
           content: string
           content_type: string | null
           created_at: string | null
@@ -99,7 +99,7 @@ export type Database = {
         }
         Insert: {
           author_id?: string | null
-          category?: Database["public"]["Enums"]["prompt_category"] | null
+          category?: string | null
           content: string
           content_type?: string | null
           created_at?: string | null
@@ -122,7 +122,7 @@ export type Database = {
         }
         Update: {
           author_id?: string | null
-          category?: Database["public"]["Enums"]["prompt_category"] | null
+          category?: string | null
           content?: string
           content_type?: string | null
           created_at?: string | null
@@ -190,17 +190,7 @@ export type Database = {
       }
     }
     Enums: {
-      prompt_category:
-        | "ui_ux"
-        | "components"
-        | "integrations"
-        | "best_practices"
-        | "animations"
-        | "forms"
-        | "layouts"
-        | "data_visualization"
-        | "authentication"
-        | "performance"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never
@@ -327,19 +317,6 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {
-      prompt_category: [
-        "ui_ux",
-        "components",
-        "integrations",
-        "best_practices",
-        "animations",
-        "forms",
-        "layouts",
-        "data_visualization",
-        "authentication",
-        "performance",
-      ],
-    },
+    Enums: {},
   },
 } as const
