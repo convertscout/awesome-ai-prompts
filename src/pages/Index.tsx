@@ -10,7 +10,6 @@ import { MCPCard } from "@/components/MCPCard";
 import { JobCard } from "@/components/JobCard";
 import { NewsCard } from "@/components/NewsCard";
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
-
 interface Prompt {
   id: string;
   slug: string;
@@ -217,7 +216,7 @@ const Index = () => {
           <section className="relative pt-20 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="flex justify-center">
-            <img src="/logo.png" alt="Lovable Directory Logo" className="h-24 w-24" />
+            <img alt="Lovable Directory Logo" src="/lovable-uploads/81abbcb3-4813-4575-8167-480ea5e6696e.png" className="h-24 w-24 object-fill" />
           </div>
           
           <h1 className="text-3xl md:text-4xl font-medium">
