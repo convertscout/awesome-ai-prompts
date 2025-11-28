@@ -9,6 +9,8 @@ import { SponsorStrip } from "@/components/SponsorStrip";
 import { MCPCard } from "@/components/MCPCard";
 import { JobCard } from "@/components/JobCard";
 import { NewsCard } from "@/components/NewsCard";
+import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
+
 interface Prompt {
   id: string;
   slug: string;
@@ -26,7 +28,7 @@ interface Prompt {
 }
 const Index = () => {
   const [featuredPrompts, setFeaturedPrompts] = useState<Prompt[]>([]);
-  const [memberCount, setMemberCount] = useState(1500);
+  const [memberCount, setMemberCount] = useState(12000);
   const [allPrompts, setAllPrompts] = useState<Prompt[]>([]);
   const [mcpItems, setMcpItems] = useState<Prompt[]>([]);
   const [newsItems, setNewsItems] = useState<Prompt[]>([]);
@@ -196,6 +198,7 @@ const Index = () => {
   const allSponsors = [...leftSponsors.flat(), ...rightSponsors.flat()];
   return <div className="min-h-screen bg-background text-foreground">
       <Navigation />
+      <PWAInstallPrompt />
       
       {/* Mobile Sponsor Strip - Top */}
       <div className="xl:hidden">
@@ -214,7 +217,7 @@ const Index = () => {
           <section className="relative pt-20 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="flex justify-center">
-            <Heart className="h-20 w-20 text-primary fill-primary opacity-20" />
+            <img src="/logo.png" alt="Lovable Directory Logo" className="h-24 w-24" />
           </div>
           
           <h1 className="text-3xl md:text-4xl font-medium">
