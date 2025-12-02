@@ -219,6 +219,12 @@ const Index = () => {
             <img alt="Lovable Directory Logo" src="/lovable-uploads/81abbcb3-4813-4575-8167-480ea5e6696e.png" className="h-24 w-24 object-fill" />
           </div>
           
+          <div className="flex justify-center">
+            <a href="https://www.producthunt.com/products/vibe-coding-2?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-vibe&#0045;coding&#0045;2" target="_blank" rel="noopener noreferrer">
+              <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1042692&theme=light&t=1764670248517" alt="Vibe&#0032;Coding - The&#0032;vibe&#0045;coding&#0032;hub&#0058;&#0032;prompts&#0044;&#0032;jobs&#0044;&#0032;ideas&#0032;&#0038;&#0032;indie&#0032;projects | Product Hunt" style={{ width: '250px', height: '54px' }} width="250" height="54" />
+            </a>
+          </div>
+          
           <h1 className="text-3xl md:text-4xl font-medium">
             Join the vibecoding community with{" "}
             <span className="font-semibold text-purple-400">{memberCount}+</span> members
