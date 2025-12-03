@@ -10,6 +10,7 @@ import { MCPCard } from "@/components/MCPCard";
 import { JobCard } from "@/components/JobCard";
 import { NewsCard } from "@/components/NewsCard";
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
+import { MembershipPopup } from "@/components/MembershipPopup";
 interface Prompt {
   id: string;
   slug: string;
@@ -35,9 +36,12 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     const fetchData = async () => {
+      // Featured: Get top items by views + favorites (dynamic)
       const {
         data: featured
-      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content, language, framework, content_type").eq("is_featured", true).order("created_at", {
+      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content, language, framework, content_type").order("favorites_count", {
+        ascending: false
+      }).order("views_count", {
         ascending: false
       }).limit(6);
       const {
@@ -198,6 +202,7 @@ const Index = () => {
   return <div className="min-h-screen bg-background text-foreground">
       <Navigation />
       <PWAInstallPrompt />
+      <MembershipPopup />
       
       {/* Mobile Sponsor Strip - Top */}
       <div className="xl:hidden">
