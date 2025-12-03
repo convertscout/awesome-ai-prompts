@@ -1,2 +1,7 @@
+# Redirect to Supabase edge functions
+/sitemap.xml https://nkbtvxoojkllafmjjhis.supabase.co/functions/v1/sitemap 301
+/robots.txt https://nkbtvxoojkllafmjjhis.supabase.co/functions/v1/robots 301
+/llm.txt https://nkbtvxoojkllafmjjhis.supabase.co/functions/v1/llm-txt 301
+
 # Fallback to index.html for client-side routing
 /* /index.html 200
