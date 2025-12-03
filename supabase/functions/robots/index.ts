@@ -24,7 +24,7 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-Sitemap: https://lovabledirectory.site/api/sitemap`;
+Sitemap: https://lovabledirectory.site/sitemap.xml`;
 
   return new Response(robotsTxt, {
     headers: corsHeaders,
