@@ -26,6 +26,7 @@ export const useSEO = ({ title, description, canonical, ogImage, ogType = 'websi
     };
 
     // Set basic meta tags
+    setMetaTag('title', title);
     setMetaTag('description', description);
 
     // Set Open Graph tags
