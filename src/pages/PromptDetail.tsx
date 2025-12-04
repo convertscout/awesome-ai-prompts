@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useToast } from "@/hooks/use-toast";
+import { useSEO } from "@/hooks/useSEO";
 
 interface Prompt {
   id: string;
@@ -30,6 +31,14 @@ const PromptDetail = () => {
   const [copied, setCopied] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
   const { toast } = useToast();
+
+  // Dynamic SEO - uses title and description from database
+  useSEO({
+    title: prompt ? `${prompt.title} | Lovable Directory` : 'Loading... | Lovable Directory',
+    description: prompt?.description || 'Discover AI prompts, jobs, and resources on Lovable Directory',
+    canonical: prompt ? `https://lovabledirectory.site/prompt/${slug}` : undefined,
+    ogType: 'article',
+  });
 
   useEffect(() => {
     if (slug) {
