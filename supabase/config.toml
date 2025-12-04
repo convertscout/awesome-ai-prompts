@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.llm-txt]
 verify_jwt = false
+
+[functions.og-render]
+verify_jwt = false
