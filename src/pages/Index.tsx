@@ -36,39 +36,20 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     const fetchData = async () => {
-      // Featured: Get top items by views + favorites (dynamic)
-      const {
-        data: featured
-      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content, language, framework, content_type").order("favorites_count", {
-        ascending: false
-      }).order("views_count", {
-        ascending: false
-      }).limit(6);
-      const {
-        data: all
-      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content, language, framework, content_type").order("created_at", {
-        ascending: false
-      }).limit(30);
-      const {
-        data: mcp
-      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content_type, logo_url").eq("content_type", "mcp").order("created_at", {
-        ascending: false
-      }).limit(12);
-      const {
-        data: news
-      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, logo_url").eq("content_type", "news").order("created_at", {
-        ascending: false
-      }).limit(5);
-      const {
-        data: jobs
-      } = await supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, logo_url").eq("content_type", "job").order("created_at", {
-        ascending: false
-      }).limit(5);
-      if (featured) setFeaturedPrompts(featured);
-      if (all) setAllPrompts(all);
-      if (mcp) setMcpItems(mcp);
-      if (news) setNewsItems(news);
-      if (jobs) setJobItems(jobs);
+      // Fetch all data in parallel for faster loading
+      const [featuredRes, allRes, mcpRes, newsRes, jobsRes] = await Promise.all([
+        supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content, language, framework, content_type").order("favorites_count", { ascending: false }).order("views_count", { ascending: false }).limit(6),
+        supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content, language, framework, content_type").order("created_at", { ascending: false }).limit(12),
+        supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content_type, logo_url").eq("content_type", "mcp").order("created_at", { ascending: false }).limit(12),
+        supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, logo_url").eq("content_type", "news").order("created_at", { ascending: false }).limit(5),
+        supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, logo_url").eq("content_type", "job").order("created_at", { ascending: false }).limit(5)
+      ]);
+      
+      if (featuredRes.data) setFeaturedPrompts(featuredRes.data);
+      if (allRes.data) setAllPrompts(allRes.data);
+      if (mcpRes.data) setMcpItems(mcpRes.data);
+      if (newsRes.data) setNewsItems(newsRes.data);
+      if (jobsRes.data) setJobItems(jobsRes.data);
     };
     fetchData();
   }, []);
@@ -248,6 +229,37 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Latest Resources Section - MOVED TO TOP */}
+      {allPrompts.length > 0 && <section className="py-12 px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-medium">Latest Resources</h2>
+              <Link to="/browse" className="text-sm text-muted-foreground hover:text-foreground">
+                View all →
+              </Link>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {allPrompts.map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.slug}`} className="group p-5 rounded-lg border border-border bg-gradient-to-br from-card/80 to-card/40 hover:border-primary/50 hover:shadow-glow transition-all duration-300">
+                  {prompt.content && <div className="mb-3 bg-muted/30 rounded-md p-3">
+                      <p className="text-xs font-mono text-muted-foreground line-clamp-3">
+                        {prompt.content}
+                      </p>
+                    </div>}
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
+                      <Heart className="h-5 w-5 text-primary" />
+                    </div>
+                    <h3 className="text-base font-semibold line-clamp-2 text-foreground group-hover:text-primary-glow transition-colors">{prompt.title}</h3>
+                  </div>
+                  <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+                    {prompt.description}
+                  </p>
+                </Link>)}
+            </div>
+          </div>
+        </section>}
+
       {/* Featured Section */}
       {featuredPrompts.length > 0 && <section className="py-12 px-4">
           <div className="max-w-6xl mx-auto">
@@ -323,37 +335,6 @@ const Index = () => {
 
             <div className="border border-border rounded-lg divide-y divide-border/50 p-4">
               {jobItems.map(job => <JobCard key={job.id} id={job.id} slug={job.slug} title={job.title} description={job.description} tags={job.tags} logoUrl={job.logo_url} />)}
-            </div>
-          </div>
-        </section>}
-
-      {/* All Prompts Section */}
-      {allPrompts.length > 0 && <section className="py-12 px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-medium">Latest Resources</h2>
-              <Link to="/browse" className="text-sm text-muted-foreground hover:text-foreground">
-                View all →
-              </Link>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {allPrompts.map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.slug}`} className="group p-5 rounded-lg border border-border bg-gradient-to-br from-card/80 to-card/40 hover:border-primary/50 hover:shadow-glow transition-all duration-300">
-                  {prompt.content && <div className="mb-3 bg-muted/30 rounded-md p-3">
-                      <p className="text-xs font-mono text-muted-foreground line-clamp-3">
-                        {prompt.content}
-                      </p>
-                    </div>}
-                  <div className="flex items-start gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
-                      <Heart className="h-5 w-5 text-primary" />
-                    </div>
-                    <h3 className="text-base font-semibold line-clamp-2 text-foreground group-hover:text-primary-glow transition-colors">{prompt.title}</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                    {prompt.description}
-                  </p>
-                </Link>)}
             </div>
           </div>
         </section>}
