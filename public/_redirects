@@ -1,7 +1,0 @@
-# Force proxy to Supabase edge functions (! forces override of any cached content)
-/sitemap.xml https://nkbtvxoojkllafmjjhis.supabase.co/functions/v1/sitemap 200!
-/robots.txt https://nkbtvxoojkllafmjjhis.supabase.co/functions/v1/robots 200!
-/llm.txt https://nkbtvxoojkllafmjjhis.supabase.co/functions/v1/llm-txt 200!
-
-# Fallback to index.html for client-side routing
-/* /index.html 200
