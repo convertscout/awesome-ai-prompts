@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
-import { ChevronDown, Hash } from "lucide-react";
+import { ChevronDown, Hash, Zap } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 export const Navigation = () => {
   const navigate = useNavigate();
@@ -38,6 +38,10 @@ export const Navigation = () => {
           </Link>
           
           <div className="hidden md:flex items-center gap-6 text-sm">
+            <Link to="/pulse" className="flex items-center gap-1 text-primary font-medium hover:text-primary/80 transition-colors">
+              <Zap className="h-4 w-4" />
+              Pulse
+            </Link>
             <Link to="/browse" className="text-muted-foreground hover:text-foreground transition-colors">
               Rules
             </Link>

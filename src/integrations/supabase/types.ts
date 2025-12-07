@@ -43,6 +43,27 @@ export type Database = {
           },
         ]
       }
+      newsletter_subscribers: {
+        Row: {
+          email: string
+          id: string
+          is_active: boolean | null
+          subscribed_at: string
+        }
+        Insert: {
+          email: string
+          id?: string
+          is_active?: boolean | null
+          subscribed_at?: string
+        }
+        Update: {
+          email?: string
+          id?: string
+          is_active?: boolean | null
+          subscribed_at?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -145,6 +166,101 @@ export type Database = {
           updated_at?: string | null
           url?: string | null
           views_count?: number | null
+        }
+        Relationships: []
+      }
+      tool_updates: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          is_major: boolean | null
+          published_at: string
+          source_url: string | null
+          title: string
+          tool_id: string
+          update_type: string | null
+          updated_at: string
+          upvotes: number | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_major?: boolean | null
+          published_at?: string
+          source_url?: string | null
+          title: string
+          tool_id: string
+          update_type?: string | null
+          updated_at?: string
+          upvotes?: number | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_major?: boolean | null
+          published_at?: string
+          source_url?: string | null
+          title?: string
+          tool_id?: string
+          update_type?: string | null
+          updated_at?: string
+          upvotes?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tool_updates_tool_id_fkey"
+            columns: ["tool_id"]
+            isOneToOne: false
+            referencedRelation: "tools"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tools: {
+        Row: {
+          brand_color: string | null
+          changelog_url: string | null
+          created_at: string
+          description: string | null
+          id: string
+          last_update_at: string | null
+          logo_url: string | null
+          name: string
+          slug: string
+          updated_at: string
+          updates_count: number | null
+          website_url: string | null
+        }
+        Insert: {
+          brand_color?: string | null
+          changelog_url?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          last_update_at?: string | null
+          logo_url?: string | null
+          name: string
+          slug: string
+          updated_at?: string
+          updates_count?: number | null
+          website_url?: string | null
+        }
+        Update: {
+          brand_color?: string | null
+          changelog_url?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          last_update_at?: string | null
+          logo_url?: string | null
+          name?: string
+          slug?: string
+          updated_at?: string
+          updates_count?: number | null
+          website_url?: string | null
         }
         Relationships: []
       }

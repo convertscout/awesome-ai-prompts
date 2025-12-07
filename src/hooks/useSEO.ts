@@ -6,6 +6,7 @@ interface SEOProps {
   canonical?: string;
   ogImage?: string;
   ogType?: string;
+  keywords?: string[];
 }
 
 export const useSEO = ({ title, description, canonical, ogImage, ogType = 'website' }: SEOProps) => {

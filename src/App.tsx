@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import Categories from "./pages/Categories";
 import Trending from "./pages/Trending";
 import Submit from "./pages/Submit";
+import Pulse from "./pages/Pulse";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/pulse" element={<Pulse />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/trending" element={<Trending />} />
