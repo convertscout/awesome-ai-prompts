@@ -11,6 +11,9 @@ import { JobCard } from "@/components/JobCard";
 import { NewsCard } from "@/components/NewsCard";
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
 import { MembershipPopup } from "@/components/MembershipPopup";
+import { SpotlightPrompt } from "@/components/SpotlightPrompt";
+import { QuickCopyPills } from "@/components/QuickCopyPills";
+import { StatsBar } from "@/components/StatsBar";
 interface Prompt {
   id: string;
   slug: string;
@@ -198,49 +201,103 @@ const Index = () => {
 
         {/* Main Content */}
         <div className="flex-1 min-w-0">
-          {/* Hero Section */}
-          <section className="relative pt-20 pb-16 px-4">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <div className="flex justify-center">
-            <img alt="Lovable Directory Logo" src="/lovable-uploads/81abbcb3-4813-4575-8167-480ea5e6696e.png" className="h-24 w-24 object-fill" />
-          </div>
-          
-          <div className="flex justify-center">
-            <a href="https://www.producthunt.com/products/vibe-coding-2?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-vibe&#0045;coding&#0045;2" target="_blank" rel="noopener noreferrer">
-              <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1042692&theme=light&t=1764670248517" alt="Vibe&#0032;Coding - The&#0032;vibe&#0045;coding&#0032;hub&#0058;&#0032;prompts&#0044;&#0032;jobs&#0044;&#0032;ideas&#0032;&#0038;&#0032;indie&#0032;projects | Product Hunt" style={{ width: '250px', height: '54px' }} width="250" height="54" />
-            </a>
-          </div>
-          
-          <h1 className="text-3xl md:text-4xl font-medium">
-            Join the vibecoding community with{" "}
-            <span className="font-semibold text-purple-400">{memberCount}+</span> members
-          </h1>
-          
-          <p className="text-base text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Your hub for AI-powered development. Explore prompts and templates for Lovable, Cursor, GitHub Copilot, Base44, Emergent, and more. Share resources, connect with builders, and discover everything you need to build faster with AI coding tools.
-          </p>
+          {/* Compact Hero Section */}
+          <section className="relative pt-12 pb-8 px-4">
+            <div className="max-w-5xl mx-auto">
+              {/* Header Row */}
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+                <div className="flex items-center gap-3">
+                  <img 
+                    alt="Lovable Directory Logo" 
+                    src="/lovable-uploads/81abbcb3-4813-4575-8167-480ea5e6696e.png" 
+                    className="h-12 w-12 object-fill" 
+                  />
+                  <div>
+                    <h1 className="text-xl md:text-2xl font-semibold">
+                      AI Prompts & Rules for Vibe Coders
+                    </h1>
+                    <p className="text-sm text-muted-foreground">
+                      Copy-paste ready prompts for Cursor, Lovable, Copilot & more
+                    </p>
+                  </div>
+                </div>
+                <a 
+                  href="https://www.producthunt.com/products/vibe-coding-2?embed=true&utm_source=badge-featured&utm_medium=badge" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hidden md:block"
+                >
+                  <img 
+                    src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1042692&theme=dark&t=1764670248517" 
+                    alt="Vibe Coding on Product Hunt" 
+                    style={{ width: '180px', height: '40px' }} 
+                    width="180" 
+                    height="40" 
+                  />
+                </a>
+              </div>
 
-          <form onSubmit={handleSearch} className="max-w-2xl mx-auto">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input placeholder="Search for a prompt or template..." className="pl-11 h-12 bg-muted/50 border-border text-sm" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
+              {/* Search Bar */}
+              <form onSubmit={handleSearch} className="mb-6">
+                <div className="relative">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input 
+                    placeholder="Search prompts, MCPs, tools..." 
+                    className="pl-11 h-11 bg-muted/50 border-border text-sm" 
+                    value={searchQuery} 
+                    onChange={e => setSearchQuery(e.target.value)} 
+                  />
+                </div>
+              </form>
+
+              {/* Stats Bar */}
+              <StatsBar 
+                promptCount={allPrompts.length + featuredPrompts.length} 
+                mcpCount={mcpItems.length} 
+                jobCount={jobItems.length} 
+                memberCount={memberCount} 
+              />
+
+              {/* Spotlight Prompt */}
+              {featuredPrompts.length > 0 && featuredPrompts[0].content && (
+                <div className="mt-6">
+                  <SpotlightPrompt
+                    id={featuredPrompts[0].id}
+                    slug={featuredPrompts[0].slug}
+                    title={featuredPrompts[0].title}
+                    description={featuredPrompts[0].description}
+                    content={featuredPrompts[0].content}
+                    viewsCount={featuredPrompts[0].views_count}
+                    favoritesCount={featuredPrompts[0].favorites_count}
+                  />
+                </div>
+              )}
+
+              {/* Quick Copy Pills */}
+              {allPrompts.length > 0 && (
+                <div className="mt-6">
+                  <p className="text-xs text-muted-foreground mb-3">Quick copy:</p>
+                  <QuickCopyPills prompts={allPrompts} />
+                </div>
+              )}
             </div>
-          </form>
-        </div>
-      </section>
+          </section>
 
-      {/* Latest Resources Section - MOVED TO TOP */}
-      {allPrompts.length > 0 && <section className="py-12 px-4">
+      {/* Latest Resources Section */}
+      {allPrompts.length > 0 && <section className="py-8 px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-medium">Latest Resources</h2>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <h2 className="text-lg font-medium">Latest Resources</h2>
+                <span className="text-xs text-muted-foreground bg-muted/50 px-2 py-0.5 rounded-full">{allPrompts.length} items</span>
+              </div>
               <Link to="/browse" className="text-sm text-muted-foreground hover:text-foreground">
                 View all →
               </Link>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {allPrompts.map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.slug}`} className="group p-5 rounded-lg border border-border bg-gradient-to-br from-card/80 to-card/40 hover:border-primary/50 hover:shadow-glow transition-all duration-300">
+              {allPrompts.slice(0, 6).map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.slug}`} className="group p-5 rounded-lg border border-border bg-gradient-to-br from-card/80 to-card/40 hover:border-primary/50 hover:shadow-glow transition-all duration-300">
                   {prompt.content && <div className="mb-3 bg-muted/30 rounded-md p-3">
                       <p className="text-xs font-mono text-muted-foreground line-clamp-3">
                         {prompt.content}
