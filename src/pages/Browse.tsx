@@ -7,6 +7,7 @@ import { Search, SlidersHorizontal } from "lucide-react";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useSearchParams } from "react-router-dom";
+import { useSEO } from "@/hooks/useSEO";
 
 interface Prompt {
   id: string;
@@ -41,6 +42,23 @@ const Browse = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [contentType, setContentType] = useState(searchParams.get("type") || "");
   const [favoriteIds, setFavoriteIds] = useState<Set<string>>(new Set());
+
+  // Dynamic SEO based on search/filter
+  const pageTitle = searchQuery 
+    ? `${searchQuery} - AI Prompts | Vibe Coding Directory`
+    : contentType
+    ? `${contentType.charAt(0).toUpperCase() + contentType.slice(1)}s - Vibe Coding Directory`
+    : 'Browse AI Prompts - Cursor, Lovable, GitHub Copilot | Vibe Coding Directory';
+  
+  const pageDescription = searchQuery
+    ? `Find AI prompts for ${searchQuery}. Copy-paste ready prompts for Cursor, Lovable, and GitHub Copilot.`
+    : 'Browse 160+ AI coding prompts. Filter by category, search by keyword. Free prompts for Cursor, Lovable, GitHub Copilot.';
+
+  useSEO({
+    title: pageTitle,
+    description: pageDescription,
+    canonical: `https://lovabledirectory.site/browse${searchQuery ? `?search=${encodeURIComponent(searchQuery)}` : ''}`,
+  });
 
   useEffect(() => {
     fetchPrompts();

@@ -14,6 +14,7 @@ import { MembershipPopup } from "@/components/MembershipPopup";
 import { SpotlightPrompt } from "@/components/SpotlightPrompt";
 import { QuickCopyPills } from "@/components/QuickCopyPills";
 import { StatsBar } from "@/components/StatsBar";
+import { useSEO } from "@/hooks/useSEO";
 interface Prompt {
   id: string;
   slug: string;
@@ -37,6 +38,14 @@ const Index = () => {
   const [newsItems, setNewsItems] = useState<Prompt[]>([]);
   const [jobItems, setJobItems] = useState<Prompt[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+
+  // SEO for homepage
+  useSEO({
+    title: 'Vibe Coding Directory - AI Prompts for Cursor, Lovable, GitHub Copilot',
+    description: 'Copy-paste ready AI prompts and rules for vibe coding. 160+ prompts for Cursor, Lovable, GitHub Copilot, and more. Free directory for AI developers.',
+    canonical: 'https://lovabledirectory.site/',
+    ogType: 'website',
+  });
   useEffect(() => {
     const fetchData = async () => {
       // Fetch all data in parallel for faster loading
