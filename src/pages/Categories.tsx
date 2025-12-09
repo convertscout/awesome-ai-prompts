@@ -11,6 +11,7 @@ import {
   Database,
   Lock,
 } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
 
 const languages = [
   {
@@ -76,6 +77,13 @@ const languages = [
 ];
 
 const Categories = () => {
+  // SEO for categories page
+  useSEO({
+    title: 'AI Prompt Categories - TypeScript, React, Python, Supabase | Vibe Coding Directory',
+    description: 'Browse AI prompts by language and framework. Find prompts for TypeScript, React, Next.js, Python, TailwindCSS, Supabase, and more.',
+    canonical: 'https://lovabledirectory.site/categories',
+  });
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />

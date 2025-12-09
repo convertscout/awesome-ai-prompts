@@ -3,6 +3,7 @@ import { PromptCard } from "@/components/PromptCard";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { Flame } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
 
 interface TrendingPrompt {
   id: string;
@@ -21,6 +22,13 @@ const Trending = () => {
   const [trendingPrompts, setTrendingPrompts] = useState<TrendingPrompt[]>([]);
   const [loading, setLoading] = useState(true);
   const [favoriteIds, setFavoriteIds] = useState<Set<string>>(new Set());
+
+  // SEO for trending page
+  useSEO({
+    title: 'Trending AI Prompts - Most Popular Cursor & Lovable Prompts | Vibe Coding Directory',
+    description: 'Discover the most popular AI coding prompts. See what prompts are trending in the vibe coding community for Cursor, Lovable, and GitHub Copilot.',
+    canonical: 'https://lovabledirectory.site/trending',
+  });
 
   useEffect(() => {
     const fetchTrending = async () => {

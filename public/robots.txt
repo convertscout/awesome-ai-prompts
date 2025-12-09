@@ -1,0 +1,13 @@
+# Robots.txt for Lovable Directory
+# https://lovabledirectory.site
+
+User-agent: *
+Allow: /
+
+# Disallow private/auth pages
+Disallow: /auth
+Disallow: /profile
+Disallow: /favorites
+
+# Sitemap location
+Sitemap: https://lovabledirectory.site/sitemap.xml

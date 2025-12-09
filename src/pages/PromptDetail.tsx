@@ -34,11 +34,50 @@ const PromptDetail = () => {
 
   // Dynamic SEO - uses title and description from database
   useSEO({
-    title: prompt ? `${prompt.title} | Lovable Directory` : 'Loading... | Lovable Directory',
-    description: prompt?.description || 'Discover AI prompts, jobs, and resources on Lovable Directory',
+    title: prompt ? `${prompt.title} - AI Prompt | Vibe Coding Directory` : 'Loading... | Vibe Coding Directory',
+    description: prompt?.description || 'Discover AI prompts for Cursor, Lovable, and GitHub Copilot on Vibe Coding Directory',
     canonical: prompt ? `https://lovabledirectory.site/prompt/${slug}` : undefined,
     ogType: 'article',
   });
+
+  // Add JSON-LD Schema for prompt detail
+  useEffect(() => {
+    if (prompt) {
+      const schema = {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": prompt.title,
+        "description": prompt.description,
+        "step": [{
+          "@type": "HowToStep",
+          "text": "Copy the prompt below and paste it into your AI coding tool"
+        }],
+        "tool": [{
+          "@type": "HowToTool",
+          "name": "Cursor AI"
+        }, {
+          "@type": "HowToTool", 
+          "name": "Lovable"
+        }, {
+          "@type": "HowToTool",
+          "name": "GitHub Copilot"
+        }]
+      };
+
+      let scriptTag = document.querySelector('script[data-prompt-schema]');
+      if (!scriptTag) {
+        scriptTag = document.createElement('script');
+        scriptTag.setAttribute('type', 'application/ld+json');
+        scriptTag.setAttribute('data-prompt-schema', 'true');
+        document.head.appendChild(scriptTag);
+      }
+      scriptTag.textContent = JSON.stringify(schema);
+
+      return () => {
+        scriptTag?.remove();
+      };
+    }
+  }, [prompt]);
 
   useEffect(() => {
     if (slug) {
