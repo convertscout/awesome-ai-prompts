@@ -44,6 +44,10 @@ function generateSitemapXml(prompts: Prompt[]): string {
     { loc: '/trending', changefreq: 'daily', priority: '0.9' },
     { loc: '/categories', changefreq: 'weekly', priority: '0.8' },
     { loc: '/submit', changefreq: 'monthly', priority: '0.7' },
+    // SEO Landing Pages - High priority for keyword targeting
+    { loc: '/cursor-prompts', changefreq: 'daily', priority: '0.9' },
+    { loc: '/lovable-prompts', changefreq: 'daily', priority: '0.9' },
+    { loc: '/github-copilot-prompts', changefreq: 'daily', priority: '0.9' },
   ];
 
   const staticUrls = staticPages.map(page => `
@@ -84,7 +88,7 @@ export function sitemapGenerator(): Plugin {
       const outputPath = resolve(process.cwd(), 'dist', 'sitemap.xml');
       writeFileSync(outputPath, sitemap, 'utf-8');
       
-      console.log(`✅ Sitemap generated with ${prompts.length + 5} URLs`);
+      console.log(`✅ Sitemap generated with ${prompts.length + 8} URLs`);
     },
   };
 }
