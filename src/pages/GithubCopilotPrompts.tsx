@@ -25,9 +25,13 @@ const GithubCopilotPrompts = () => {
 
   // SEO optimized for "GitHub Copilot prompts" keyword
   useSEO({
-    title: 'GitHub Copilot Prompts 2024 - Best Instructions & Tips | Vibe Coding Directory',
+    title: `GitHub Copilot Prompts ${new Date().getFullYear()} - Best Instructions & Tips | Lovable Directory`,
     description: 'Optimize GitHub Copilot with better prompts. 30+ curated instructions for GitHub Copilot. Get better code suggestions with proven prompt patterns.',
-    canonical: 'https://lovabledirectory.site/github-copilot-prompts',
+    canonical: 'https://lovable.directory/github-copilot-prompts',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://lovable.directory' },
+      { name: 'GitHub Copilot Prompts', url: 'https://lovable.directory/github-copilot-prompts' },
+    ],
   });
 
   useEffect(() => {

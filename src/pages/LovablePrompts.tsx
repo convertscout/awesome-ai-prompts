@@ -25,9 +25,13 @@ const LovablePrompts = () => {
 
   // SEO optimized for "Lovable prompts" keyword
   useSEO({
-    title: 'Best Lovable Prompts 2024 - AI App Builder Templates | Vibe Coding Directory',
+    title: `Best Lovable Prompts ${new Date().getFullYear()} - AI App Builder Templates | Lovable Directory`,
     description: 'Copy-paste ready Lovable prompts for building apps with AI. 40+ curated prompts for Lovable.dev. Build full-stack apps faster with proven templates.',
-    canonical: 'https://lovabledirectory.site/lovable-prompts',
+    canonical: 'https://lovable.directory/lovable-prompts',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://lovable.directory' },
+      { name: 'Lovable Prompts', url: 'https://lovable.directory/lovable-prompts' },
+    ],
   });
 
   useEffect(() => {

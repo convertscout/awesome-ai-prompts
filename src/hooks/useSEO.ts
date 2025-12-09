@@ -1,5 +1,10 @@
 import { useEffect } from 'react';
 
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
 interface SEOProps {
   title: string;
   description: string;
@@ -7,9 +12,19 @@ interface SEOProps {
   ogImage?: string;
   ogType?: string;
   keywords?: string[];
+  noindex?: boolean;
+  breadcrumbs?: BreadcrumbItem[];
 }
 
-export const useSEO = ({ title, description, canonical, ogImage, ogType = 'website' }: SEOProps) => {
+export const useSEO = ({ 
+  title, 
+  description, 
+  canonical, 
+  ogImage, 
+  ogType = 'website',
+  noindex = false,
+  breadcrumbs,
+}: SEOProps) => {
   useEffect(() => {
     // Update document title
     document.title = title;
@@ -29,6 +44,13 @@ export const useSEO = ({ title, description, canonical, ogImage, ogType = 'websi
     // Set basic meta tags
     setMetaTag('title', title);
     setMetaTag('description', description);
+
+    // Set robots meta tag
+    if (noindex) {
+      setMetaTag('robots', 'noindex, nofollow');
+    } else {
+      setMetaTag('robots', 'index, follow');
+    }
 
     // Set Open Graph tags
     setMetaTag('og:title', title, true);
@@ -59,9 +81,40 @@ export const useSEO = ({ title, description, canonical, ogImage, ogType = 'websi
     setMetaTag('twitter:title', title);
     setMetaTag('twitter:description', description);
 
+    // Add BreadcrumbList schema if breadcrumbs provided
+    if (breadcrumbs && breadcrumbs.length > 0) {
+      // Remove existing breadcrumb schema
+      const existingBreadcrumb = document.querySelector('script[data-schema="breadcrumb"]');
+      if (existingBreadcrumb) {
+        existingBreadcrumb.remove();
+      }
+
+      const breadcrumbSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbs.map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.name,
+          item: item.url,
+        })),
+      };
+
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.setAttribute('data-schema', 'breadcrumb');
+      script.textContent = JSON.stringify(breadcrumbSchema);
+      document.head.appendChild(script);
+    }
+
     // Cleanup function to reset to defaults
     return () => {
       document.title = 'Lovable Directory - Discover AI Prompts, Jobs & Resources';
+      // Remove breadcrumb schema on unmount
+      const breadcrumbScript = document.querySelector('script[data-schema="breadcrumb"]');
+      if (breadcrumbScript) {
+        breadcrumbScript.remove();
+      }
     };
-  }, [title, description, canonical, ogImage, ogType]);
+  }, [title, description, canonical, ogImage, ogType, noindex, breadcrumbs]);
 };

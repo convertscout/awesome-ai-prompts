@@ -25,9 +25,13 @@ const CursorPrompts = () => {
 
   // SEO optimized for "Cursor AI prompts" keyword
   useSEO({
-    title: 'Best Cursor AI Prompts 2024 - Free Rules & Templates | Vibe Coding Directory',
+    title: `Best Cursor AI Prompts ${new Date().getFullYear()} - Free Rules & Templates | Lovable Directory`,
     description: 'Copy-paste ready Cursor AI prompts and rules. Boost your productivity with 50+ curated prompts for Cursor IDE. TypeScript, React, Python and more.',
-    canonical: 'https://lovabledirectory.site/cursor-prompts',
+    canonical: 'https://lovable.directory/cursor-prompts',
+    breadcrumbs: [
+      { name: 'Home', url: 'https://lovable.directory' },
+      { name: 'Cursor Prompts', url: 'https://lovable.directory/cursor-prompts' },
+    ],
   });
 
   useEffect(() => {
