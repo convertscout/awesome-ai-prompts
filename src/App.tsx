@@ -13,6 +13,9 @@ import Categories from "./pages/Categories";
 import Trending from "./pages/Trending";
 import Submit from "./pages/Submit";
 import NotFound from "./pages/NotFound";
+import CursorPrompts from "./pages/CursorPrompts";
+import LovablePrompts from "./pages/LovablePrompts";
+import GithubCopilotPrompts from "./pages/GithubCopilotPrompts";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +35,10 @@ const App = () => (
           <Route path="/auth" element={<Auth />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/profile" element={<Profile />} />
+          {/* SEO Landing Pages */}
+          <Route path="/cursor-prompts" element={<CursorPrompts />} />
+          <Route path="/lovable-prompts" element={<LovablePrompts />} />
+          <Route path="/github-copilot-prompts" element={<GithubCopilotPrompts />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

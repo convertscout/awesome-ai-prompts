@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useToast } from "@/hooks/use-toast";
 import { useSEO } from "@/hooks/useSEO";
+import { RelatedPrompts } from "@/components/RelatedPrompts";
 
 interface Prompt {
   id: string;
@@ -277,6 +278,13 @@ const PromptDetail = () => {
               {prompt.content}
             </pre>
           </Card>
+
+          {/* Related Prompts - Internal Linking */}
+          <RelatedPrompts 
+            currentPromptId={prompt.id} 
+            category={prompt.category} 
+            tags={prompt.tags} 
+          />
         </div>
       </div>
     </div>

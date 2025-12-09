@@ -46,6 +46,56 @@ const Index = () => {
     canonical: 'https://lovabledirectory.site/',
     ogType: 'website',
   });
+
+  // Add FAQ Schema for homepage rich snippets
+  useEffect(() => {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Vibe Coding Directory?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Vibe Coding Directory is a free collection of copy-paste ready AI prompts for developers. We curate prompts for Cursor AI, Lovable, GitHub Copilot, and other AI coding tools to help you code faster."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are the AI prompts free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! All prompts in our directory are completely free. Simply copy the prompt and paste it into your favorite AI coding tool like Cursor, Lovable, or GitHub Copilot."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What AI coding tools do these prompts work with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our prompts work with all major AI coding assistants including Cursor AI, Lovable, GitHub Copilot, Windsurf, Cline, and other LLM-powered development tools."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I use these AI prompts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Click the copy button on any prompt, then paste it into your AI tool. For Cursor, paste into .cursorrules. For Lovable, paste into the chat. For Copilot, use as a comment in your code."
+          }
+        }
+      ]
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.setAttribute('data-homepage-faq', 'true');
+    script.textContent = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+
+    return () => script.remove();
+  }, []);
   useEffect(() => {
     const fetchData = async () => {
       // Fetch all data in parallel for faster loading
