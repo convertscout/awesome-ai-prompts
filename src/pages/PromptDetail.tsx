@@ -35,10 +35,15 @@ const PromptDetail = () => {
 
   // Dynamic SEO - uses title and description from database
   useSEO({
-    title: prompt ? `${prompt.title} - AI Prompt | Vibe Coding Directory` : 'Loading... | Vibe Coding Directory',
-    description: prompt?.description || 'Discover AI prompts for Cursor, Lovable, and GitHub Copilot on Vibe Coding Directory',
-    canonical: prompt ? `https://lovabledirectory.site/prompt/${slug}` : undefined,
+    title: prompt ? `${prompt.title} - AI Prompt | Lovable Directory` : 'Loading... | Lovable Directory',
+    description: prompt?.description || 'Discover AI prompts for Cursor, Lovable, and GitHub Copilot on Lovable Directory',
+    canonical: prompt ? `https://lovable.directory/prompt/${slug}` : undefined,
     ogType: 'article',
+    breadcrumbs: prompt ? [
+      { name: 'Home', url: 'https://lovable.directory' },
+      { name: 'Browse', url: 'https://lovable.directory/browse' },
+      { name: prompt.title, url: `https://lovable.directory/prompt/${slug}` },
+    ] : undefined,
   });
 
   // Add JSON-LD Schema for prompt detail

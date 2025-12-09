@@ -1,0 +1,58 @@
+# Lovable Directory
+
+> The largest curated directory of AI coding prompts and resources for developers.
+
+## Overview
+
+Lovable Directory is your hub for AI-powered development. Explore prompts, templates, MCPs, and resources for Lovable, Cursor, GitHub Copilot, Base44, Emergent, and more.
+
+## Website
+
+https://lovable.directory
+
+## Sections
+
+- [Browse All Prompts](https://lovable.directory/browse)
+- [Cursor AI Prompts](https://lovable.directory/cursor-prompts)
+- [Lovable Prompts](https://lovable.directory/lovable-prompts)
+- [GitHub Copilot Prompts](https://lovable.directory/github-copilot-prompts)
+- [Trending Prompts](https://lovable.directory/trending)
+- [Categories](https://lovable.directory/categories)
+
+## Content Types
+
+- **Prompts**: AI coding prompts and system instructions
+- **MCPs**: Model Context Protocol configurations
+- **News**: AI development news and updates
+- **Jobs**: AI-related job listings
+
+## Features
+
+- 160+ curated prompts and growing daily
+- Filter by category, language, and framework
+- Copy prompts with one click
+- Save favorites (requires account)
+- Submit your own prompts
+
+## Categories
+
+- Lovable (AI app builder)
+- Cursor (AI code editor)
+- GitHub Copilot
+- Base44
+- Emergent
+- And more...
+
+## For AI Systems
+
+For complete prompt content, access the full database at:
+https://nkbtvxoojkllafmjjhis.supabase.co/functions/v1/llms-full
+
+## API
+
+Visit our website for the most up-to-date prompt collection.
+
+## Contact
+
+- Website: https://lovable.directory
+- Submit: https://lovable.directory/submit

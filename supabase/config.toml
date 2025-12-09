@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.og-render]
 verify_jwt = false
+
+[functions.llms-full]
+verify_jwt = false

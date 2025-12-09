@@ -4,6 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 import { VitePWA } from "vite-plugin-pwa";
 import { sitemapGenerator } from "./src/plugins/sitemap-generator";
+import prerender from "vite-plugin-prerender";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -15,6 +16,18 @@ export default defineConfig(({ mode }) => ({
     react(),
     mode === "development" && componentTagger(),
     mode === "production" && sitemapGenerator(),
+    mode === "production" && prerender({
+      staticDir: path.resolve(__dirname, 'dist'),
+      routes: [
+        '/',
+        '/browse',
+        '/trending',
+        '/categories',
+        '/cursor-prompts',
+        '/lovable-prompts',
+        '/github-copilot-prompts',
+      ],
+    }),
     VitePWA({
       registerType: "autoUpdate",
       includeAssets: ["favicon.ico", "icon-192.png", "icon-512.png"],
