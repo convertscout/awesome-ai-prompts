@@ -29,7 +29,7 @@ Deno.serve(async (req) => {
     if (error) throw error;
 
     const baseUrl = 'https://lovabledirectory.site';
-    const currentDate = new Date().toISOString().split('T')[0];
+    const currentDate = '2025-12-10';
 
     // Categories for the site
     const categories = [
