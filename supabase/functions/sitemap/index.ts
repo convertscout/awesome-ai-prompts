@@ -4,9 +4,7 @@ const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
   'Content-Type': 'application/xml; charset=utf-8',
-  'Cache-Control': 'no-cache, no-store, must-revalidate',
-  'Pragma': 'no-cache',
-  'Expires': '0',
+  'Cache-Control': 'public, max-age=3600',
 };
 
 Deno.serve(async (req) => {
@@ -20,106 +18,64 @@ Deno.serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
 
-    // Fetch all published prompts with slugs
+    // Fetch all prompts with slugs
     const { data: prompts, error } = await supabaseClient
       .from('prompts')
-      .select('slug, updated_at')
+      .select('slug, updated_at, content_type')
       .order('updated_at', { ascending: false });
 
     if (error) throw error;
 
     const baseUrl = 'https://lovabledirectory.site';
-    const currentDate = '2025-12-11';
+    const currentDate = new Date().toISOString().split('T')[0];
 
-    // Categories for the site
-    const categories = [
-      'typescript', 'react', 'nextjs', 'python', 'tailwindcss', 
-      'supabase', 'react-native', 'authentication', 'expo', 'javascript'
+    // High-priority SEO landing pages targeting high-volume keywords
+    const seoLandingPages = [
+      { path: '/', priority: '1.0', changefreq: 'daily' },
+      { path: '/generate', priority: '1.0', changefreq: 'daily' }, // AI prompt generator - high intent
+      { path: '/browse', priority: '0.9', changefreq: 'daily' },
+      { path: '/trending', priority: '0.9', changefreq: 'daily' },
+      // Tool-specific pages targeting "[tool] prompts" keywords
+      { path: '/chatgpt-prompts', priority: '0.9', changefreq: 'daily' },
+      { path: '/cursor-prompts', priority: '0.9', changefreq: 'daily' },
+      { path: '/claude-prompts', priority: '0.9', changefreq: 'daily' },
+      { path: '/gemini-prompts', priority: '0.9', changefreq: 'daily' },
+      { path: '/lovable-prompts', priority: '0.9', changefreq: 'daily' },
+      { path: '/github-copilot-prompts', priority: '0.9', changefreq: 'daily' },
+      // Informational/comparison pages
+      { path: '/ai-code-generator', priority: '0.9', changefreq: 'weekly' },
+      { path: '/best-ai-for-coding', priority: '0.9', changefreq: 'weekly' },
+      { path: '/categories', priority: '0.8', changefreq: 'weekly' },
+      { path: '/submit', priority: '0.6', changefreq: 'monthly' },
     ];
+
+    // Language/framework categories for long-tail keywords
+    const categories = [
+      'typescript', 'javascript', 'python', 'react', 'nextjs', 'vue',
+      'tailwindcss', 'supabase', 'react-native', 'expo', 'nodejs',
+      'django', 'fastapi', 'rust', 'go', 'java', 'csharp', 'php',
+      'ruby', 'swift', 'kotlin', 'flutter', 'angular', 'svelte'
+    ];
+
+    // Content types for filtered browsing
+    const contentTypes = ['mcp', 'job', 'code', 'news'];
 
     // Build sitemap XML
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${baseUrl}/</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/browse</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/trending</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/categories</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/chatgpt-prompts</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/gemini-prompts</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/claude-prompts</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/cursor-prompts</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/lovable-prompts</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/github-copilot-prompts</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/ai-code-generator</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/best-ai-for-coding</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/generate</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>`;
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
 
-    // Add category pages
+    // Add high-priority SEO landing pages
+    seoLandingPages.forEach(({ path, priority, changefreq }) => {
+      sitemap += `
+  <url>
+    <loc>${baseUrl}${path}</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+    });
+
+    // Add category search pages (long-tail keywords like "typescript cursor prompts")
     categories.forEach((category) => {
       sitemap += `
   <url>
@@ -130,15 +86,28 @@ Deno.serve(async (req) => {
   </url>`;
     });
 
+    // Add content type filtered pages
+    contentTypes.forEach((type) => {
+      sitemap += `
+  <url>
+    <loc>${baseUrl}/browse?type=${type}</loc>
+    <lastmod>${currentDate}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>`;
+    });
+
     // Add all individual prompt/content pages
     prompts?.forEach((prompt) => {
       const lastmod = new Date(prompt.updated_at).toISOString().split('T')[0];
+      // Higher priority for prompts, slightly lower for other content types
+      const priority = prompt.content_type === 'prompt' ? '0.8' : '0.7';
       sitemap += `
   <url>
     <loc>${baseUrl}/prompt/${prompt.slug}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>${priority}</priority>
   </url>`;
     });
 
@@ -149,6 +118,7 @@ Deno.serve(async (req) => {
     });
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('Sitemap generation error:', errorMessage);
     return new Response(JSON.stringify({ error: errorMessage }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
