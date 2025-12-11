@@ -14,3 +14,6 @@ verify_jwt = false
 
 [functions.llms-full]
 verify_jwt = false
+
+[functions.newsletter-subscribe]
+verify_jwt = false
