@@ -43,6 +43,42 @@ export type Database = {
           },
         ]
       }
+      generation_usage: {
+        Row: {
+          created_at: string
+          framework: string | null
+          generated_at: string
+          id: string
+          language: string | null
+          prompt_type: string
+          tokens_used: number | null
+          tool: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          framework?: string | null
+          generated_at?: string
+          id?: string
+          language?: string | null
+          prompt_type: string
+          tokens_used?: number | null
+          tool: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          framework?: string | null
+          generated_at?: string
+          id?: string
+          language?: string | null
+          prompt_type?: string
+          tokens_used?: number | null
+          tool?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       newsletter_subscribers: {
         Row: {
           email: string

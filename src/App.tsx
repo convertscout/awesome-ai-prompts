@@ -21,6 +21,7 @@ import GeminiPrompts from "./pages/GeminiPrompts";
 import ClaudePrompts from "./pages/ClaudePrompts";
 import AICodeGenerator from "./pages/AICodeGenerator";
 import BestAIForCoding from "./pages/BestAIForCoding";
+import Generate from "./pages/Generate";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/categories" element={<Categories />} />
           <Route path="/trending" element={<Trending />} />
           <Route path="/submit" element={<Submit />} />
+          <Route path="/generate" element={<Generate />} />
           <Route path="/prompt/:slug" element={<PromptDetail />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/favorites" element={<Favorites />} />

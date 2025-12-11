@@ -15,6 +15,7 @@ import { SpotlightPrompt } from "@/components/SpotlightPrompt";
 import { QuickCopyPills } from "@/components/QuickCopyPills";
 import { StatsBar } from "@/components/StatsBar";
 import { useSEO } from "@/hooks/useSEO";
+import { GeneratorTeaser } from "@/components/GeneratorTeaser";
 interface Prompt {
   id: string;
   slug: string;
@@ -41,8 +42,8 @@ const Index = () => {
 
   // SEO for homepage - targeting high-volume keywords
   useSEO({
-    title: 'AI Coding Prompts Directory - ChatGPT, Cursor, Claude, Gemini Prompts 2025',
-    description: 'Free AI coding prompts for developers. 160+ copy-paste ready prompts for ChatGPT, Cursor AI, Claude, GitHub Copilot, Gemini & more. Boost your coding productivity.',
+    title: 'AI Coding Prompts Directory - Free Prompt Generator, Cursor Rules 2025',
+    description: 'Free AI prompt generator & 160+ coding prompts for ChatGPT, Cursor AI, Claude, GitHub Copilot & Gemini. Generate rules files, system prompts in seconds.',
     canonical: 'https://lovabledirectory.site/',
     ogType: 'website',
   });
@@ -308,6 +309,11 @@ const Index = () => {
                   />
                 </div>
               </form>
+
+              {/* AI Generator Teaser */}
+              <div className="mb-6">
+                <GeneratorTeaser />
+              </div>
 
               {/* Stats Bar */}
               <StatsBar 
