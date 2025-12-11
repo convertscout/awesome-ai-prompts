@@ -70,6 +70,18 @@ export const Navigation = () => {
                 <DropdownMenuItem asChild>
                   <Link to="/categories" className="cursor-pointer">Languages</Link>
                 </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/chatgpt-prompts" className="cursor-pointer">ChatGPT Prompts</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/cursor-prompts" className="cursor-pointer">Cursor Prompts</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/claude-prompts" className="cursor-pointer">Claude Prompts</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/best-ai-for-coding" className="cursor-pointer">Best AI for Coding</Link>
+                </DropdownMenuItem>
                 {user && <DropdownMenuItem asChild>
                     <Link to="/profile" className="cursor-pointer">Profile</Link>
                   </DropdownMenuItem>}

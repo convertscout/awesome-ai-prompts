@@ -39,15 +39,15 @@ const Index = () => {
   const [jobItems, setJobItems] = useState<Prompt[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
 
-  // SEO for homepage
+  // SEO for homepage - targeting high-volume keywords
   useSEO({
-    title: 'Vibe Coding Directory - AI Prompts for Cursor, Lovable, GitHub Copilot',
-    description: 'Copy-paste ready AI prompts and rules for vibe coding. 160+ prompts for Cursor, Lovable, GitHub Copilot, and more. Free directory for AI developers.',
+    title: 'AI Coding Prompts Directory - ChatGPT, Cursor, Claude, Gemini Prompts 2025',
+    description: 'Free AI coding prompts for developers. 160+ copy-paste ready prompts for ChatGPT, Cursor AI, Claude, GitHub Copilot, Gemini & more. Boost your coding productivity.',
     canonical: 'https://lovabledirectory.site/',
     ogType: 'website',
   });
 
-  // Add FAQ Schema for homepage rich snippets
+  // Add FAQ Schema for homepage rich snippets - optimized for high-volume queries
   useEffect(() => {
     const faqSchema = {
       "@context": "https://schema.org",
@@ -55,34 +55,34 @@ const Index = () => {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What is Vibe Coding Directory?",
+          "name": "What are the best AI prompts for coding?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Vibe Coding Directory is a free collection of copy-paste ready AI prompts for developers. We curate prompts for Cursor AI, Lovable, GitHub Copilot, and other AI coding tools to help you code faster."
+            "text": "The best AI coding prompts include structured prompts for ChatGPT, Cursor AI, Claude, and GitHub Copilot. Our directory features 160+ copy-paste ready prompts optimized for code generation, debugging, and refactoring."
           }
         },
         {
           "@type": "Question",
-          "name": "Are the AI prompts free to use?",
+          "name": "How do I use ChatGPT for coding?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes! All prompts in our directory are completely free. Simply copy the prompt and paste it into your favorite AI coding tool like Cursor, Lovable, or GitHub Copilot."
+            "text": "Use ChatGPT for coding by providing clear, specific prompts. Our ChatGPT coding prompts help you generate code, debug errors, write tests, and refactor existing code. Simply copy a prompt and paste it into ChatGPT."
           }
         },
         {
           "@type": "Question",
-          "name": "What AI coding tools do these prompts work with?",
+          "name": "What is the best AI for coding in 2025?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Our prompts work with all major AI coding assistants including Cursor AI, Lovable, GitHub Copilot, Windsurf, Cline, and other LLM-powered development tools."
+            "text": "The best AI coding tools in 2025 include ChatGPT, Cursor AI, Claude, GitHub Copilot, and Google Gemini. Each excels in different areas - ChatGPT for general coding, Cursor for IDE integration, Claude for complex reasoning, and Copilot for code completion."
           }
         },
         {
           "@type": "Question",
-          "name": "How do I use these AI prompts?",
+          "name": "Are these AI coding prompts free?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Click the copy button on any prompt, then paste it into your AI tool. For Cursor, paste into .cursorrules. For Lovable, paste into the chat. For Copilot, use as a comment in your code."
+            "text": "Yes! All prompts in our AI coding prompts directory are completely free. Copy-paste ready prompts for ChatGPT, Cursor, Claude, Copilot, Gemini and 10+ AI tools."
           }
         }
       ]
@@ -273,10 +273,10 @@ const Index = () => {
                   />
                   <div>
                     <h1 className="text-xl md:text-2xl font-semibold">
-                      AI Prompts & Rules for Vibe Coders
+                      AI Coding Prompts for Developers
                     </h1>
                     <p className="text-sm text-muted-foreground">
-                      Copy-paste ready prompts for Cursor, Lovable, Copilot & more
+                      Copy-paste ready prompts for ChatGPT, Cursor, Claude, Copilot, Gemini & 10+ AI tools
                     </p>
                   </div>
                 </div>

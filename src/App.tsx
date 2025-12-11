@@ -16,6 +16,11 @@ import NotFound from "./pages/NotFound";
 import CursorPrompts from "./pages/CursorPrompts";
 import LovablePrompts from "./pages/LovablePrompts";
 import GithubCopilotPrompts from "./pages/GithubCopilotPrompts";
+import ChatGPTPrompts from "./pages/ChatGPTPrompts";
+import GeminiPrompts from "./pages/GeminiPrompts";
+import ClaudePrompts from "./pages/ClaudePrompts";
+import AICodeGenerator from "./pages/AICodeGenerator";
+import BestAIForCoding from "./pages/BestAIForCoding";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +44,11 @@ const App = () => (
           <Route path="/cursor-prompts" element={<CursorPrompts />} />
           <Route path="/lovable-prompts" element={<LovablePrompts />} />
           <Route path="/github-copilot-prompts" element={<GithubCopilotPrompts />} />
+          <Route path="/chatgpt-prompts" element={<ChatGPTPrompts />} />
+          <Route path="/gemini-prompts" element={<GeminiPrompts />} />
+          <Route path="/claude-prompts" element={<ClaudePrompts />} />
+          <Route path="/ai-code-generator" element={<AICodeGenerator />} />
+          <Route path="/best-ai-for-coding" element={<BestAIForCoding />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
