@@ -7,12 +7,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useToast } from "@/hooks/use-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Auth = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const returnTo = searchParams.get("returnTo") || "/";
 
   const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,7 +35,7 @@ const Auth = () => {
             username,
             display_name: displayName,
           },
-          emailRedirectTo: `${window.location.origin}/`,
+          emailRedirectTo: `${window.location.origin}${returnTo}`,
         },
       });
 
@@ -44,7 +46,7 @@ const Auth = () => {
         description: "Welcome to the Lovable community",
       });
 
-      navigate("/");
+      navigate(returnTo);
     } catch (error: any) {
       toast({
         title: "Error",
@@ -77,7 +79,7 @@ const Auth = () => {
         description: "You've successfully signed in",
       });
 
-      navigate("/");
+      navigate(returnTo);
     } catch (error: any) {
       toast({
         title: "Error",

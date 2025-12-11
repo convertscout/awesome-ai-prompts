@@ -17,3 +17,6 @@ verify_jwt = false
 
 [functions.newsletter-subscribe]
 verify_jwt = false
+
+[functions.generate-prompt]
+verify_jwt = false

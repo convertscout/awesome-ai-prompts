@@ -38,6 +38,9 @@ export const Navigation = () => {
           </Link>
           
           <div className="hidden md:flex items-center gap-6 text-sm">
+            <Link to="/generate" className="text-primary hover:text-primary/80 transition-colors font-medium flex items-center gap-1">
+              ✨ Generate
+            </Link>
             <Link to="/browse" className="text-muted-foreground hover:text-foreground transition-colors">
               Rules
             </Link>
