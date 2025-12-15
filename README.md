@@ -1,73 +1,175 @@
-# Welcome to your Lovable project
+<div align="center">
+  <img src="public/logo.png" alt="Awesome AI Coding Prompts" width="150"/>
+  <h1>Awesome AI Coding Prompts</h1>
+  <p>A curated collection of copy-paste prompts for Cursor, Lovable, Claude, ChatGPT, GitHub Copilot & more</p>
+  
+  <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a>
+  <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
+</div>
 
-## Project info
+<br/>
 
-**URL**: https://lovable.dev/projects/0b51f004-4ab0-46ba-95e6-5beb7a74833b
+> **🌐 Try the Web App:** [lovable.directory](https://lovable.directory) — Browse, search, and generate custom prompts with AI
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🎯 Sponsors
 
-**Use Lovable**
+> Want to reach **200,000+ developers**? [Become a sponsor →](https://lovable.directory/advertise)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/0b51f004-4ab0-46ba-95e6-5beb7a74833b) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 📚 Contents
 
-**Use your preferred IDE**
+- [Cursor AI Prompts](#-cursor-ai-prompts)
+- [Lovable Prompts](#-lovable-prompts)
+- [Claude Prompts](#-claude-prompts)
+- [ChatGPT Prompts](#-chatgpt-prompts)
+- [GitHub Copilot Prompts](#-github-copilot-prompts)
+- [Gemini Prompts](#-gemini-prompts)
+- [By Category](#-by-category)
+- [Contributing](#-contributing)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## ✨ Cursor AI Prompts
 
-Follow these steps:
+Prompts optimized for [Cursor IDE](https://cursor.sh) and its AI capabilities.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+| Prompt | Description | Tags |
+|--------|-------------|------|
+| [Best Cursor Rules for AI Coding](prompts/cursor/best-cursor-rules.md) | Top 10 guidelines for 2025 productivity | `cursor`, `best-practices` |
+| [TypeScript Cursor Rules](prompts/cursor/typescript-rules.md) | Type-safe coding patterns | `typescript`, `cursor` |
+| [React Component Rules](prompts/cursor/react-rules.md) | Component architecture guidelines | `react`, `cursor` |
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+[View all Cursor prompts →](prompts/cursor/)
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## 💜 Lovable Prompts
 
-**Edit a file directly in GitHub**
+Prompts for building apps with [Lovable](https://lovable.dev).
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+| Prompt | Description | Tags |
+|--------|-------------|------|
+| [Supabase Auth Setup](prompts/lovable/supabase-auth.md) | Complete authentication flow | `auth`, `supabase` |
+| [Landing Page Builder](prompts/lovable/landing-page.md) | Beautiful landing pages | `ui`, `landing` |
+| [Dashboard Layout](prompts/lovable/dashboard.md) | Admin dashboard templates | `dashboard`, `ui` |
 
-**Use GitHub Codespaces**
+[View all Lovable prompts →](prompts/lovable/)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+---
 
-## What technologies are used for this project?
+## 🔴 Claude Prompts
 
-This project is built with:
+Prompts optimized for [Claude](https://claude.ai) by Anthropic.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+| Prompt | Description | Tags |
+|--------|-------------|------|
+| [Code Review Assistant](prompts/claude/code-review.md) | Thorough code review prompts | `review`, `quality` |
+| [Refactoring Guide](prompts/claude/refactoring.md) | Clean code transformations | `refactor`, `clean-code` |
 
-## How can I deploy this project?
+[View all Claude prompts →](prompts/claude/)
 
-Simply open [Lovable](https://lovable.dev/projects/0b51f004-4ab0-46ba-95e6-5beb7a74833b) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+## 🟢 ChatGPT Prompts
 
-Yes, you can!
+Prompts for [ChatGPT](https://chat.openai.com) and OpenAI models.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+| Prompt | Description | Tags |
+|--------|-------------|------|
+| [API Design Assistant](prompts/chatgpt/api-design.md) | RESTful API architecture | `api`, `backend` |
+| [Debug Helper](prompts/chatgpt/debug-helper.md) | Systematic debugging approach | `debug`, `troubleshooting` |
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+[View all ChatGPT prompts →](prompts/chatgpt/)
+
+---
+
+## ⚫ GitHub Copilot Prompts
+
+Prompts and patterns for [GitHub Copilot](https://github.com/features/copilot).
+
+| Prompt | Description | Tags |
+|--------|-------------|------|
+| [Test Generation](prompts/copilot/test-generation.md) | Unit test scaffolding | `testing`, `jest` |
+| [Documentation Writer](prompts/copilot/documentation.md) | Auto-generate docs | `docs`, `jsdoc` |
+
+[View all Copilot prompts →](prompts/copilot/)
+
+---
+
+## 🔵 Gemini Prompts
+
+Prompts for [Google Gemini](https://gemini.google.com).
+
+| Prompt | Description | Tags |
+|--------|-------------|------|
+| [Multi-modal Analysis](prompts/gemini/multimodal.md) | Image + code analysis | `vision`, `analysis` |
+| [Large Context Coding](prompts/gemini/large-context.md) | Full codebase understanding | `context`, `architecture` |
+
+[View all Gemini prompts →](prompts/gemini/)
+
+---
+
+## 📁 By Category
+
+### 🔐 Authentication
+- [Supabase Auth Flow](prompts/auth/supabase-auth.md)
+- [OAuth Integration](prompts/auth/oauth.md)
+- [JWT Handling](prompts/auth/jwt.md)
+
+### 🎨 UI/UX
+- [Responsive Layouts](prompts/ui/responsive.md)
+- [Dark Mode Setup](prompts/ui/dark-mode.md)
+- [Animation Patterns](prompts/ui/animations.md)
+
+### 📊 Data & APIs
+- [REST API Design](prompts/api/rest-design.md)
+- [GraphQL Setup](prompts/api/graphql.md)
+- [Database Schema](prompts/api/database.md)
+
+### ⚡ Performance
+- [Code Optimization](prompts/performance/optimization.md)
+- [Lazy Loading](prompts/performance/lazy-loading.md)
+- [Caching Strategies](prompts/performance/caching.md)
+
+---
+
+## 🚀 Generate Custom Prompts
+
+Can't find what you need? Use our **AI Prompt Generator**:
+
+👉 **[Generate Custom Prompts →](https://lovable.directory/generate)**
+
+Free for 3 generations/day. Supports all major AI tools.
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+**Quick steps:**
+1. Fork this repository
+2. Add your prompt in the appropriate category folder
+3. Update the relevant table in this README
+4. Submit a Pull Request
+
+---
+
+## 📄 License
+
+[MIT](LICENSE) © 2024 Lovable Directory
+
+---
+
+<div align="center">
+  <p>
+    <a href="https://lovable.directory">🌐 Web App</a> •
+    <a href="https://lovable.directory/advertise">💼 Sponsor</a> •
+    <a href="CONTRIBUTING.md">🤝 Contribute</a>
+  </p>
+  <p>⭐ Star this repo to support the project!</p>
+</div>
