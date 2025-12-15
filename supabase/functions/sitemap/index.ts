@@ -47,6 +47,7 @@ Deno.serve(async (req) => {
       { path: '/best-ai-for-coding', priority: '0.9', changefreq: 'weekly' },
       { path: '/categories', priority: '0.8', changefreq: 'weekly' },
       { path: '/submit', priority: '0.6', changefreq: 'monthly' },
+      { path: '/advertise', priority: '0.7', changefreq: 'monthly' },
     ];
 
     // Language/framework categories for long-tail keywords
