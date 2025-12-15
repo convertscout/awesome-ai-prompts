@@ -36,7 +36,7 @@ async function fetchPrompts(): Promise<Prompt[]> {
 }
 
 function generateSitemapXml(prompts: Prompt[]): string {
-  const today = '2025-12-11';
+  const today = '2025-12-15';
   
   const staticPages = [
     { loc: '', changefreq: 'daily', priority: '1.0' },
