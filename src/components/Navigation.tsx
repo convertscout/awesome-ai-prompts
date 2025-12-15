@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
-import { ChevronDown, Hash } from "lucide-react";
+import { ChevronDown, Hash, Star } from "lucide-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 export const Navigation = () => {
   const navigate = useNavigate();
@@ -97,6 +97,15 @@ export const Navigation = () => {
         </div>
 
         <div className="flex items-center gap-3">
+          <a 
+            href="https://github.com/valleystudios/lovable-directory" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hidden sm:flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Star className="h-4 w-4" />
+            <span>Star on GitHub</span>
+          </a>
           {user ? <Button variant="outline" size="sm" onClick={handleSignOut} className="text-xs">
               Sign Out
             </Button> : <Button size="sm" asChild className="text-xs bg-white text-black hover:bg-white/90">
