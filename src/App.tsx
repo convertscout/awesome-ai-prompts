@@ -22,6 +22,7 @@ import ClaudePrompts from "./pages/ClaudePrompts";
 import AICodeGenerator from "./pages/AICodeGenerator";
 import BestAIForCoding from "./pages/BestAIForCoding";
 import Generate from "./pages/Generate";
+import Advertise from "./pages/Advertise";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +52,7 @@ const App = () => (
           <Route path="/claude-prompts" element={<ClaudePrompts />} />
           <Route path="/ai-code-generator" element={<AICodeGenerator />} />
           <Route path="/best-ai-for-coding" element={<BestAIForCoding />} />
+          <Route path="/advertise" element={<Advertise />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -85,6 +85,9 @@ export const Navigation = () => {
                 <DropdownMenuItem asChild>
                   <Link to="/best-ai-for-coding" className="cursor-pointer">Best AI for Coding</Link>
                 </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/advertise" className="cursor-pointer text-primary">📢 Advertise</Link>
+                </DropdownMenuItem>
                 {user && <DropdownMenuItem asChild>
                     <Link to="/profile" className="cursor-pointer">Profile</Link>
                   </DropdownMenuItem>}
