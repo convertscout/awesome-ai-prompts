@@ -15,6 +15,7 @@ import { supabase } from "@/lib/supabase";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { Plus, Upload } from "lucide-react";
+import { submitFormSchema } from "@/lib/validation";
 
 const Submit = () => {
   const navigate = useNavigate();
@@ -82,6 +83,20 @@ const Submit = () => {
     setLoading(true);
 
     try {
+      // Validate form data
+      const validationResult = submitFormSchema.safeParse({
+        ...formData,
+        tags: formData.tags,
+      });
+
+      if (!validationResult.success) {
+        const errors = validationResult.error.errors.map(e => e.message).join(", ");
+        toast.error(errors);
+        setLoading(false);
+        return;
+      }
+
+      const validatedData = validationResult.data;
       const { data: { user } } = await supabase.auth.getUser();
       
       let logoUrl = null;
@@ -106,21 +121,21 @@ const Submit = () => {
       }
 
       // Use custom values if provided, otherwise use selected values
-      const finalContentType = formData.customContentType || formData.contentType;
-      const finalCategory = formData.customCategory || formData.category;
+      const finalContentType = validatedData.customContentType || validatedData.contentType;
+      const finalCategory = validatedData.customCategory || validatedData.category;
 
       const { error } = await supabase.from("prompts").insert([{
-        title: formData.title,
-        description: formData.description,
-        content: formData.content,
+        title: validatedData.title,
+        description: validatedData.description,
+        content: validatedData.content,
         category: finalCategory as any,
-        tags: formData.tags.split(",").map((tag) => tag.trim()).filter(Boolean),
-        language: formData.language || null,
-        framework: formData.framework || null,
+        tags: validatedData.tags,
+        language: validatedData.language || null,
+        framework: validatedData.framework || null,
         content_type: finalContentType,
-        url: formData.url || null,
+        url: validatedData.url || null,
         logo_url: logoUrl,
-        button_text: formData.buttonText || null,
+        button_text: validatedData.buttonText || null,
         author_id: user?.id || null,
       }]);
 
