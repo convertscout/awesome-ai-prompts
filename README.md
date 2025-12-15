@@ -6,10 +6,10 @@
   <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a>
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
-![GitHub Repo stars](https://img.shields.io/github/stars/username/repo?style=social)
-![GitHub forks](https://img.shields.io/github/forks/username/repo?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/username/repo?style=social)
-![Contributors](https://img.shields.io/github/contributors/username/repo)
+![GitHub Repo stars](https://img.shields.io/github/stars/convertscout/awesome-ai-prompts?style=social)
+![GitHub forks](https://img.shields.io/github/forks/convertscout/awesome-ai-prompts?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/convertscout/awesome-ai-prompts?style=social)
+![Contributors](https://img.shields.io/github/contributors/convertscout/awesome-ai-prompts)
 </div>
 
 <br/>
