@@ -98,7 +98,7 @@ export const Navigation = () => {
 
         <div className="flex items-center gap-3">
           <a 
-            href="https://github.com/convertscout/lovabledirectory" 
+            href="https://github.com/convertscout/awesome-ai-prompts" 
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
