@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import { profileFormSchema } from "@/lib/validation";
 
 interface Profile {
   username: string;
@@ -59,6 +60,21 @@ const Profile = () => {
     setIsLoading(true);
 
     try {
+      // Validate profile data
+      const validationResult = profileFormSchema.safeParse(profile);
+
+      if (!validationResult.success) {
+        const errors = validationResult.error.errors.map(e => e.message).join(", ");
+        toast({
+          title: "Validation Error",
+          description: errors,
+          variant: "destructive",
+        });
+        setIsLoading(false);
+        return;
+      }
+
+      const validatedData = validationResult.data;
       const { data: { user } } = await supabase.auth.getUser();
       
       if (!user) {
@@ -67,7 +83,7 @@ const Profile = () => {
 
       const { error } = await supabase
         .from("profiles")
-        .update(profile)
+        .update(validatedData)
         .eq("id", user.id);
 
       if (error) throw error;
