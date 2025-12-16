@@ -1,7 +1,7 @@
 <div align="center">
   <img src="public/logo.png" alt="Awesome AI Coding Prompts" width="150"/>
   <h1>Awesome AI Coding Prompts</h1>
-  <p>A curated collection of copy-paste prompts for Cursor, Lovable, Claude, ChatGPT, GitHub Copilot & more</p>
+  <p>A curated collection of 206+ copy-paste prompts for Cursor, Lovable, Claude, ChatGPT, GitHub Copilot & more</p>
   
   <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a>
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></a>
@@ -14,13 +14,13 @@
 
 <br/>
 
-> **🌐 Try the Web App:** [lovable.directory](https://lovable.directory) — Browse, search, and generate custom prompts with AI
+> **🌐 Try the Web App:** [lovabledirectory.site](https://lovabledirectory.site) — Browse, search, and generate custom prompts with AI
 
 ---
 
 ## 🎯 Sponsors
 
-> Want to reach **200,000+ developers**? [Become a sponsor →](https://lovable.directory/advertise)
+> Want to reach **200,000+ developers**? [Become a sponsor →](https://lovabledirectory.site/advertise)
 
 ---
 
@@ -145,7 +145,7 @@ Prompts for [Google Gemini](https://gemini.google.com).
 
 Can't find what you need? Use our **AI Prompt Generator**:
 
-👉 **[Generate Custom Prompts →](https://lovable.directory/generate)**
+👉 **[Generate Custom Prompts →](https://lovabledirectory.site/generate)**
 
 Free for 3 generations/day. Supports all major AI tools.
 
@@ -171,8 +171,8 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 <div align="center">
   <p>
-    <a href="https://lovable.directory">🌐 Web App</a> •
-    <a href="https://lovable.directory/advertise">💼 Sponsor</a> •
+    <a href="https://lovabledirectory.site">🌐 Web App</a> •
+    <a href="https://lovabledirectory.site/advertise">💼 Sponsor</a> •
     <a href="CONTRIBUTING.md">🤝 Contribute</a>
   </p>
   <p>⭐ Star this repo to support the project!</p>

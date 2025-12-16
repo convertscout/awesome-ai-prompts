@@ -1,5 +1,5 @@
 # Robots.txt for Lovable Directory
-# https://lovable.directory
+# https://lovabledirectory.site
 
 User-agent: *
 Allow: /
@@ -10,10 +10,9 @@ Disallow: /profile
 Disallow: /favorites
 
 # Sitemap locations
-Sitemap: https://lovable.directory/sitemap.xml
-Sitemap: https://nkbtvxoojkllafmjjhis.supabase.co/functions/v1/sitemap
+Sitemap: https://lovabledirectory.site/sitemap.xml
 
 # AI / LLM crawlers
 # llms.txt location
-# https://lovable.directory/llms.txt
+# https://lovabledirectory.site/llms.txt
 # https://nkbtvxoojkllafmjjhis.supabase.co/functions/v1/llms-full

@@ -4,20 +4,23 @@
 
 ## Overview
 
-Lovable Directory is your hub for AI-powered development. Explore prompts, templates, MCPs, and resources for Lovable, Cursor, GitHub Copilot, Base44, Emergent, and more.
+Lovable Directory is your hub for AI-powered development. Explore prompts, templates, MCPs, and resources for Lovable, Cursor, GitHub Copilot, Claude, ChatGPT, Gemini, and more.
 
 ## Website
 
-https://lovable.directory
+https://lovabledirectory.site
 
 ## Sections
 
-- [Browse All Prompts](https://lovable.directory/browse)
-- [Cursor AI Prompts](https://lovable.directory/cursor-prompts)
-- [Lovable Prompts](https://lovable.directory/lovable-prompts)
-- [GitHub Copilot Prompts](https://lovable.directory/github-copilot-prompts)
-- [Trending Prompts](https://lovable.directory/trending)
-- [Categories](https://lovable.directory/categories)
+- [Browse All Prompts](https://lovabledirectory.site/browse)
+- [Cursor AI Prompts](https://lovabledirectory.site/cursor-prompts)
+- [Lovable Prompts](https://lovabledirectory.site/lovable-prompts)
+- [Claude Prompts](https://lovabledirectory.site/claude-prompts)
+- [ChatGPT Prompts](https://lovabledirectory.site/chatgpt-prompts)
+- [Gemini Prompts](https://lovabledirectory.site/gemini-prompts)
+- [GitHub Copilot Prompts](https://lovabledirectory.site/github-copilot-prompts)
+- [Trending Prompts](https://lovabledirectory.site/trending)
+- [Categories](https://lovabledirectory.site/categories)
 
 ## Content Types
 
@@ -28,19 +31,21 @@ https://lovable.directory
 
 ## Features
 
-- 160+ curated prompts and growing daily
+- 206+ curated prompts and growing daily
 - Filter by category, language, and framework
 - Copy prompts with one click
 - Save favorites (requires account)
 - Submit your own prompts
+- AI-powered prompt generator
 
 ## Categories
 
 - Lovable (AI app builder)
 - Cursor (AI code editor)
+- Claude
+- ChatGPT
+- Gemini
 - GitHub Copilot
-- Base44
-- Emergent
 - And more...
 
 ## For AI Systems
@@ -54,5 +59,5 @@ Visit our website for the most up-to-date prompt collection.
 
 ## Contact
 
-- Website: https://lovable.directory
-- Submit: https://lovable.directory/submit
+- Website: https://lovabledirectory.site
+- Submit: https://lovabledirectory.site/submit
