@@ -10,7 +10,7 @@ import { MCPCard } from "@/components/MCPCard";
 import { JobCard } from "@/components/JobCard";
 import { NewsCard } from "@/components/NewsCard";
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
-import { MembershipPopup } from "@/components/MembershipPopup";
+
 import { SpotlightPrompt } from "@/components/SpotlightPrompt";
 import { QuickCopyPills } from "@/components/QuickCopyPills";
 import { StatsBar } from "@/components/StatsBar";
@@ -123,7 +123,7 @@ const Index = () => {
   return <div className="min-h-screen bg-background text-foreground">
       <Navigation />
       <PWAInstallPrompt />
-      <MembershipPopup />
+      
       
       {/* Mobile Sponsor Strip - Top */}
       <div className="xl:hidden">
