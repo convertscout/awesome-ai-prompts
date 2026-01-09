@@ -1,21 +1,14 @@
 import { Navigation } from "@/components/Navigation";
 import { Input } from "@/components/ui/input";
-import { Search, Heart } from "lucide-react";
+import { Search, Heart, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { SponsorCard } from "@/components/SponsorCard";
-import { SponsorStrip } from "@/components/SponsorStrip";
-import { MCPCard } from "@/components/MCPCard";
-import { JobCard } from "@/components/JobCard";
-import { NewsCard } from "@/components/NewsCard";
 import { PWAInstallPrompt } from "@/components/PWAInstallPrompt";
-
 import { SpotlightPrompt } from "@/components/SpotlightPrompt";
-import { QuickCopyPills } from "@/components/QuickCopyPills";
-import { StatsBar } from "@/components/StatsBar";
 import { useSEO } from "@/hooks/useSEO";
-import { GeneratorTeaser } from "@/components/GeneratorTeaser";
+import { Button } from "@/components/ui/button";
+
 interface Prompt {
   id: string;
   slug: string;
@@ -31,16 +24,12 @@ interface Prompt {
   content_type?: string;
   logo_url?: string;
 }
+
 const Index = () => {
   const [featuredPrompts, setFeaturedPrompts] = useState<Prompt[]>([]);
-  const [memberCount, setMemberCount] = useState(12000);
   const [allPrompts, setAllPrompts] = useState<Prompt[]>([]);
-  const [mcpItems, setMcpItems] = useState<Prompt[]>([]);
-  const [newsItems, setNewsItems] = useState<Prompt[]>([]);
-  const [jobItems, setJobItems] = useState<Prompt[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
 
-  // SEO for homepage - targeting high-volume keywords
   useSEO({
     title: 'AI Coding Prompts Directory - Free Prompt Generator, Cursor Rules 2025',
     description: 'Free AI prompt generator & 160+ coding prompts for ChatGPT, Cursor AI, Claude, GitHub Copilot & Gemini. Generate rules files, system prompts in seconds.',
@@ -48,7 +37,6 @@ const Index = () => {
     ogType: 'website',
   });
 
-  // Add FAQ Schema for homepage rich snippets - optimized for high-volume queries
   useEffect(() => {
     const faqSchema = {
       "@context": "https://schema.org",
@@ -97,280 +85,150 @@ const Index = () => {
 
     return () => script.remove();
   }, []);
+
   useEffect(() => {
     const fetchData = async () => {
-      // Fetch all data in parallel for faster loading
-      const [featuredRes, allRes, mcpRes, newsRes, jobsRes] = await Promise.all([
+      const [featuredRes, allRes] = await Promise.all([
         supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content, language, framework, content_type").order("favorites_count", { ascending: false }).order("views_count", { ascending: false }).limit(6),
-        supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content, language, framework, content_type").order("created_at", { ascending: false }).limit(12),
-        supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content_type, logo_url").eq("content_type", "mcp").order("created_at", { ascending: false }).limit(12),
-        supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, logo_url").eq("content_type", "news").order("created_at", { ascending: false }).limit(5),
-        supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, logo_url").eq("content_type", "job").order("created_at", { ascending: false }).limit(5)
+        supabase.from("prompts").select("id, slug, title, description, category, tags, views_count, favorites_count, content, language, framework, content_type").order("created_at", { ascending: false }).limit(6),
       ]);
       
       if (featuredRes.data) setFeaturedPrompts(featuredRes.data);
       if (allRes.data) setAllPrompts(allRes.data);
-      if (mcpRes.data) setMcpItems(mcpRes.data);
-      if (newsRes.data) setNewsItems(newsRes.data);
-      if (jobsRes.data) setJobItems(jobsRes.data);
     };
     fetchData();
   }, []);
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     window.location.href = `/browse?search=${encodeURIComponent(searchQuery)}`;
   };
-  return <div className="min-h-screen bg-background text-foreground">
+
+  return (
+    <div className="min-h-screen bg-background text-foreground">
       <Navigation />
       <PWAInstallPrompt />
-      
-      
-      {/* Mobile Sponsor Strip - Top */}
-      <div className="xl:hidden">
-        <SponsorStrip />
-      </div>
 
-      <div className="flex gap-6 max-w-[1600px] mx-auto">
-        {/* Left Sidebar - Sponsors */}
-        <aside className="hidden xl:block w-60 flex-shrink-0 pt-20 px-4 space-y-3 sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
-          <SponsorCard />
-          <SponsorCard />
-          <SponsorCard />
-        </aside>
+      {/* Hero Section */}
+      <section className="pt-16 pb-10 px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          {/* Logo & Title */}
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <img 
+              alt="Lovable Directory Logo" 
+              src="/lovable-uploads/81abbcb3-4813-4575-8167-480ea5e6696e.png" 
+              className="h-12 w-12 object-fill" 
+            />
+            <h1 className="text-2xl md:text-3xl font-semibold">
+              AI Coding Prompts
+            </h1>
+          </div>
+          
+          <p className="text-muted-foreground mb-6">
+            Copy-paste ready prompts for ChatGPT, Cursor, Claude, Copilot & more
+          </p>
 
-        {/* Main Content */}
-        <div className="flex-1 min-w-0">
-          {/* Compact Hero Section */}
-          <section className="relative pt-12 pb-8 px-4">
-            <div className="max-w-5xl mx-auto">
-              {/* Header Row */}
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-                <div className="flex items-center gap-3">
-                  <img 
-                    alt="Lovable Directory Logo" 
-                    src="/lovable-uploads/81abbcb3-4813-4575-8167-480ea5e6696e.png" 
-                    className="h-12 w-12 object-fill" 
-                  />
-                  <div>
-                    <h1 className="text-xl md:text-2xl font-semibold">
-                      AI Coding Prompts for Developers
-                    </h1>
-                    <p className="text-sm text-muted-foreground">
-                      Copy-paste ready prompts for ChatGPT, Cursor, Claude, Copilot, Gemini & 10+ AI tools
-                    </p>
-                  </div>
-                </div>
-                <a 
-                  href="https://www.producthunt.com/products/vibe-coding-2?embed=true&utm_source=badge-featured&utm_medium=badge" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="hidden md:block"
-                >
-                  <img 
-                    src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1042692&theme=dark&t=1764670248517" 
-                    alt="Vibe Coding on Product Hunt" 
-                    style={{ width: '180px', height: '40px' }} 
-                    width="180" 
-                    height="40" 
-                  />
-                </a>
-              </div>
-
-              {/* Search Bar */}
-              <form onSubmit={handleSearch} className="mb-6">
-                <div className="relative">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input 
-                    placeholder="Search prompts, MCPs, tools..." 
-                    className="pl-11 h-11 bg-muted/50 border-border text-sm" 
-                    value={searchQuery} 
-                    onChange={e => setSearchQuery(e.target.value)} 
-                  />
-                </div>
-              </form>
-
-              {/* AI Generator Teaser */}
-              <div className="mb-6">
-                <GeneratorTeaser />
-              </div>
-
-              {/* Stats Bar */}
-              <StatsBar 
-                promptCount={allPrompts.length + featuredPrompts.length} 
-                mcpCount={mcpItems.length} 
-                jobCount={jobItems.length} 
-                memberCount={memberCount} 
+          {/* Search Bar */}
+          <form onSubmit={handleSearch} className="mb-6">
+            <div className="relative max-w-xl mx-auto">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input 
+                placeholder="Search prompts..." 
+                className="pl-11 h-12 bg-muted/50 border-border text-base" 
+                value={searchQuery} 
+                onChange={e => setSearchQuery(e.target.value)} 
               />
-
-              {/* Spotlight Prompt */}
-              {featuredPrompts.length > 0 && featuredPrompts[0].content && (
-                <div className="mt-6">
-                  <SpotlightPrompt
-                    id={featuredPrompts[0].id}
-                    slug={featuredPrompts[0].slug}
-                    title={featuredPrompts[0].title}
-                    description={featuredPrompts[0].description}
-                    content={featuredPrompts[0].content}
-                    viewsCount={featuredPrompts[0].views_count}
-                    favoritesCount={featuredPrompts[0].favorites_count}
-                  />
-                </div>
-              )}
-
-              {/* Quick Copy Pills */}
-              {allPrompts.length > 0 && (
-                <div className="mt-6">
-                  <p className="text-xs text-muted-foreground mb-3">Quick copy:</p>
-                  <QuickCopyPills prompts={allPrompts} />
-                </div>
-              )}
             </div>
-          </section>
+          </form>
 
-      {/* Latest Resources Section */}
-      {allPrompts.length > 0 && <section className="py-8 px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <h2 className="text-lg font-medium">Latest Resources</h2>
-                <span className="text-xs text-muted-foreground bg-muted/50 px-2 py-0.5 rounded-full">{allPrompts.length} items</span>
-              </div>
+          {/* Simple Generator CTA */}
+          <Link to="/generate">
+            <Button variant="outline" className="gap-2 border-primary/50 hover:bg-primary/10">
+              <Sparkles className="h-4 w-4 text-primary" />
+              Generate Custom Prompts
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Spotlight Prompt */}
+      {featuredPrompts.length > 0 && featuredPrompts[0].content && (
+        <section className="pb-10 px-4">
+          <div className="max-w-3xl mx-auto">
+            <SpotlightPrompt
+              id={featuredPrompts[0].id}
+              slug={featuredPrompts[0].slug}
+              title={featuredPrompts[0].title}
+              description={featuredPrompts[0].description}
+              content={featuredPrompts[0].content}
+              viewsCount={featuredPrompts[0].views_count}
+              favoritesCount={featuredPrompts[0].favorites_count}
+            />
+          </div>
+        </section>
+      )}
+
+      {/* Latest Prompts */}
+      {allPrompts.length > 0 && (
+        <section className="py-10 px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-medium">Latest Prompts</h2>
               <Link to="/browse" className="text-sm text-muted-foreground hover:text-foreground">
                 View all →
               </Link>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {allPrompts.slice(0, 6).map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.slug}`} className="group p-5 rounded-lg border border-border bg-gradient-to-br from-card/80 to-card/40 hover:border-primary/50 hover:shadow-glow transition-all duration-300">
-                  {prompt.content && <div className="mb-3 bg-muted/30 rounded-md p-3">
-                      <p className="text-xs font-mono text-muted-foreground line-clamp-3">
-                        {prompt.content}
-                      </p>
-                    </div>}
+              {allPrompts.slice(0, 3).map(prompt => (
+                <Link 
+                  key={prompt.id} 
+                  to={`/prompt/${prompt.slug}`} 
+                  className="group p-5 rounded-lg border border-border bg-card hover:border-primary/50 transition-all duration-300"
+                >
                   <div className="flex items-start gap-3 mb-3">
                     <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
                       <Heart className="h-5 w-5 text-primary" />
                     </div>
-                    <h3 className="text-base font-semibold line-clamp-2 text-foreground group-hover:text-primary-glow transition-colors">{prompt.title}</h3>
+                    <h3 className="text-base font-semibold line-clamp-2 text-foreground group-hover:text-primary transition-colors">
+                      {prompt.title}
+                    </h3>
                   </div>
-                  <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+                  <p className="text-sm text-muted-foreground line-clamp-2">
                     {prompt.description}
                   </p>
-                </Link>)}
+                </Link>
+              ))}
             </div>
           </div>
-        </section>}
+        </section>
+      )}
 
-      {/* Featured Section */}
-      {featuredPrompts.length > 0 && <section className="py-12 px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-medium">Featured</h2>
-              <Link to="/browse" className="text-sm text-muted-foreground hover:text-foreground">
-                View all →
-              </Link>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {featuredPrompts.map(prompt => <Link key={prompt.id} to={`/prompt/${prompt.slug}`} className="group p-5 rounded-lg border border-border bg-gradient-to-br from-card/80 to-card/40 hover:border-primary/50 hover:shadow-glow transition-all duration-300">
-                  {prompt.content && <div className="mb-3 bg-muted/30 rounded-md p-3">
-                      <p className="text-xs font-mono text-muted-foreground line-clamp-3">
-                        {prompt.content}
-                      </p>
-                    </div>}
-                  <div className="flex items-start gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
-                      <Heart className="h-5 w-5 text-primary" />
-                    </div>
-                    <h3 className="text-base font-semibold line-clamp-2 text-foreground group-hover:text-primary-glow transition-colors">{prompt.title}</h3>
-                  </div>
-                  <p className="text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-                    {prompt.description}
-                  </p>
-                </Link>)}
-            </div>
-          </div>
-        </section>}
-
-      {/* MCP Section */}
-      {mcpItems.length > 0 && <section className="py-12 px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-medium">Featured MCPs</h2>
-              <Link to="/browse?type=mcp" className="text-sm text-muted-foreground hover:text-foreground">
-                View all →
-              </Link>
-            </div>
-
-            <div className="flex flex-wrap gap-3">
-              {mcpItems.map(mcp => <MCPCard key={mcp.id} id={mcp.id} slug={mcp.slug} title={mcp.title} logoUrl={mcp.logo_url} />)}
-            </div>
-          </div>
-        </section>}
-
-      {/* News Section */}
-      {newsItems.length > 0 && <section className="py-12 px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-medium">Trending in Cursor (News)</h2>
-              <Link to="/browse?type=news" className="text-sm text-muted-foreground hover:text-foreground">
-                View all →
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {newsItems.map(news => <NewsCard key={news.id} id={news.id} slug={news.slug} title={news.title} description={news.description} />)}
-            </div>
-          </div>
-        </section>}
-
-      {/* Jobs Section */}
-      {jobItems.length > 0 && <section className="py-12 px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-lg font-medium">Featured Jobs</h2>
-              <Link to="/browse?type=job" className="text-sm text-muted-foreground hover:text-foreground">
-                View all →
-              </Link>
-            </div>
-
-            <div className="border border-border rounded-lg divide-y divide-border/50 p-4">
-              {jobItems.map(job => <JobCard key={job.id} id={job.id} slug={job.slug} title={job.title} description={job.description} tags={job.tags} logoUrl={job.logo_url} />)}
-            </div>
-          </div>
-        </section>}
-
-      {/* Languages Section */}
-      <section className="py-12 px-4">
-        <div className="max-w-6xl mx-auto">
+      {/* Popular Languages */}
+      <section className="py-10 px-4 pb-16">
+        <div className="max-w-5xl mx-auto">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-medium">Popular Languages & Frameworks</h2>
+            <h2 className="text-lg font-medium">Popular Languages</h2>
             <Link to="/categories" className="text-sm text-muted-foreground hover:text-foreground">
               View all →
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
-            {["TypeScript", "React", "Next.js", "Python", "TailwindCSS", "Supabase"].map(lang => <Link key={lang} to={`/browse?search=${encodeURIComponent(lang.toLowerCase())}`} className="p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors text-center">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+            {["TypeScript", "React", "Next.js", "Python", "TailwindCSS", "Supabase"].map(lang => (
+              <Link 
+                key={lang} 
+                to={`/browse?search=${encodeURIComponent(lang.toLowerCase())}`} 
+                className="p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors text-center"
+              >
                 <p className="text-sm font-medium">{lang}</p>
-              </Link>)}
+              </Link>
+            ))}
           </div>
         </div>
       </section>
-        </div>
-
-        {/* Right Sidebar - Sponsors */}
-        <aside className="hidden xl:block w-60 flex-shrink-0 pt-20 px-4 space-y-3 sticky top-20 h-[calc(100vh-5rem)] overflow-y-auto">
-          <SponsorCard />
-          <SponsorCard />
-          <SponsorCard />
-        </aside>
-      </div>
-
-      {/* Mobile Sponsor Strip - Bottom */}
-      <div className="xl:hidden">
-        <SponsorStrip />
-      </div>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
