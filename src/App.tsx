@@ -23,6 +23,11 @@ import AICodeGenerator from "./pages/AICodeGenerator";
 import BestAIForCoding from "./pages/BestAIForCoding";
 import Generate from "./pages/Generate";
 import Advertise from "./pages/Advertise";
+// New SEO Landing Pages
+import LovableToNextjs from "./pages/LovableToNextjs";
+import TextChunking from "./pages/TextChunking";
+import CursorSuperWhisperIntegration from "./pages/CursorSuperWhisperIntegration";
+import MCPDirectory from "./pages/MCPDirectory";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +58,11 @@ const App = () => (
           <Route path="/ai-code-generator" element={<AICodeGenerator />} />
           <Route path="/best-ai-for-coding" element={<BestAIForCoding />} />
           <Route path="/advertise" element={<Advertise />} />
+          {/* New SEO Landing Pages */}
+          <Route path="/lovable-to-nextjs" element={<LovableToNextjs />} />
+          <Route path="/text-chunking" element={<TextChunking />} />
+          <Route path="/cursor-superwhisper-integration" element={<CursorSuperWhisperIntegration />} />
+          <Route path="/mcp-directory" element={<MCPDirectory />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
