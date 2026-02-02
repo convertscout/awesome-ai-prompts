@@ -1,31 +1,44 @@
-# Lovable Directory
+# Vibe Coding Directory
 
-> The largest curated directory of AI coding prompts and resources for developers.
+> The largest curated directory of AI coding prompts, MCP integrations, and resources for developers.
 
 ## Overview
 
-Lovable Directory is your hub for AI-powered development. Explore prompts, templates, MCPs, and resources for Lovable, Cursor, GitHub Copilot, Claude, ChatGPT, Gemini, and more.
+Vibe Coding Directory is your hub for AI-powered development. Explore prompts, templates, MCPs, and resources for Cursor, Lovable, GitHub Copilot, Claude, ChatGPT, Gemini, and more.
 
 ## Website
 
 https://lovabledirectory.site
 
-## Sections
+## Main Sections
 
 - [Browse All Prompts](https://lovabledirectory.site/browse)
+- [Trending Prompts](https://lovabledirectory.site/trending)
+- [Categories](https://lovabledirectory.site/categories)
+- [AI Prompt Generator](https://lovabledirectory.site/generate)
+
+## Tool-Specific Prompts
+
 - [Cursor AI Prompts](https://lovabledirectory.site/cursor-prompts)
 - [Lovable Prompts](https://lovabledirectory.site/lovable-prompts)
 - [Claude Prompts](https://lovabledirectory.site/claude-prompts)
 - [ChatGPT Prompts](https://lovabledirectory.site/chatgpt-prompts)
 - [Gemini Prompts](https://lovabledirectory.site/gemini-prompts)
 - [GitHub Copilot Prompts](https://lovabledirectory.site/github-copilot-prompts)
-- [Trending Prompts](https://lovabledirectory.site/trending)
-- [Categories](https://lovabledirectory.site/categories)
+
+## Guides & Resources
+
+- [Best AI for Coding 2025](https://lovabledirectory.site/best-ai-for-coding)
+- [AI Code Generator](https://lovabledirectory.site/ai-code-generator)
+- [Lovable to Next.js Conversion](https://lovabledirectory.site/lovable-to-nextjs)
+- [Text Chunking for AI](https://lovabledirectory.site/text-chunking)
+- [Cursor + SuperWhisper Integration](https://lovabledirectory.site/cursor-superwhisper-integration)
+- [MCP Directory](https://lovabledirectory.site/mcp-directory)
 
 ## Content Types
 
 - **Prompts**: AI coding prompts and system instructions
-- **MCPs**: Model Context Protocol configurations
+- **MCPs**: Model Context Protocol configurations for Cursor & Claude
 - **News**: AI development news and updates
 - **Jobs**: AI-related job listings
 
@@ -40,12 +53,13 @@ https://lovabledirectory.site
 
 ## Categories
 
-- Lovable (AI app builder)
 - Cursor (AI code editor)
+- Lovable (AI app builder)
 - Claude
 - ChatGPT
 - Gemini
 - GitHub Copilot
+- MCP Integrations
 - And more...
 
 ## For AI Systems
@@ -61,3 +75,4 @@ Visit our website for the most up-to-date prompt collection.
 
 - Website: https://lovabledirectory.site
 - Submit: https://lovabledirectory.site/submit
+- Advertise: https://lovabledirectory.site/advertise

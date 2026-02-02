@@ -42,6 +42,11 @@ Deno.serve(async (req) => {
       { path: '/gemini-prompts', priority: '0.9', changefreq: 'daily' },
       { path: '/lovable-prompts', priority: '0.9', changefreq: 'daily' },
       { path: '/github-copilot-prompts', priority: '0.9', changefreq: 'daily' },
+      // New SEO landing pages - targeting specific search queries
+      { path: '/lovable-to-nextjs', priority: '0.9', changefreq: 'weekly' },
+      { path: '/text-chunking', priority: '0.8', changefreq: 'weekly' },
+      { path: '/cursor-superwhisper-integration', priority: '0.8', changefreq: 'weekly' },
+      { path: '/mcp-directory', priority: '0.9', changefreq: 'daily' },
       // Informational/comparison pages
       { path: '/ai-code-generator', priority: '0.9', changefreq: 'weekly' },
       { path: '/best-ai-for-coding', priority: '0.9', changefreq: 'weekly' },

@@ -149,8 +149,38 @@ const CursorPrompts = () => {
               <Link to="/browse?search=python">Python</Link>
             </Button>
             <Button variant="outline" size="sm" asChild>
-              <Link to="/lovable-prompts">Lovable Prompts <ArrowRight className="ml-1 h-3 w-3" /></Link>
+              <Link to="/mcp-directory">MCP Directory <ArrowRight className="ml-1 h-3 w-3" /></Link>
             </Button>
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/cursor-superwhisper-integration">SuperWhisper <ArrowRight className="ml-1 h-3 w-3" /></Link>
+            </Button>
+          </div>
+
+          {/* Cursor + LLM Section */}
+          <div className="bg-muted/30 rounded-lg p-6">
+            <h2 className="text-xl font-semibold mb-4">Cursor + LLM Integration</h2>
+            <p className="text-muted-foreground text-sm mb-4">
+              Cursor IDE supports multiple LLM backends. Choose the right model for your workflow:
+            </p>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-card p-4 rounded-lg border border-border">
+                <h3 className="font-medium text-sm mb-1">Claude 3.5 Sonnet</h3>
+                <p className="text-xs text-muted-foreground">Best for complex refactoring and architecture decisions</p>
+              </div>
+              <div className="bg-card p-4 rounded-lg border border-border">
+                <h3 className="font-medium text-sm mb-1">GPT-4o</h3>
+                <p className="text-xs text-muted-foreground">Fast and reliable for everyday coding tasks</p>
+              </div>
+              <div className="bg-card p-4 rounded-lg border border-border">
+                <h3 className="font-medium text-sm mb-1">Gemini 1.5 Pro</h3>
+                <p className="text-xs text-muted-foreground">Huge context window for large codebases</p>
+              </div>
+            </div>
+            <div className="mt-4">
+              <Link to="/best-ai-for-coding" className="text-primary text-sm hover:underline">
+                Compare all LLMs for coding →
+              </Link>
+            </div>
           </div>
 
           {/* Prompts Grid */}

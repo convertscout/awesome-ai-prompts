@@ -229,6 +229,64 @@ const BestAIForCoding = () => {
         </div>
       </section>
 
+      {/* Best LLMs for Cursor Section */}
+      <section className="py-12 px-4 bg-muted/30">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold mb-6 text-center">Best LLMs for Cursor IDE</h2>
+          <p className="text-center text-muted-foreground mb-8">
+            Cursor supports multiple LLM backends. Here's how they compare for Cursor-specific workflows:
+          </p>
+          
+          <div className="overflow-x-auto">
+            <table className="w-full border border-border rounded-lg">
+              <thead className="bg-card">
+                <tr>
+                  <th className="p-4 text-left font-semibold border-b border-border">LLM Model</th>
+                  <th className="p-4 text-left font-semibold border-b border-border">Speed</th>
+                  <th className="p-4 text-left font-semibold border-b border-border">Code Quality</th>
+                  <th className="p-4 text-left font-semibold border-b border-border">Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-border">
+                  <td className="p-4 font-medium">Claude 3.5 Sonnet</td>
+                  <td className="p-4 text-muted-foreground">⚡ Fast</td>
+                  <td className="p-4 text-muted-foreground">⭐⭐⭐⭐⭐</td>
+                  <td className="p-4 text-muted-foreground">Complex refactoring, architecture</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="p-4 font-medium">GPT-4o</td>
+                  <td className="p-4 text-muted-foreground">⚡ Fast</td>
+                  <td className="p-4 text-muted-foreground">⭐⭐⭐⭐</td>
+                  <td className="p-4 text-muted-foreground">General coding, explanations</td>
+                </tr>
+                <tr className="border-b border-border">
+                  <td className="p-4 font-medium">Claude 3 Opus</td>
+                  <td className="p-4 text-muted-foreground">🐢 Slower</td>
+                  <td className="p-4 text-muted-foreground">⭐⭐⭐⭐⭐</td>
+                  <td className="p-4 text-muted-foreground">Code review, complex reasoning</td>
+                </tr>
+                <tr>
+                  <td className="p-4 font-medium">Gemini 1.5 Pro</td>
+                  <td className="p-4 text-muted-foreground">⚡ Fast</td>
+                  <td className="p-4 text-muted-foreground">⭐⭐⭐⭐</td>
+                  <td className="p-4 text-muted-foreground">Large codebases, long context</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div className="mt-6 text-center">
+            <Link 
+              to="/cursor-prompts"
+              className="text-primary hover:underline"
+            >
+              View Cursor Prompts →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="py-12 px-4">
         <div className="max-w-4xl mx-auto">
@@ -243,6 +301,11 @@ const BestAIForCoding = () => {
             <div className="bg-card p-6 rounded-lg border border-border">
               <h3 className="font-semibold mb-2">Is ChatGPT or Cursor better for coding?</h3>
               <p className="text-muted-foreground">Cursor is better for IDE-integrated development. ChatGPT is better for explanations and learning. Many developers use both.</p>
+            </div>
+            
+            <div className="bg-card p-6 rounded-lg border border-border">
+              <h3 className="font-semibold mb-2">Which LLM should I use with Cursor?</h3>
+              <p className="text-muted-foreground">Claude 3.5 Sonnet offers the best balance of speed and quality. Use GPT-4o for quick tasks, Claude Opus for complex reasoning.</p>
             </div>
             
             <div className="bg-card p-6 rounded-lg border border-border">

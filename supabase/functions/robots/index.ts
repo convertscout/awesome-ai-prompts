@@ -9,7 +9,31 @@ Deno.serve(async (req) => {
     return new Response('ok', { headers: corsHeaders });
   }
 
-  const robotsTxt = `User-agent: *
+  const robotsTxt = `# Vibe Coding Directory
+# https://lovabledirectory.site
+
+User-agent: *
+Allow: /
+
+# Disallow private/auth pages
+Disallow: /auth
+Disallow: /profile
+Disallow: /favorites
+
+# AI Crawlers - Welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: Google-Extended
 Allow: /
 
 User-agent: Googlebot
@@ -24,7 +48,12 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-Sitemap: https://nkbtvxoojkllafmjjhis.supabase.co/functions/v1/sitemap`;
+# Sitemap
+Sitemap: https://lovabledirectory.site/sitemap.xml
+
+# LLMs.txt for AI systems
+# https://lovabledirectory.site/llms.txt
+# Full content: https://nkbtvxoojkllafmjjhis.supabase.co/functions/v1/llms-full`;
 
   return new Response(robotsTxt, {
     headers: corsHeaders,
