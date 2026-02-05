@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { Link } from "react-router-dom";
 import { useSEO } from "@/hooks/useSEO";
-import { ArrowRight, FileCode, Layers, Zap, CheckCircle } from "lucide-react";
+ import { ArrowRight, FileCode, Layers, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+ import { ConversionTool } from "@/components/conversion-tool/ConversionTool";
 
 interface Prompt {
   id: string;
@@ -25,10 +26,10 @@ const LovableToNextjs = () => {
   const [favoriteIds, setFavoriteIds] = useState<Set<string>>(new Set());
 
   useSEO({
-    title: 'Lovable to Next.js Conversion Guide 2025 - Vite to App Router Migration',
-    description: 'Convert your Lovable project to Next.js with our step-by-step guide. Migrate from Vite to Next.js App Router. Free prompts and templates for seamless conversion.',
+     title: 'Lovable to Next.js Converter - Free Vite Migration Tool 2025',
+     description: 'Free tool to convert Lovable (Vite) projects to Next.js App Router. Generate personalized migration prompts for Supabase SSR, React Router, and more. Works with Cursor & Claude.',
     canonical: 'https://lovabledirectory.site/lovable-to-nextjs',
-    keywords: ['lovable to nextjs', 'lovable.dev to next.js', 'lovable export nextjs', 'vite to nextjs migration', 'lovable conversion'],
+     keywords: ['lovable to nextjs', 'lovable.dev to next.js', 'lovable to next.js conversion', 'vite to nextjs migration', 'lovable export nextjs', 'lovable.dev to next.js conversion prompt'],
     breadcrumbs: [
       { name: 'Home', url: 'https://lovabledirectory.site/' },
       { name: 'Lovable to Next.js', url: 'https://lovabledirectory.site/lovable-to-nextjs' }
@@ -165,20 +166,23 @@ const LovableToNextjs = () => {
                 <Layers className="h-8 w-8 text-primary" />
               </div>
               <div>
-                <Badge variant="secondary" className="mb-2">Migration Guide</Badge>
-                <h1 className="text-3xl md:text-4xl font-bold">Lovable to Next.js Conversion Guide 2025</h1>
+                 <Badge variant="secondary" className="mb-2">Free Tool</Badge>
+                 <h1 className="text-3xl md:text-4xl font-bold">Lovable to Next.js Conversion Tool</h1>
               </div>
             </div>
 
             <p className="text-lg text-muted-foreground max-w-3xl">
-              Convert your Lovable project to Next.js App Router with our step-by-step guide. 
-              Migrate from Vite to Next.js for SSR, better SEO, and the full Next.js ecosystem.
+               Generate personalized migration prompts for your Lovable (Vite) project. 
+               Select your stack below and get a complete, copy-ready conversion guide for Cursor, Claude, or ChatGPT.
             </p>
           </div>
 
+           {/* Interactive Conversion Tool */}
+           <ConversionTool />
+
           {/* Step-by-Step Guide */}
           <section>
-            <h2 className="text-2xl font-bold mb-6">Step-by-Step Conversion Process</h2>
+             <h2 className="text-2xl font-bold mb-6">Manual Conversion Steps</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               {conversionSteps.map((item) => (
                 <div key={item.step} className="bg-card border border-border rounded-lg p-6">

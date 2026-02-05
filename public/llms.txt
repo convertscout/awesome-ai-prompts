@@ -30,10 +30,15 @@ https://lovabledirectory.site
 
 - [Best AI for Coding 2025](https://lovabledirectory.site/best-ai-for-coding)
 - [AI Code Generator](https://lovabledirectory.site/ai-code-generator)
-- [Lovable to Next.js Conversion](https://lovabledirectory.site/lovable-to-nextjs)
 - [Text Chunking for AI](https://lovabledirectory.site/text-chunking)
 - [Cursor + SuperWhisper Integration](https://lovabledirectory.site/cursor-superwhisper-integration)
 - [MCP Directory](https://lovabledirectory.site/mcp-directory)
+
+ ## Interactive Tools
+ 
+ - [Lovable to Next.js Converter](https://lovabledirectory.site/lovable-to-nextjs) - Generate personalized migration prompts for converting Lovable/Vite projects to Next.js App Router. Supports Supabase SSR, auth, React Router, Tailwind, and shadcn/ui.
+ - [Vite to Next.js Migration](https://lovabledirectory.site/vite-to-nextjs) - Same tool, alternate URL for Vite-focused searches.
+ - [AI Prompt Generator](https://lovabledirectory.site/generate) - Generate custom coding prompts for any AI tool.
 
 ## Content Types
 

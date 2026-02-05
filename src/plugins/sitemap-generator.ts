@@ -44,6 +44,7 @@ function generateSitemapXml(prompts: Prompt[]): string {
     { loc: '/trending', changefreq: 'daily', priority: '0.9' },
     { loc: '/categories', changefreq: 'weekly', priority: '0.8' },
     { loc: '/submit', changefreq: 'monthly', priority: '0.7' },
+     { loc: '/generate', changefreq: 'daily', priority: '1.0' },
     // SEO Landing Pages - High priority for keyword targeting
     { loc: '/chatgpt-prompts', changefreq: 'daily', priority: '0.9' },
     { loc: '/gemini-prompts', changefreq: 'daily', priority: '0.9' },
@@ -53,8 +54,10 @@ function generateSitemapXml(prompts: Prompt[]): string {
     { loc: '/github-copilot-prompts', changefreq: 'daily', priority: '0.9' },
     { loc: '/ai-code-generator', changefreq: 'daily', priority: '0.9' },
     { loc: '/best-ai-for-coding', changefreq: 'daily', priority: '0.9' },
-    // New SEO landing pages targeting search queries
-    { loc: '/lovable-to-nextjs', changefreq: 'weekly', priority: '0.9' },
+     // Interactive tools - highest priority
+     { loc: '/lovable-to-nextjs', changefreq: 'daily', priority: '1.0' },
+     { loc: '/vite-to-nextjs', changefreq: 'daily', priority: '1.0' },
+     // SEO landing pages targeting search queries
     { loc: '/text-chunking', changefreq: 'weekly', priority: '0.8' },
     { loc: '/cursor-superwhisper-integration', changefreq: 'weekly', priority: '0.8' },
     { loc: '/mcp-directory', changefreq: 'daily', priority: '0.9' },
