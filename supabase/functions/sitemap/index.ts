@@ -32,7 +32,9 @@ Deno.serve(async (req) => {
     // High-priority SEO landing pages targeting high-volume keywords
     const seoLandingPages = [
       { path: '/', priority: '1.0', changefreq: 'daily' },
-      { path: '/generate', priority: '1.0', changefreq: 'daily' }, // AI prompt generator - high intent
+       { path: '/generate', priority: '1.0', changefreq: 'daily' },
+       { path: '/lovable-to-nextjs', priority: '1.0', changefreq: 'daily' }, // Interactive conversion tool - highest intent
+       { path: '/vite-to-nextjs', priority: '1.0', changefreq: 'daily' }, // Redirect to lovable-to-nextjs
       { path: '/browse', priority: '0.9', changefreq: 'daily' },
       { path: '/trending', priority: '0.9', changefreq: 'daily' },
       // Tool-specific pages targeting "[tool] prompts" keywords
@@ -42,8 +44,7 @@ Deno.serve(async (req) => {
       { path: '/gemini-prompts', priority: '0.9', changefreq: 'daily' },
       { path: '/lovable-prompts', priority: '0.9', changefreq: 'daily' },
       { path: '/github-copilot-prompts', priority: '0.9', changefreq: 'daily' },
-      // New SEO landing pages - targeting specific search queries
-      { path: '/lovable-to-nextjs', priority: '0.9', changefreq: 'weekly' },
+       // SEO landing pages - targeting specific search queries
       { path: '/text-chunking', priority: '0.8', changefreq: 'weekly' },
       { path: '/cursor-superwhisper-integration', priority: '0.8', changefreq: 'weekly' },
       { path: '/mcp-directory', priority: '0.9', changefreq: 'daily' },

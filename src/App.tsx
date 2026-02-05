@@ -29,6 +29,12 @@ import TextChunking from "./pages/TextChunking";
 import CursorSuperWhisperIntegration from "./pages/CursorSuperWhisperIntegration";
 import MCPDirectory from "./pages/MCPDirectory";
 
+ // Redirect component for /vite-to-nextjs
+ const ViteToNextjsRedirect = () => {
+   window.location.replace('/lovable-to-nextjs');
+   return null;
+ };
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -63,6 +69,7 @@ const App = () => (
           <Route path="/text-chunking" element={<TextChunking />} />
           <Route path="/cursor-superwhisper-integration" element={<CursorSuperWhisperIntegration />} />
           <Route path="/mcp-directory" element={<MCPDirectory />} />
+           <Route path="/vite-to-nextjs" element={<ViteToNextjsRedirect />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
