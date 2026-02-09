@@ -20,7 +20,8 @@ https://lovabledirectory.site
 ## Tool-Specific Prompts
 
 - [Cursor AI Prompts](https://lovabledirectory.site/cursor-prompts)
-- [Lovable Prompts](https://lovabledirectory.site/lovable-prompts)
+- [Lovable Prompts](https://lovabledirectory.site/lovable-prompts) - All Lovable.dev prompts and templates
+- [Lovable UI Prompts](https://lovabledirectory.site/lovable-ui-prompts) - Fix hallucinations, build sleek designs, avoid placeholder content
 - [Claude Prompts](https://lovabledirectory.site/claude-prompts)
 - [ChatGPT Prompts](https://lovabledirectory.site/chatgpt-prompts)
 - [Gemini Prompts](https://lovabledirectory.site/gemini-prompts)

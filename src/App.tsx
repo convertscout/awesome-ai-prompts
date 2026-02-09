@@ -15,6 +15,7 @@ import Submit from "./pages/Submit";
 import NotFound from "./pages/NotFound";
 import CursorPrompts from "./pages/CursorPrompts";
 import LovablePrompts from "./pages/LovablePrompts";
+import LovableUIPrompts from "./pages/LovableUIPrompts";
 import GithubCopilotPrompts from "./pages/GithubCopilotPrompts";
 import ChatGPTPrompts from "./pages/ChatGPTPrompts";
 import GeminiPrompts from "./pages/GeminiPrompts";
@@ -57,6 +58,7 @@ const App = () => (
           {/* SEO Landing Pages */}
           <Route path="/cursor-prompts" element={<CursorPrompts />} />
           <Route path="/lovable-prompts" element={<LovablePrompts />} />
+          <Route path="/lovable-ui-prompts" element={<LovableUIPrompts />} />
           <Route path="/github-copilot-prompts" element={<GithubCopilotPrompts />} />
           <Route path="/chatgpt-prompts" element={<ChatGPTPrompts />} />
           <Route path="/gemini-prompts" element={<GeminiPrompts />} />

@@ -23,10 +23,10 @@ const LovablePrompts = () => {
   const [loading, setLoading] = useState(true);
   const [favoriteIds, setFavoriteIds] = useState<Set<string>>(new Set());
 
-  // SEO optimized for "Lovable prompts" keyword
+  // SEO optimized for "Lovable prompts" and "Lovable UI prompts" keywords
   useSEO({
-    title: `Best Lovable Prompts ${new Date().getFullYear()} - AI App Builder Templates | Lovable Directory`,
-    description: 'Copy-paste ready Lovable prompts for building apps with AI. 40+ curated prompts for Lovable.dev. Build full-stack apps faster with proven templates.',
+    title: `Best Lovable Prompts ${new Date().getFullYear()} - UI Templates & AI App Builder | Lovable Directory`,
+    description: 'Copy-paste ready Lovable prompts for building apps with AI. 40+ curated UI prompts for Lovable.dev. Fix hallucinations, build sleek designs, and ship faster.',
     canonical: 'https://lovable.directory/lovable-prompts',
     breadcrumbs: [
       { name: 'Home', url: 'https://lovable.directory' },
@@ -137,19 +137,22 @@ const LovablePrompts = () => {
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links - UI Prompts Featured First */}
           <div className="flex flex-wrap gap-2">
-            <Button variant="outline" size="sm" asChild>
-              <Link to="/browse?search=saas">SaaS Templates</Link>
+            <Button variant="default" size="sm" asChild>
+              <Link to="/lovable-ui-prompts">UI Prompts <ArrowRight className="ml-1 h-3 w-3" /></Link>
             </Button>
             <Button variant="outline" size="sm" asChild>
-              <Link to="/browse?search=dashboard">Dashboards</Link>
+              <Link to="/browse?search=saas+lovable">SaaS Templates</Link>
             </Button>
             <Button variant="outline" size="sm" asChild>
-              <Link to="/browse?search=landing">Landing Pages</Link>
+              <Link to="/browse?search=dashboard+lovable">Dashboards</Link>
             </Button>
             <Button variant="outline" size="sm" asChild>
-              <Link to="/cursor-prompts">Cursor Prompts <ArrowRight className="ml-1 h-3 w-3" /></Link>
+              <Link to="/browse?search=landing+lovable">Landing Pages</Link>
+            </Button>
+            <Button variant="outline" size="sm" asChild>
+              <Link to="/lovable-to-nextjs">Export to Next.js</Link>
             </Button>
           </div>
 
@@ -215,25 +218,25 @@ const LovablePrompts = () => {
             </div>
           </section>
 
-          {/* Internal Links */}
+          {/* Internal Links - Topic Cluster */}
           <section className="border-t border-border pt-8">
-            <h2 className="text-lg font-medium mb-4">Explore More Prompts</h2>
+            <h2 className="text-lg font-medium mb-4">Explore Lovable Resources</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <Link to="/lovable-ui-prompts" className="p-4 rounded-lg border border-primary/30 bg-primary/5 hover:border-primary/50 transition-colors">
+                <p className="font-medium text-sm">UI Prompts</p>
+                <p className="text-xs text-muted-foreground">Sleek designs</p>
+              </Link>
+              <Link to="/lovable-to-nextjs" className="p-4 rounded-lg border border-border hover:border-primary/50 transition-colors">
+                <p className="font-medium text-sm">Export to Next.js</p>
+                <p className="text-xs text-muted-foreground">Migration tool</p>
+              </Link>
               <Link to="/cursor-prompts" className="p-4 rounded-lg border border-border hover:border-primary/50 transition-colors">
                 <p className="font-medium text-sm">Cursor Prompts</p>
                 <p className="text-xs text-muted-foreground">AI code editor</p>
               </Link>
-              <Link to="/github-copilot-prompts" className="p-4 rounded-lg border border-border hover:border-primary/50 transition-colors">
-                <p className="font-medium text-sm">Copilot Prompts</p>
-                <p className="text-xs text-muted-foreground">GitHub assistant</p>
-              </Link>
-              <Link to="/categories" className="p-4 rounded-lg border border-border hover:border-primary/50 transition-colors">
-                <p className="font-medium text-sm">By Language</p>
-                <p className="text-xs text-muted-foreground">TypeScript, Python</p>
-              </Link>
-              <Link to="/trending" className="p-4 rounded-lg border border-border hover:border-primary/50 transition-colors">
-                <p className="font-medium text-sm">Trending</p>
-                <p className="text-xs text-muted-foreground">Most popular</p>
+              <Link to="/generate" className="p-4 rounded-lg border border-border hover:border-primary/50 transition-colors">
+                <p className="font-medium text-sm">Prompt Generator</p>
+                <p className="text-xs text-muted-foreground">AI-powered</p>
               </Link>
             </div>
           </section>
