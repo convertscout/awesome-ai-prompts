@@ -38,23 +38,20 @@ export const Navigation = () => {
           </Link>
           
           <div className="hidden md:flex items-center gap-6 text-sm">
-            <Link to="/generate" className="text-primary hover:text-primary/80 transition-colors font-medium flex items-center gap-1">
-              ✨ Generate
+            <Link to="/lovable-ui-prompts" className="text-primary hover:text-primary/80 transition-colors font-medium flex items-center gap-1">
+              💜 UI Prompts
             </Link>
-            <Link to="/browse" className="text-muted-foreground hover:text-foreground transition-colors">
-              Rules
+            <Link to="/lovable-prompts" className="text-muted-foreground hover:text-foreground transition-colors">
+              Templates
+            </Link>
+            <Link to="/lovable-to-nextjs" className="text-muted-foreground hover:text-foreground transition-colors">
+              Tools
+            </Link>
+            <Link to="/generate" className="text-muted-foreground hover:text-foreground transition-colors">
+              Generator
             </Link>
             <Link to="/submit" className="text-muted-foreground hover:text-foreground transition-colors">
               Submit
-            </Link>
-            <Link to="/browse?type=mcp" className="text-muted-foreground hover:text-foreground transition-colors">
-              MCP
-            </Link>
-            <Link to="/browse?type=job" className="text-muted-foreground hover:text-foreground transition-colors">
-              Job
-            </Link>
-            <Link to="/browse?type=code" className="text-muted-foreground hover:text-foreground transition-colors">
-              Codes
             </Link>
             {user && <Link to="/favorites" className="text-muted-foreground hover:text-foreground transition-colors">
                 Favorites
@@ -71,7 +68,7 @@ export const Navigation = () => {
                   <Link to="/trending" className="cursor-pointer">Trending</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link to="/categories" className="cursor-pointer">Languages</Link>
+                  <Link to="/browse?type=mcp" className="cursor-pointer">MCP Directory</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link to="/chatgpt-prompts" className="cursor-pointer">ChatGPT Prompts</Link>
@@ -84,9 +81,6 @@ export const Navigation = () => {
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link to="/best-ai-for-coding" className="cursor-pointer">Best AI for Coding</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/advertise" className="cursor-pointer text-primary">📢 Advertise</Link>
                 </DropdownMenuItem>
                 {user && <DropdownMenuItem asChild>
                     <Link to="/profile" className="cursor-pointer">Profile</Link>

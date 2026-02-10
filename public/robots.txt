@@ -1,4 +1,4 @@
-# Robots.txt for Vibe Coding Directory
+# Lovable Directory
 # https://lovabledirectory.site
 
 User-agent: *

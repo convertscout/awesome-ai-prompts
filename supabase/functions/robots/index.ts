@@ -9,7 +9,7 @@ Deno.serve(async (req) => {
     return new Response('ok', { headers: corsHeaders });
   }
 
-  const robotsTxt = `# Vibe Coding Directory
+  const robotsTxt = `# Lovable Directory
 # https://lovabledirectory.site
 
 User-agent: *

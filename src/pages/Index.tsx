@@ -33,8 +33,8 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   useSEO({
-    title: 'Vibe Coding Directory - Free AI Prompts & Cursor Rules 2025',
-    description: 'Free AI prompt generator & 160+ coding prompts for ChatGPT, Cursor AI, Claude, GitHub Copilot & Gemini. Generate rules files, system prompts in seconds.',
+    title: 'Lovable Directory - Prompts, Templates & Tools for Lovable.dev',
+    description: 'The #1 resource for Lovable.dev prompts, UI templates, and migration tools. Fix hallucinations, build sleek UIs, and convert Lovable projects to Next.js.',
     canonical: 'https://lovabledirectory.site/',
     ogType: 'website',
   });
@@ -46,34 +46,34 @@ const Index = () => {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "What are the best AI prompts for coding?",
+          "name": "What is Lovable Directory?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The best AI coding prompts include structured prompts for ChatGPT, Cursor AI, Claude, and GitHub Copilot. Our directory features 160+ copy-paste ready prompts optimized for code generation, debugging, and refactoring."
+            "text": "Lovable Directory is the #1 third-party resource for Lovable.dev users. Browse 200+ curated prompts, UI templates, hallucination fixes, and migration tools to build better apps with Lovable."
           }
         },
         {
           "@type": "Question",
-          "name": "How do I use ChatGPT for coding?",
+          "name": "How do I fix UI hallucinations in Lovable?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Use ChatGPT for coding by providing clear, specific prompts. Our ChatGPT coding prompts help you generate code, debug errors, write tests, and refactor existing code. Simply copy a prompt and paste it into ChatGPT."
+            "text": "Use our curated Lovable UI prompts to prevent placeholder content, fix hallucinated components, and ensure real data displays correctly. Our hallucination fix prompts are copy-paste ready."
           }
         },
         {
           "@type": "Question",
-          "name": "What is the best AI for coding in 2025?",
+          "name": "How do I convert a Lovable project to Next.js?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The best AI coding tools in 2025 include ChatGPT, Cursor AI, Claude, GitHub Copilot, and Google Gemini. Each excels in different areas - ChatGPT for general coding, Cursor for IDE integration, Claude for complex reasoning, and Copilot for code completion."
+            "text": "Use our free Lovable to Next.js conversion tool to generate personalized migration prompts. It supports Supabase SSR, authentication, React Router migration, Tailwind CSS, and shadcn/ui components."
           }
         },
         {
           "@type": "Question",
-          "name": "Are these AI coding prompts free?",
+          "name": "What are the best Lovable prompts for sleek UI?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes! All prompts in our AI coding prompts directory are completely free. Copy-paste ready prompts for ChatGPT, Cursor, Claude, Copilot, Gemini and 10+ AI tools."
+            "text": "Our Lovable UI Prompts collection includes tested prompts for minimal designs, glassmorphism, dark mode, dashboard layouts, and SaaS templates. Each prompt is optimized to produce production-ready UI in Lovable."
           }
         }
       ]
@@ -131,17 +131,17 @@ const Index = () => {
               {/* Logo & Title */}
               <div className="flex items-center justify-center gap-3 mb-4">
                 <img 
-                  alt="Vibe Coding Directory Logo" 
+                  alt="Lovable Directory Logo" 
                   src="/lovable-uploads/81abbcb3-4813-4575-8167-480ea5e6696e.png" 
                   className="h-12 w-12 object-fill" 
                 />
                 <h1 className="text-2xl md:text-3xl font-semibold">
-                  Vibe Coding Directory
+                  Lovable Directory
                 </h1>
               </div>
               
               <p className="text-muted-foreground mb-6">
-                Copy-paste ready prompts for ChatGPT, Cursor, Claude, Copilot & more
+                The #1 resource for Lovable.dev prompts, UI templates, and migration tools
               </p>
 
               {/* Search Bar */}
@@ -220,24 +220,31 @@ const Index = () => {
             </section>
           )}
 
-          {/* Popular Languages */}
+          {/* Lovable Categories */}
           <section className="py-10 px-4 pb-16">
             <div className="max-w-5xl mx-auto">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-lg font-medium">Popular Languages</h2>
-                <Link to="/categories" className="text-sm text-muted-foreground hover:text-foreground">
+                <h2 className="text-lg font-medium">Explore Lovable Resources</h2>
+                <Link to="/lovable-prompts" className="text-sm text-muted-foreground hover:text-foreground">
                   View all →
                 </Link>
               </div>
 
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-                {["TypeScript", "React", "Next.js", "Python", "TailwindCSS", "Supabase"].map(lang => (
+                {[
+                  { label: "UI Prompts", href: "/lovable-ui-prompts" },
+                  { label: "SaaS Templates", href: "/browse?search=saas+lovable" },
+                  { label: "Hallucination Fixes", href: "/lovable-ui-prompts" },
+                  { label: "Migration Tools", href: "/lovable-to-nextjs" },
+                  { label: "Best Practices", href: "/lovable-prompts" },
+                  { label: "Prompt Generator", href: "/generate" },
+                ].map(item => (
                   <Link 
-                    key={lang} 
-                    to={`/browse?search=${encodeURIComponent(lang.toLowerCase())}`} 
+                    key={item.label} 
+                    to={item.href} 
                     className="p-4 rounded-lg border border-border bg-card hover:border-primary/50 transition-colors text-center"
                   >
-                    <p className="text-sm font-medium">{lang}</p>
+                    <p className="text-sm font-medium">{item.label}</p>
                   </Link>
                 ))}
               </div>

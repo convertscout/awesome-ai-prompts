@@ -46,14 +46,17 @@ function generateSitemapXml(prompts: Prompt[]): string {
     { loc: '/submit', changefreq: 'monthly', priority: '0.7' },
      { loc: '/generate', changefreq: 'daily', priority: '1.0' },
     // SEO Landing Pages - High priority for keyword targeting
-    { loc: '/chatgpt-prompts', changefreq: 'daily', priority: '0.9' },
-    { loc: '/gemini-prompts', changefreq: 'daily', priority: '0.9' },
-    { loc: '/claude-prompts', changefreq: 'daily', priority: '0.9' },
-    { loc: '/cursor-prompts', changefreq: 'daily', priority: '0.9' },
-    { loc: '/lovable-prompts', changefreq: 'daily', priority: '0.9' },
-    { loc: '/github-copilot-prompts', changefreq: 'daily', priority: '0.9' },
-    { loc: '/ai-code-generator', changefreq: 'daily', priority: '0.9' },
-    { loc: '/best-ai-for-coding', changefreq: 'daily', priority: '0.9' },
+    // Lovable pages - highest priority
+    { loc: '/lovable-prompts', changefreq: 'daily', priority: '1.0' },
+    { loc: '/lovable-ui-prompts', changefreq: 'daily', priority: '1.0' },
+    // Other tool pages - secondary
+    { loc: '/chatgpt-prompts', changefreq: 'daily', priority: '0.7' },
+    { loc: '/gemini-prompts', changefreq: 'daily', priority: '0.7' },
+    { loc: '/claude-prompts', changefreq: 'daily', priority: '0.7' },
+    { loc: '/cursor-prompts', changefreq: 'daily', priority: '0.7' },
+    { loc: '/github-copilot-prompts', changefreq: 'daily', priority: '0.7' },
+    { loc: '/ai-code-generator', changefreq: 'daily', priority: '0.8' },
+    { loc: '/best-ai-for-coding', changefreq: 'daily', priority: '0.8' },
      // Interactive tools - highest priority
      { loc: '/lovable-to-nextjs', changefreq: 'daily', priority: '1.0' },
      { loc: '/vite-to-nextjs', changefreq: 'daily', priority: '1.0' },

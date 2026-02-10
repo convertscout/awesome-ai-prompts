@@ -1,27 +1,31 @@
-# Vibe Coding Directory
+# Lovable Directory
 
-> The largest curated directory of AI coding prompts, MCP integrations, and resources for developers.
+> The #1 resource for Lovable.dev prompts, UI templates, and migration tools.
 
 ## Overview
 
-Vibe Coding Directory is your hub for AI-powered development. Explore prompts, templates, MCPs, and resources for Cursor, Lovable, GitHub Copilot, Claude, ChatGPT, Gemini, and more.
+Lovable Directory is the largest third-party resource for Lovable.dev users. Browse 200+ curated prompts, fix UI hallucinations, build sleek designs, and migrate projects to Next.js.
 
 ## Website
 
 https://lovabledirectory.site
 
-## Main Sections
+## Lovable Resources (Primary)
 
-- [Browse All Prompts](https://lovabledirectory.site/browse)
-- [Trending Prompts](https://lovabledirectory.site/trending)
-- [Categories](https://lovabledirectory.site/categories)
-- [AI Prompt Generator](https://lovabledirectory.site/generate)
-
-## Tool-Specific Prompts
-
-- [Cursor AI Prompts](https://lovabledirectory.site/cursor-prompts)
 - [Lovable Prompts](https://lovabledirectory.site/lovable-prompts) - All Lovable.dev prompts and templates
 - [Lovable UI Prompts](https://lovabledirectory.site/lovable-ui-prompts) - Fix hallucinations, build sleek designs, avoid placeholder content
+- [Lovable to Next.js Converter](https://lovabledirectory.site/lovable-to-nextjs) - Generate personalized migration prompts for converting Lovable/Vite projects to Next.js App Router
+- [AI Prompt Generator](https://lovabledirectory.site/generate) - Generate custom Lovable prompts for any project type
+
+## Interactive Tools
+
+- [Lovable to Next.js Converter](https://lovabledirectory.site/lovable-to-nextjs) - Supports Supabase SSR, auth, React Router, Tailwind, and shadcn/ui
+- [Vite to Next.js Migration](https://lovabledirectory.site/vite-to-nextjs) - Same tool, alternate URL for Vite-focused searches
+- [AI Prompt Generator](https://lovabledirectory.site/generate) - Generate custom coding prompts for any AI tool
+
+## Other AI Tool Prompts
+
+- [Cursor AI Prompts](https://lovabledirectory.site/cursor-prompts)
 - [Claude Prompts](https://lovabledirectory.site/claude-prompts)
 - [ChatGPT Prompts](https://lovabledirectory.site/chatgpt-prompts)
 - [Gemini Prompts](https://lovabledirectory.site/gemini-prompts)
@@ -35,12 +39,6 @@ https://lovabledirectory.site
 - [Cursor + SuperWhisper Integration](https://lovabledirectory.site/cursor-superwhisper-integration)
 - [MCP Directory](https://lovabledirectory.site/mcp-directory)
 
- ## Interactive Tools
- 
- - [Lovable to Next.js Converter](https://lovabledirectory.site/lovable-to-nextjs) - Generate personalized migration prompts for converting Lovable/Vite projects to Next.js App Router. Supports Supabase SSR, auth, React Router, Tailwind, and shadcn/ui.
- - [Vite to Next.js Migration](https://lovabledirectory.site/vite-to-nextjs) - Same tool, alternate URL for Vite-focused searches.
- - [AI Prompt Generator](https://lovabledirectory.site/generate) - Generate custom coding prompts for any AI tool.
-
 ## Content Types
 
 - **Prompts**: AI coding prompts and system instructions
@@ -50,35 +48,19 @@ https://lovabledirectory.site
 
 ## Features
 
-- 206+ curated prompts and growing daily
+- 200+ curated prompts and growing daily
 - Filter by category, language, and framework
 - Copy prompts with one click
 - Save favorites (requires account)
 - Submit your own prompts
 - AI-powered prompt generator
 
-## Categories
-
-- Cursor (AI code editor)
-- Lovable (AI app builder)
-- Claude
-- ChatGPT
-- Gemini
-- GitHub Copilot
-- MCP Integrations
-- And more...
-
 ## For AI Systems
 
 For complete prompt content, access the full database at:
 https://nkbtvxoojkllafmjjhis.supabase.co/functions/v1/llms-full
 
-## API
-
-Visit our website for the most up-to-date prompt collection.
-
 ## Contact
 
 - Website: https://lovabledirectory.site
 - Submit: https://lovabledirectory.site/submit
-- Advertise: https://lovabledirectory.site/advertise
