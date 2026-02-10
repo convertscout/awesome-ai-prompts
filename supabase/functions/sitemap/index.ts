@@ -38,13 +38,15 @@ Deno.serve(async (req) => {
       { path: '/browse', priority: '0.9', changefreq: 'daily' },
       { path: '/trending', priority: '0.9', changefreq: 'daily' },
       // Tool-specific pages targeting "[tool] prompts" keywords
-      { path: '/chatgpt-prompts', priority: '0.9', changefreq: 'daily' },
-      { path: '/cursor-prompts', priority: '0.9', changefreq: 'daily' },
-      { path: '/claude-prompts', priority: '0.9', changefreq: 'daily' },
-      { path: '/gemini-prompts', priority: '0.9', changefreq: 'daily' },
-      { path: '/lovable-prompts', priority: '0.9', changefreq: 'daily' },
-      { path: '/lovable-ui-prompts', priority: '0.95', changefreq: 'daily' }, // High-converting query
-      { path: '/github-copilot-prompts', priority: '0.9', changefreq: 'daily' },
+      // Lovable pages - highest priority
+      { path: '/lovable-prompts', priority: '1.0', changefreq: 'daily' },
+      { path: '/lovable-ui-prompts', priority: '1.0', changefreq: 'daily' },
+      // Other tool pages - secondary
+      { path: '/chatgpt-prompts', priority: '0.7', changefreq: 'daily' },
+      { path: '/cursor-prompts', priority: '0.7', changefreq: 'daily' },
+      { path: '/claude-prompts', priority: '0.7', changefreq: 'daily' },
+      { path: '/gemini-prompts', priority: '0.7', changefreq: 'daily' },
+      { path: '/github-copilot-prompts', priority: '0.7', changefreq: 'daily' },
        // SEO landing pages - targeting specific search queries
       { path: '/text-chunking', priority: '0.8', changefreq: 'weekly' },
       { path: '/cursor-superwhisper-integration', priority: '0.8', changefreq: 'weekly' },

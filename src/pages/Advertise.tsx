@@ -5,17 +5,17 @@ import { Mail, Users, Eye, Globe, Code, Target, CheckCircle, ExternalLink } from
 
 const Advertise = () => {
   useSEO({
-    title: 'Advertise with Lovable Directory | Reach 200K+ Developers Monthly',
-    description: 'Promote your developer tool to 19,000+ subscribers and 200,000+ monthly views. US-based audience of developers using AI coding tools. $2,000/month sponsorship.',
+    title: 'Advertise with Lovable Directory | Reach Lovable.dev Developers',
+    description: 'Promote your developer tool to Lovable.dev users. Targeted audience of developers building apps with AI. Affordable sponsorship starting at $200/month.',
     canonical: 'https://lovabledirectory.site/advertise',
     ogType: 'website',
   });
 
   const stats = [
-    { icon: Mail, value: "19,000+", label: "Newsletter Subscribers" },
-    { icon: Eye, value: "200,000+", label: "Monthly Views" },
+    { icon: Eye, value: "Growing", label: "Monthly Views" },
     { icon: Globe, value: "US-Based", label: "Primary Audience" },
-    { icon: Target, value: "High-Intent", label: "Developer Audience" },
+    { icon: Target, value: "Lovable.dev", label: "Niche Audience" },
+    { icon: Users, value: "500K+", label: "Lovable Users" },
   ];
 
   const included = [
@@ -70,8 +70,8 @@ const Advertise = () => {
             Reach developers actively building with AI tools. Get your product in front of high-intent developers who are searching for the best coding solutions.
           </p>
           <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg">
-            <a href="https://www.paypal.com/ncp/payment/UHEJ4856M5JPC" target="_blank" rel="noopener noreferrer">
-              Become a Sponsor - $2,000/mo
+            <a href="mailto:hello@lovabledirectory.site">
+              Become a Sponsor - From $200/mo
               <ExternalLink className="ml-2 h-5 w-5" />
             </a>
           </Button>
@@ -132,7 +132,7 @@ const Advertise = () => {
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-2xl font-bold mb-6">Simple Pricing</h2>
           <div className="p-8 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20">
-            <div className="text-5xl font-bold text-foreground mb-2">$2,000</div>
+            <div className="text-5xl font-bold text-foreground mb-2">$200</div>
             <div className="text-lg text-muted-foreground mb-6">per month</div>
             <ul className="text-left space-y-3 mb-8 max-w-sm mx-auto">
               <li className="flex items-center gap-2 text-muted-foreground">
@@ -141,7 +141,7 @@ const Advertise = () => {
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle className="h-4 w-4 text-green-500" />
-                200,000+ impressions/month
+                Targeted Lovable.dev developer audience
               </li>
               <li className="flex items-center gap-2 text-muted-foreground">
                 <CheckCircle className="h-4 w-4 text-green-500" />
@@ -153,7 +153,7 @@ const Advertise = () => {
               </li>
             </ul>
             <Button asChild size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-              <a href="https://www.paypal.com/ncp/payment/UHEJ4856M5JPC" target="_blank" rel="noopener noreferrer">
+              <a href="mailto:hello@lovabledirectory.site">
                 Become a Sponsor
                 <ExternalLink className="ml-2 h-4 w-4" />
               </a>
