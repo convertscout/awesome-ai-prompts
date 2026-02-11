@@ -29,6 +29,7 @@ import LovableToNextjs from "./pages/LovableToNextjs";
 import TextChunking from "./pages/TextChunking";
 import CursorSuperWhisperIntegration from "./pages/CursorSuperWhisperIntegration";
 import MCPDirectory from "./pages/MCPDirectory";
+import LovableDarkThemePrompts from "./pages/LovableDarkThemePrompts";
 
  // Redirect component for /vite-to-nextjs
  const ViteToNextjsRedirect = () => {
@@ -71,6 +72,7 @@ const App = () => (
           <Route path="/text-chunking" element={<TextChunking />} />
           <Route path="/cursor-superwhisper-integration" element={<CursorSuperWhisperIntegration />} />
           <Route path="/mcp-directory" element={<MCPDirectory />} />
+          <Route path="/lovable-dark-theme-prompts" element={<LovableDarkThemePrompts />} />
            <Route path="/vite-to-nextjs" element={<ViteToNextjsRedirect />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

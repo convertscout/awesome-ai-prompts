@@ -20,3 +20,6 @@ verify_jwt = false
 
 [functions.generate-prompt]
 verify_jwt = false
+
+[functions.capture-email]
+verify_jwt = false

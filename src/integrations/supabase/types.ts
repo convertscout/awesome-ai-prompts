@@ -14,6 +14,27 @@ export type Database = {
   }
   public: {
     Tables: {
+      email_captures: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          source: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          source?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          source?: string
+        }
+        Relationships: []
+      }
       favorites: {
         Row: {
           created_at: string | null
