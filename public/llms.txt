@@ -14,6 +14,7 @@ https://lovabledirectory.site
 
 - [Lovable Prompts](https://lovabledirectory.site/lovable-prompts) - All Lovable.dev prompts and templates
 - [Lovable UI Prompts](https://lovabledirectory.site/lovable-ui-prompts) - Fix hallucinations, build sleek designs, avoid placeholder content
+- [Lovable Dark Theme Prompts](https://lovabledirectory.site/lovable-dark-theme-prompts) - Dark mode examples, dark theme templates, glassmorphism dark UI
 - [Lovable to Next.js Converter](https://lovabledirectory.site/lovable-to-nextjs) - Generate personalized migration prompts for converting Lovable/Vite projects to Next.js App Router
 - [AI Prompt Generator](https://lovabledirectory.site/generate) - Generate custom Lovable prompts for any project type
 

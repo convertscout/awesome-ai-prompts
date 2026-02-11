@@ -51,6 +51,7 @@ Deno.serve(async (req) => {
       { path: '/text-chunking', priority: '0.8', changefreq: 'weekly' },
       { path: '/cursor-superwhisper-integration', priority: '0.8', changefreq: 'weekly' },
       { path: '/mcp-directory', priority: '0.9', changefreq: 'daily' },
+      { path: '/lovable-dark-theme-prompts', priority: '0.9', changefreq: 'weekly' },
       // Informational/comparison pages
       { path: '/ai-code-generator', priority: '0.9', changefreq: 'weekly' },
       { path: '/best-ai-for-coding', priority: '0.9', changefreq: 'weekly' },

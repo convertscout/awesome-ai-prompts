@@ -233,7 +233,7 @@ const Index = () => {
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
                 {[
                   { label: "UI Prompts", href: "/lovable-ui-prompts" },
-                  { label: "SaaS Templates", href: "/browse?search=saas+lovable" },
+                  { label: "Dark Theme", href: "/lovable-dark-theme-prompts" },
                   { label: "Hallucination Fixes", href: "/lovable-ui-prompts" },
                   { label: "Migration Tools", href: "/lovable-to-nextjs" },
                   { label: "Best Practices", href: "/lovable-prompts" },

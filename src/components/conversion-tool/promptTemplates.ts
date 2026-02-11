@@ -380,27 +380,33 @@
  
  `;
  
- const FINAL_CHECKLIST = (projectType: string) => `## Final Migration Checklist
- 
- ### Project Type: ${projectType.charAt(0).toUpperCase() + projectType.slice(1)}
- 
- - [ ] Create Next.js project with App Router
- - [ ] Copy \`components/\` directory
- - [ ] Copy \`lib/\` utilities
- - [ ] Copy \`public/\` assets
- - [ ] Set up global styles
- - [ ] Configure environment variables
- - [ ] Add 'use client' to interactive components
- - [ ] Test all routes
- - [ ] Test authentication flow
- - [ ] Test data fetching
- - [ ] Run build: \`npm run build\`
- - [ ] Deploy to Vercel
- 
- ## Need More Help?
- 
- Paste specific component code and ask for targeted migration assistance.
- `;
+  const FINAL_CHECKLIST = (projectType: string) => `## Final Migration Checklist
+
+  ### Project Type: ${projectType.charAt(0).toUpperCase() + projectType.slice(1)}
+
+  - [ ] Create Next.js project with App Router
+  - [ ] Copy \`components/\` directory
+  - [ ] Copy \`lib/\` utilities
+  - [ ] Copy \`public/\` assets
+  - [ ] Set up global styles
+  - [ ] Configure environment variables
+  - [ ] Add 'use client' to interactive components
+  - [ ] Test all routes
+  - [ ] Test authentication flow
+  - [ ] Test data fetching
+  - [ ] Run build: \`npm run build\`
+  - [ ] Deploy to Vercel
+
+  ## Recommended Tools
+
+  - **[Deploy to Vercel](https://vercel.com/new)** - One-click deployment for Next.js apps
+  - **[Cursor AI Editor](https://cursor.com)** - Best AI code editor for migration assistance
+  - **[Supabase](https://supabase.com)** - Continue using your existing Supabase backend
+
+  ## Need More Help?
+
+  Visit [Lovable Directory](https://lovabledirectory.site/lovable-to-nextjs) for more migration prompts and tools.
+  `;
  
  export function generateConversionPrompt(config: ConversionConfig): string {
    let prompt = BASE_PROMPT(config.nextVersion);
